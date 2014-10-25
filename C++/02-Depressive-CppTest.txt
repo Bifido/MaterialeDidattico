@@ -1,0 +1,113 @@
+1) descrivere i significati e gli utilizzi delle keywords virtual, const e static
+
+
+
+2) descrivere con 3 righe ciascuno i seguenti principi: 
+
+SFINAE: Substitution failure is not an error;
+ADL: Argument-dependent name lookup;
+LSP: Liskov substitution principle;
+RAII: Resource Acquisition Is Initialization;
+YAGN: You Arent Gonna Need It;
+DRY: Dont Repeat Yourself;
+Rule of Three: destructor, copy constructor, copy assignment operator;
+NVI: Non-Virtual Interface
+
+
+
+3) scrivere l'overload dell'operatore di assegnazione per la seguente classe, supponendo di trascurare la exception safety (un plus se riuscite a scrivere un operatore di assegnazione strongly exception safe)
+
+class TestClass : public BaseTestClass /* BaseTestClass has polymorphic behavior*/
+{
+public:
+	TestClass(); /* develop it if you want */
+	/* copy constructor, provide the function prototype at least, and develop it if you want */
+	/* overload of assignment operator, provide the function prototype and develop it*/
+	virtual ~TestClass(); /* develop it if you want */
+
+private:
+	Type1* m_one; // pointer with ownership of a polymorphic class (suppose its hierarchy has a virtual Base* Clone())
+	Type2* m_two; // pointer with ownership of a non-polymorphic class
+	Type3* m_three; // pointer without ownership of a polymorphic class (does it mind?)
+	Type4* m_four; // pointer with Intrusive Refcounting (Type4 has AddRef() and Release()) of a non polymorphic class (does it mind?)
+	Type5  m_five; // Type5 is a polymorphic class (does it mind?)
+};
+
+
+
+4) scrivere una libreria di template functions per calcolare Massimo Comun Divisore, minimo comune multiplo e detectare se due numeri interi (integer literals) sono primi tra loro a compile time, utilizzando Template Metaprogramming
+
+
+
+5) Supponete di trovare la seguente funzione in angoli remoti della vostra codebase. La funzione è inclusa nel processo di build, quindi non presenta errori sintattici o riferimenti sbagliati. Elencare quanti più possibili "bug" di design del codice e potenziali problemi di mantenimento, leggibilità e quanto altro vi viene in mente.
+
+void HandleStuff( CORP_DATA & inputRec, int crntQtr, EMP_DATA empRec, double
+	& estimRevenue, double ytdRevenue, int screenX, int screenY, COLOR_TYPE &
+	newColor, COLOR_TYPE & prevColor, StatusType & status, int expenseType )
+{
+int i;
+for ( i = 0; i < 100; i++ ) {
+	inputRec.revenue[i] = 0;
+	inputRec.expense[i] = corpExpense[ crntQtr ][ i ];
+	}
+UpdateCorpDatabase( empRec );
+estimRevenue = ytdRevenue * 4.0 / (double) crntQtr;
+newColor = prevColor;
+status = SUCCESS;
+if ( expenseType == 1 ) {
+	for ( i = 0; i < 12; i++ )
+		profit[i] = revenue[i] - expense.type1[i];
+	}
+else if ( expenseType == 2 ) {
+		profit[i] = revenue[i] - expense.type2[i];
+		}
+else if ( expenseType == 3 )
+		profit[i] = revenue[i] - expense.type3[i];
+		}
+
+
+
+6) rispondete alle domande sparse nei commenti al codice
+
+class Base {int x;  virtual void dummy(){}};
+class Derived: public Base {int a; };
+class Base2 {int y;  virtual void dummy2(){}};
+class DerivedMultiple: public Base, public Base2{int z;};
+
+void f1()
+{
+	DerivedMultiple* pdm = new DerivedMultiple;
+	Base* pBase1 = pdm;
+	Base2* pBase2 = pdm; 
+	assert((void*)pBase1 == (void*)pBase2); // does it assert? why?
+	delete pdm;
+}
+
+void f2()
+{
+	// which statements does not compile? 
+	// let's suppose to remove all "compile error statement", select the statements that are not correct (what does the pointer holds at the end of each statements?)
+
+	Base* pBase1 = new DerivedMultiple;
+	DerivedMultiple* pdm = pBase1; 
+	pdm = static_cast<DerivedMultiple*>(pBase1);
+	pdm = dynamic_cast<DerivedMultiple*>(pBase1);
+	Base2* pBase2 = pBase1; 
+	pBase2 = static_cast<Base2*>(pBase1); 
+	pBase2 = dynamic_cast<Base2*>(pBase1); 
+	pdm = static_cast<DerivedMultiple*>(pBase2); 
+	pdm = dynamic_cast<DerivedMultiple*>(pBase2); 
+	delete pBase1;
+}
+
+void f3()
+{
+	Base* pBase1 = new DerivedMultiple;
+	DerivedMultiple* pdm = dynamic_cast<DerivedMultiple*>(pBase1);
+	Base2* pBase2 = (Base2*)pBase1; 
+	DerivedMultiple* pdm2 = static_cast<DerivedMultiple*>(pBase2);
+	assert(pdm == pdm2); // does it assert? why?
+	DerivedMultiple* pdm3 = dynamic_cast<DerivedMultiple*>(pBase2);
+	assert(pdm3); // does it assert? why?
+	delete pBase1;
+}
