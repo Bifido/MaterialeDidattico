@@ -1,0 +1,299 @@
+/*
+
+--------------------------------------------------------------------HEAP && STACK------------------------------------------------------------
+
+1)sono presenti due memorie, il motivo principale è il lifetime di una variabile
+
+2)differenze tra stack è
+int x; 							viene allocato nello stack. X è una variabile.
+								viene deallocato lo spazio occupato dalla variabile automaticamente quando esce dallo scope
+
+int x = new int();				viene allocato nell'heap, viene usato il new. X è un puntatore ad una variabile che sta nell'heap
+								viene deallocato tramite delete. senza i byte utilizzati sono bruciati, si dice leaked.
+
+3) l'heap è più lento dello stack perchè deve cercare le posizioni vuote, spostare gli elementi per avere spazi vuoti contigui, deallocare.
+
+4) lo stack è più veloce perchè alloca direttamente nello spazio senza ottimizzare, impilando uno sopra l'altro, e leva dall'alto verso il basso.
+
+5) se instanzio nell'heap una classe che contiene una classe non base, ad esempio B, la quale a sua volta ha una variabile tipo int x, x non và
+   sullo stack ma rimane nell'heap perchè nel momento in cui viene istanziata B, lo spazio di x è stao già copiato
+ 
+
+
+--------------------------------------------------------------------PUNTATORI---------------------------------------------------------------
+
+void *p;  in pratica p è uguale ad un indirizzo di memoria tipo 0x12345678
+
+1) le dimensioni di un puntatore dipendono dall'architettura, se 32bit il puntatore ha dim 4byte, se 64 il puntatore ha dim 8byte
+
+2) NON fare puntatori di puntatori perchè si possono creare casini.
+
+3) ownership del puntatore. Chi crea il puntatore lo distrugge.
+
+4) è buona norma dopo il delete di un'istanza puntata da un puntatore, porlo a null.
+	ES: int *p = new int();
+		int *q = p;
+		//entrambe contengono l'indirizzo alla variabile new int;
+		delete q;
+		//cancella la variabile int.
+		p = nullptr;
+		//è buono mettere il puntatore a nullptr per indicare che non è valido
+	
+
+
+
+
+
+--------------------------------------------------------------------CONST-------------------------------------------------------------------
+
+1) le funzioni const possono chiamare solo funzioni const.
+
+2) int GetDummy() const; 			il metodo non scrive ne modifica niente.
+
+3) A(const A& copy){...}			il metodo riceve una variabile che non subirà modifiche.
+
+
+
+
+--------------------------------------------------------------------BEST PRACTICE-----------------------------------------------------------
+
+1)CLASSI PICCOLE e SEMPLICI
+
+2)NON si eredita niente di default, l'ereditarietà è specificata
+
+3)variabili public o private con getter/setter? private con getter/setter perchè così sò cosa fà,
+ma non sò come lo implementa e probabilmente non mi interessa. Inoltre aiuta al debugging.
+
+4) conviene mettere tutto la parte private di una class alla fine perchè chi la usa probabilmente vuole vedere la tipo parte public
+
+5) NON USARE friend
+
+6) 	nel .h ci sta l'interfaccia, che è la dichiarazione
+	nel .cpp ci sta l'implementazione che è la definizione
+
+7) VisualStudio build in debug, aggiunge informazioni per fare il debug, build in release toglie informazioni ed ottimizza le dimensioni dell'exe
+
+8) oggetto piccolo, lo passo per valore.
+   oggetto grande, lo passo per riferimento.
+   oggetto opzionale(che può essere null), lo passo per indirizzo.
+
+9) regola del 3: se ho bisogno della copia, o dell'assegnamento o del distruttore, allora SICURAMENTE ho bisogno anche degli altri
+
+--------------------------------------------------------------------SEGNO &  -----------------------------------------------------------------
+
+1)
+int a;
+int& b = a;
+
+ho creato un alias ( b è alias di a);
+se scrivo b = 3, è come se avessi scritto a =3;
+
+2)
+int *p;		// è un puntatore ad intero.
+int a;		// a è sullo stack
+p = &a;
+
+delete p; 	// ATTENZIONE, applico la logica dell'heap allo stack, se ciò avviene, smash stack e se chiude il pc! DA NON FARE
+
+3)
+class Alloco1GB di 4 byte{
+	void Foo(Alloc& copy){   //non è la copia ma l'indirizzo della risorsa, cioè "vai a prendere ciò che è contenuto dall'indirizzo &copy"
+	}
+}
+
+A(const A& copy) 			//copy non può essere mai null perchè sto passando una referenza
+
+
+--------------------------------------------------------------------SEGNO *  -----------------------------------------------------------------
+
+A(const A* copy) //ATTENZIONE copy può essere null, per questo non si usa per le copie
+
+
+--------------------------------------------------------------------CLASSI-----------------------------------------------------------------
+
+1)	class C; 			//dichiarazione di una classe C ma non dico niente
+	class C{....}		//definizione della classe C, cioè cosa contiene, e occupa spazio
+
+2) le Variabili vanno SEMPRE inizializzate, MAI lasciare il costruttore di  ma fare sempre l'overload
+
+3) con questa sintassi prima di inizializzare Time, inizializzo le variabili prima di inizializzare l'oggetto time:
+		Time::Time(int newHours, int newMinutes, int newSeconds):
+			hours(newHours), minutes(newMinutes), seconds(newSeconds){
+		}
+
+4) una volta definito un costruttore quello di default non esiste più
+
+5) il distruttore va sempre dichiarato e definito, anche se vuoto!
+
+6) chi alloca DEVE ancora DEALLOCARE
+
+7) il costruttore di copia ha const per indicare che il valore non viene modificato	
+
+	costruttore di copia:
+	A(const A& copy){...}
+	
+	operatore di assegnamento
+	operator = (const A& copy){};
+
+	esempio di copia superficiale
+	A& operator =(const A& copy){
+		if(&copy != this){
+			DELETE myB;
+			myB = copy.myB;
+		}
+		return this;
+	}
+
+	esempio copia profonda
+	A& operator =(const A& copy){
+		if(&copy != this){
+			delete myB;
+			myB(copy.myB);
+		}
+		return this;
+	}
+
+*/
+
+8) se scrivo il COSTRUTTORE DI COPIA devo fare anche l'override dell'operator = .
+
+9) se voglio evitare che una classe possa essere copiata, implemento copia e = nel .h ma li metto private.
+
+--------------------------------------------------------------------FINE NOTE--------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+// passaggio per riferimento, cioè gli sto dicendo vai alla cella di memoria indicata da i_val (che è un puntatore)
+string passaggioPerReference(string& i_val);     /// passaggioPerReference(i_val)   NON PUò ESSERE NULL
+/*esempio:
+	string prova = "ciao";
+	passaggioPerReference(prova);
+*/
+
+// passaggio per copia, cioè sto creando un nuovo oggetto copiando l'oggetto i_val, usando il costruttore di copia
+string passaggioPerCopia(string i_val);
+
+cout << y; //stampa l'indirizzo di memoria di y;
+cout << *y; // stampa il valore contenuto dall'indirizzo di memoria contenuto da y
+
+int x[5] = { 1,2,3,4,5};
+int *p = x; // *p è un puntatore ad interi
+cout << p[4]; // punta al 4 elemento di x
+
+
+inline int foo();  // non chiama la funzione ma copia il codice dentro foo lì dove viene chiamato, mandatory
+
+typedef std::vector<int> myVector 
+// in questo modo posso ridefinire dinamicamente il mio myVector, ad esempio cambiando da int a long
+//utile ad esempio con il preprocessore con un if/def per ambienti diversi
+
+int foo2(){
+	int a;
+	cout << a;   //senza inizializzare trovo il valore rimasto precedentemente nel registro
+}
+
+
+int* y = &x; //y contiene l'indirizzo di x. & significa "l'indirizzo di"
+
+int x;
+int* y = &x;
+*y = 5; // assegna 5 a x
+
+//quando ho bisogno di ad esempio un math.h non conviene implementarlo nel .h ma nel .cpp perchè è li che lo uso e non devo aggiungerlo forzatamente all'h
+
+
+//-----------------------------------------------------seconda lezione------- 24/10/14 
+
+/*
+Esercizio1:
+riempire un int al massimo.
+in c++ tutto si basa sul char ed il size(of)| si lavora "comodamente" con l'esadecimale
+float:  segno|esponente|mantissa    int: segno|valore          
+complemento a due:ipotizzando che un bit è destinato al segno, parte dei numeri è destinata a rappresentare i negativi
+
+				bit
+int x = 5    	1010
+int x = 0xf		1111 == 15
+
+quindi l'int massimo è 0xFFFFFFFF ( se unsigned, altrimenti  in complemento a due è -1)
+
+una classe è un'astrazione che semplifica un concetto ed espone delle funzionalità.
+una struct attualmente viene utilizzato come aggregatore di dati, ma è tutto public
+
+la parte public di una classe può essere visto come una sorta di "contratto"
+bisogna supporre che l'utilizzatore ne farà il peggior uso, pertanto, una cosa può essere aggiungere commenti intelligenti
+
+esempio dell'init: deve essere chiamata per prima, bisogna indicarlo all'utilizzatore con un commento oppure usando un assert.
+
+esempio
+class texture{
+	public:
+		int getWidth() const;				//probabilmente una riga di codice
+		void Render();						//probabilmente 1000 righe di codice.
+
+		//usare come prima operazione
+		bool init();						//esempio di funzione da chiamare per prima
+}
+
+
+class temp{
+				senza niente ha size 1	
+}
+class temp{
+	char x; 	ha size 1
+}
+class temp{
+	int x; 		ha size 4
+}
+
+esempio di classe per formalizzare il tempo
+la size è data dalla somma dei membri più vfptr più l'allignment
+
+class temp{
+	private: 	//solo la classe
+		int seconds;
+		int min;
+		int hours;
+	public: 	//tutti vedono
+		int GetSec() const;
+		int GetMin() const;
+		int GetHours() const;
+		void SetSec(int sec);
+		void SetMin(int min);
+		void SetHour(int hour);
+	protected: 	//solo i derivati
+};
+
+all'esterno
+
+Tume myTime;
+myTyme.GetSes();
+myTyme.GetSes();
+myTyme.min = 5; 	//esplode perchè private
+
+
+
+esercizio: stampare l'indirizzo del puntato di un puntatore e stampare l'indirizzo del puntatore
+	
+	int *x = new int(2);
+	cout << x << endl;
+			x è un puntatore alla variabile int(2), il suo valore è la cella di memoria che contiene (2)
+	cout << &x << endl;
+			&x è l'indirizzo della cella che contiene il puntatore che punta alla variabile int(2)
+
+
+esercizio: fare una classe che conta (GetNumInstance()) quanti oggetti sono instanziati.
+
+/*
+
+

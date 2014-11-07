@@ -1,0 +1,6 @@
+1/z = -1/x = -v/y
+{u = (-1/z) * x
+{v = (-1/z) * y}
+
+euclideo (x,y) -> omogenee (x,y,z) = (kx,ky,k)
+omogenee (u,v,w) -> euclidee ( u/w, v/w)  se ( w = 0 abbiamo una direzione (un vettore o versore?), se w = 1 è un punto)
