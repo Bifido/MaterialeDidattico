@@ -1,0 +1,4 @@
+scacchi in due no IA
+-no arrocco
+-pedoni semplificati
+scelta pezzo quando pedone arriva in fondo

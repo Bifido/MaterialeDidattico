@@ -1,0 +1,8 @@
+Unity inspector
+read/write enabled: si usa solo se lavoro sulla mesh e sullo skinning
+
+
+rig:
+legacy, il più semplice, animazione sulla stessa timeline
+generic, più pezzi su diverse timeline
+umanoid, più pezzi su diverse timeline ma applicato alla fisica

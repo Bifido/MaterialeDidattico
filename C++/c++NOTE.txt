@@ -1,60 +1,5 @@
 /*
 
---------------------------------------------------------------------HEAP && STACK------------------------------------------------------------
-
-1)sono presenti due memorie, il motivo principale è il lifetime di una variabile
-
-2)differenze tra stack è
-int x; 							viene allocato nello stack. X è una variabile.
-								viene deallocato lo spazio occupato dalla variabile automaticamente quando esce dallo scope
-
-int x = new int();				viene allocato nell'heap, viene usato il new. X è un puntatore ad una variabile che sta nell'heap
-								viene deallocato tramite delete. senza i byte utilizzati sono bruciati, si dice leaked.
-
-3) l'heap è più lento dello stack perchè deve cercare le posizioni vuote, spostare gli elementi per avere spazi vuoti contigui, deallocare.
-
-4) lo stack è più veloce perchè alloca direttamente nello spazio senza ottimizzare, impilando uno sopra l'altro, e leva dall'alto verso il basso.
-
-5) se instanzio nell'heap una classe che contiene una classe non base, ad esempio B, la quale a sua volta ha una variabile tipo int x, x non và
-   sullo stack ma rimane nell'heap perchè nel momento in cui viene istanziata B, lo spazio di x è stao già copiato
- 
-
-
---------------------------------------------------------------------PUNTATORI---------------------------------------------------------------
-
-void *p;  in pratica p è uguale ad un indirizzo di memoria tipo 0x12345678
-
-1) le dimensioni di un puntatore dipendono dall'architettura, se 32bit il puntatore ha dim 4byte, se 64 il puntatore ha dim 8byte
-
-2) NON fare puntatori di puntatori perchè si possono creare casini.
-
-3) ownership del puntatore. Chi crea il puntatore lo distrugge.
-
-4) è buona norma dopo il delete di un'istanza puntata da un puntatore, porlo a null.
-	ES: int *p = new int();
-		int *q = p;
-		//entrambe contengono l'indirizzo alla variabile new int;
-		delete q;
-		//cancella la variabile int.
-		p = nullptr;
-		//è buono mettere il puntatore a nullptr per indicare che non è valido
-	
-
-
-
-
-
---------------------------------------------------------------------CONST-------------------------------------------------------------------
-
-1) le funzioni const possono chiamare solo funzioni const.
-
-2) int GetDummy() const; 			il metodo non scrive ne modifica niente.
-
-3) A(const A& copy){...}			il metodo riceve una variabile che non subirà modifiche.
-
-
-
-
 --------------------------------------------------------------------BEST PRACTICE-----------------------------------------------------------
 
 1)CLASSI PICCOLE e SEMPLICI
@@ -79,8 +24,223 @@ ma non sò come lo implementa e probabilmente non mi interessa. Inoltre aiuta al
 
 9) regola del 3: se ho bisogno della copia, o dell'assegnamento o del distruttore, allora SICURAMENTE ho bisogno anche degli altri
 
---------------------------------------------------------------------SEGNO &  -----------------------------------------------------------------
+10) const usato per una variabile passata come parametro ad una funzione significa che quell'oggetto non verrà modificato!
 
+11) non usare MACRO per definire constanti perchè equivale ad un search&replace
+
+12) il cast C style ( int x = (int) 8.5; ) non va mai fatto perchè non è performante. si usa lo static_cast o il const_cast
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------EREDITARIETà-----------------------------------------------------------------
+
+
+1) l'ereditarietà multipla andrebbe evitata per la difficoltà nel mantenere, possibili configurazioni assurde (classe A, B e C derivano da A,F deriva da B e C, duplicazione), la distruzione può portare a leak
+
+2) esistono oltre l'ereditarietà public anche protected e private ma non vengono usati molto. con public i metodi derivati non cambiano, con protected i public diventano protected, con private diventano private anche quelli public
+
+3) tramite la parola VIRTUAL ( es: virtual void Renderer()) faccio il late binding per evitare che chiami il Renderer della classe base anzichè quello della classe derivata perchè lui posticipa finchè non sa esattamente quale classe derivata è.
+
+4) ogni classe derivata che contiene anche solo un metodo virtual ha un oggetto nascosto chiamato vTable(virtual table), il che aggiunge anche 4 byte alla size of di quella classe. Quando accede alla virtual table scopre qual'è la vera funzione da chiamare, costando un accesso in memoria in più ( e quindi può avere cache miss)
+
+5) il distruttore deve essere SEMPRE virtual, sia nella base che nel distruttore. altrimenti come fà a sapere osa deve distruggere?
+
+6) il VIRTUAL NON FUNZIONA sugli oggetti di stack.
+
+	ES: shape o;
+		box o1;
+		shape o2;
+
+		se chiamo
+		o.renderer;	non funziona
+		o1.renderer; non funziona
+
+		allora faccio
+		Shape* o = new Shape();
+		Shape* o1 = new Box(); equivalente a Box* o1 = new Box();
+
+		e chiamarli
+		o-> Renderer();
+		o1 -> Renderer();
+
+7) se non so quale è il tipo di un oggetto ( potrebbe essere derivato o essere il base) uso il type of che però NON è performante!
+
+8) posso chiamare dalla derivata il metodo virtual della base
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------OPERATOR OVERLOAD-----------------------------------------------------------------
+
+1) quando si fa un overload di una funzione, se questa modifica l'oggetto (+= ad esempio), conviene fare il metodo come membro della classe, altrimenti sarebbe meglio farlo esterno.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------CAST-----------------------------------------------------------------------
+
+1)static_cast
+
+2)const_cast
+
+3)dynamic_cast
+
+4)reinterpret_cast: puoi reinterpretare una cosa in qualsiasi cosa
+ES: 	devo trasferire  5byte
+		sender: 		char buffer[5];
+		receiver: 		character *p = reinterpret_cast<characacter>(buffer);		
+
+5) C style cast ES:(int). NON PERFORMANTE,DA NON USARE
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------HEAP && STACK------------------------------------------------------------
+
+1)sono presenti due memorie, il motivo principale è il lifetime di una variabile
+
+2)differenze tra stack è
+int x; 							viene allocato nello stack. X è una variabile.
+								viene deallocato lo spazio occupato dalla variabile automaticamente quando esce dallo scope
+
+int x = new int();				viene allocato nell'heap, viene usato il new. X è un puntatore ad una variabile che sta nell'heap
+								viene deallocato tramite delete. senza i byte utilizzati sono bruciati, si dice leaked.
+
+3) l'heap è più lento dello stack perchè deve cercare le posizioni vuote, spostare gli elementi per avere spazi vuoti contigui, deallocare.
+
+4) lo stack è più veloce perchè alloca direttamente nello spazio senza ottimizzare, impilando uno sopra l'altro, e leva dall'alto verso il basso.
+
+5) se instanzio nell'heap una classe che contiene una classe non base, ad esempio B, la quale a sua volta ha una variabile tipo int x, x non và
+   sullo stack ma rimane nell'heap perchè nel momento in cui viene istanziata B, lo spazio di x è stao già copiato
+ 	
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------STATIC-------------------------------------------------------------------
+1) non appartiene alla classe
+2) è unica
+3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------CONST-------------------------------------------------------------------
+
+1) le funzioni const possono chiamare solo funzioni const. Un const non può modificare i valori della classe e non può chiamare funzioni che modifichino
+
+2) void Foo() const; 				il metodo non modifica this.
+
+3) A(const A& copy){...}			il metodo riceve una variabile che non subirà modifiche.
+
+4) const_cast RIMUOVE il const su una variabile const!
+
+5) const non ha senso con i puntatori per valori dal momento che i valori verranno copiati e quindi già di suo non verrà usato il valore originale
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------PASSAGGIO PER VALORE-----------------------------------------------------------
+1) Se voglio modificare passo per puntatore o riferimento.
+Se non voglio modificare l'oggetto originale per valore( che fà una copia).
+
+es: void Add(int a,int b,int result)
+non ha senso perchè copio tutto se passo per valore e non restituisco il risultato originale
+
+2)Se passo un puntatore per valore, ne faccio una copia a tutti gli effetti
+ES:			int* p;
+			foo(p); //foo fà una copia uguale a p
+
+3) const non ha senso con i puntatori per valori dal momento che i valori verranno copiati e quindi già di suo non verrà usato il valore originale
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------REFERENCE e PASSAGGIO PER REFERENCE (&)--------------------------------------------------------
 1)
 int a;
 int& b = a;
@@ -101,12 +261,71 @@ class Alloco1GB di 4 byte{
 	}
 }
 
-A(const A& copy) 			//copy non può essere mai null perchè sto passando una referenza
+4)A(const A& copy) 			//copy non può essere mai null perchè sto passando una referenza
+
+5) void Foo(const MyClass&a) ad esempio da il riferimento alla classe per poter osservarla
+
+es: 		void Add(int&a,int&b,int&result) ok! uso i riferimenti e quindi gli oggetti originali
 
 
---------------------------------------------------------------------SEGNO *  -----------------------------------------------------------------
+6) int *&p; si possono fare riferimenti a puntatori
 
-A(const A* copy) //ATTENZIONE copy può essere null, per questo non si usa per le copie
+
+
+
+
+
+
+
+
+------------------------------------------------------------PUNTATORI e PASSAGGIO PER PUNTATORE  (*) ------------------------------------------------------
+
+void *p;  in pratica p è uguale ad un indirizzo di memoria tipo 0x12345678
+
+1) le dimensioni di un puntatore dipendono dall'architettura, se 32bit il puntatore ha dim 4byte, se 64 il puntatore ha dim 8byte
+
+2) NON fare puntatori di puntatori perchè si possono creare casini.
+
+3) ownership del puntatore. Chi crea il puntatore lo distrugge.
+
+4) è buona norma dopo il delete di un'istanza puntata da un puntatore, porlo a null.
+ES: 		int *p = new int();
+			int *q = p;
+			//entrambe contengono l'indirizzo alla variabile new int; 
+			delete q;
+			//cancella la variabile int.
+			p = nullptr;
+			//è buono mettere il puntatore a nullptr per indicare che non è valido
+
+5) il puntatore può essere null ( se in quel contesto null ha senso averlo)
+ES:			A(const A* copy) //ATTENZIONE copy può essere null, per questo non si usa per le copie
+
+
+6) void pointer: void *p; significa "può puntare a qualsiasi cosa" , solitamente si usa in combo con il reinterpret_cast.
+
+7) puntatore a puntatore: 
+	
+	meglio non usarli generalmente, non godono del polimorfismo, in pratica è un puntatore che punta ad un puntatore che punta ad una variabile.
+
+	ES:	int x;
+		int *y = &x;
+		int **z = &y;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 --------------------------------------------------------------------CLASSI-----------------------------------------------------------------
@@ -155,11 +374,43 @@ A(const A* copy) //ATTENZIONE copy può essere null, per questo non si usa per l
 
 */
 
-8) se scrivo il COSTRUTTORE DI COPIA devo fare anche l'override dell'operator = .
+8) se scrivo il COSTRUTTORE DI COPIA devo fare anche l'override dell'operator = . e viceversa
 
 9) se voglio evitare che una classe possa essere copiata, implemento copia e = nel .h ma li metto private.
 
+10) class friend. USARE CON PARSIMONIA!
+	class Vector{
+		friend class Commando
+	}
+	ora un oggetto commando può chiamare i campi privati della classe vector.
+	Ciò rompe l'incapsulamento e non è più detto che siano rispettati "gli step della classe" tipo init, set1,set2..... etc
+
+	la proprietà friendship non è transitiva, non è derivativa. inoltre rompe il concetto di classi self contained ed indipendenti
+
 --------------------------------------------------------------------FINE NOTE--------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
