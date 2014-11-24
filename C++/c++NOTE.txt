@@ -81,6 +81,7 @@ ma non sò come lo implementa e probabilmente non mi interessa. Inoltre aiuta al
 
 8) posso chiamare dalla derivata il metodo virtual della base
 
+9) pure virtual equivale all'abstract
 
 
 
