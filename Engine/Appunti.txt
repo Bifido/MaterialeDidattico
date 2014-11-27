@@ -1,1 +1,5 @@
-prova
+1)cos'è dt? delta time? è 1/fps
+2)come organizzare il file constants? cpp o h?
+3)dovendo utilizzare una structs globale, logicamente è un cpp o un .h?
+4)cosa significa int /*error*/ come parametro di una funzione?
+5)come si usa il pragma once?
