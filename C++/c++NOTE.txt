@@ -9,7 +9,7 @@
 3)variabili public o private con getter/setter? private con getter/setter perchè così sò cosa fà,
 ma non sò come lo implementa e probabilmente non mi interessa. Inoltre aiuta al debugging.
 
-4) conviene mettere tutto la parte private di una class alla fine perchè chi la usa probabilmente vuole vedere la tipo parte public
+4) conviene mettere tutto la parte private. di una class alla fine perchè chi la usa probabilmente vuole vedere la tipo parte public
 
 5) NON USARE friend
 
@@ -37,9 +37,29 @@ ma non sò come lo implementa e probabilmente non mi interessa. Inoltre aiuta al
 
 
 
+-----------------------------------------------------------------FORWARD DECLARATION----------------------------------
+
+Dichiaro un oggetto che però definirò dopo. vedi ship con bullet nel progetto di Mr tarini.
 
 
 
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------INLINE-------------------------------------------------------
+
+
+
+
+
+
+
+-----------------------------------------------------------------PUNTATORE A FUNZIONE e PUNTATORE A FUNZIONE MEMBRO-------------------------------------------------------
 
 
 
