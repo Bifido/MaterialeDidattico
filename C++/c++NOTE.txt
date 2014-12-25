@@ -1,5 +1,10 @@
 /*
 
+
+TROVARE LIBRO "REAL TIME RENDERING"
+
+
+
 --------------------------------------------------------------------BEST PRACTICE-----------------------------------------------------------
 
 1)CLASSI PICCOLE e SEMPLICI
@@ -14,7 +19,7 @@ ma non sò come lo implementa e probabilmente non mi interessa. Inoltre aiuta al
 5) NON USARE friend
 
 6) 	nel .h ci sta l'interfaccia, che è la dichiarazione
-	nel .cpp ci sta l'implementazione che è la definizione
+	nel .cpp ci sta l'implementazione che è la definizione ed il maggior numero di include
 
 7) VisualStudio build in debug, aggiunge informazioni per fare il debug, build in release toglie informazioni ed ottimizza le dimensioni dell'exe
 
@@ -41,6 +46,26 @@ ma non sò come lo implementa e probabilmente non mi interessa. Inoltre aiuta al
 
 Dichiaro un oggetto che però definirò dopo. vedi ship con bullet nel progetto di Mr tarini.
 
+Ad esempio:
+
+Class A{
+	B b;	
+}
+
+Class B{
+	A a;
+}
+
+diventa
+
+B b;
+Class A{
+	b;	
+}
+
+Class B{
+	A a;
+}
 
 
 
@@ -51,19 +76,28 @@ Dichiaro un oggetto che però definirò dopo. vedi ship con bullet nel progetto 
 
 
 
------------------------------------------------------------------INLINE-------------------------------------------------------
+
+
+
+-----------------------------------------------------------------INLINE---------------------------------------------------------------
+1) le funzioni inline si scrivonono solo nel .h
 
 
 
 
 
+-----------------------------------------------------------------TEMPLATE---------------------------------------------------------------
+0) potentissimi per poter fare GENERICI
 
+1) il template non si fa nel cpp, tutto nel .h (definizione ed implementazione)
 
------------------------------------------------------------------PUNTATORE A FUNZIONE e PUNTATORE A FUNZIONE MEMBRO-------------------------------------------------------
+2) quando il template viene usato, se ad esempio uso una volta con int ed una con char, ha creato altre due copie del codice, di conseguenza come problema c'è quello che ingrandisce il codice
 
+3) i template sono difficili da debuggare
 
+4) è anche difficile da leggere
 
-
+5) le funzioni di un template devono essere inline
 
 
 -----------------------------------------------------------EREDITARIETà-----------------------------------------------------------------
