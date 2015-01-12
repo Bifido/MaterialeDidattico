@@ -1,0 +1,128 @@
+------------------------------------------------------------CONTAINERS----------------------------------------------------------------------------
+		{	Vectors							{ set
+sequence{	list				associativi	{ map
+		{ 	deque							{ multimap
+
+
+
+						--------------------------------------VECTORS--------------------------------------	
+vectors <typename T, >  v();	// con template
+vectors <int>  v();   			// ha istanziato il minimo necessario
+vectors <int> v(10);			// ha già istanziato la memoria di 10 spazi, ed anche altro spazio che può essere usato in futuro, N = 10 * K = 1,5
+
+l'ordine di inserimento è mantenuto
+
+vector<A> v;
+v p_B(B b);
+Se in un vector<A> metto un elemento della classe B ( che deriva da A), creo slice perchè viene chiamato il costruttore di copia di A. NON SI DEVE FARE
+
+vector<A*> v;
+un array di puntatori invece può crere dei leak perchè conservo i puntatori, ma se distruggo il vector, gli elementi puntati persistono
+
+vector<A> v;
+v p_b(new A()) non chiama il costruttore di copia ma chiama il costruttore di move.
+						--------------------------------------VECTORS--------------------------------------
+
+
+						----------------------------------------MAP----------------------------------------
+map<int,string> myMap;     //int è la chiave, cioè ciò che uso per cercare, potrei avere <string,string> e cercare per myMap["saluto"] = "ciao"
+myMap[1] = "pollo";
+myMap[3] = "foo";
+myMap[2] = "foo2";
+						----------------------------------------MAP----------------------------------------
+
+
+						-------------------------------------MULTIMAP--------------------------------------
+multimap<int,string> myMultiMap;  è una map a cui posso aggiungere altri valori al nodo, come se ci fossero delle linked list sul nodo.
+						-------------------------------------MULTIMAP--------------------------------------
+
+
+						----------------------------FUNCTOR_AND_FUNCTIONS----------------------------------
+Un functor è una classe che implementa una funzione con stato
+Class A{
+	int count;
+	operator(int){};
+	operator(float){};
+}
+A a;
+a(1); 		//richiama operator con int
+a(10.0); 	//richiama operator con double
+						----------------------------FUNCTOR_AND_FUNCTIONS----------------------------------
+
+
+------------------------------------------------------------CONTAINERS----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------COSTRUCTOR MOVE------------------------------------------------------------------------
+
+-----------------------------------------------------------COSTRUCTOR MOVE------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------DESIGN_PATTERN---------------------------------------------------------------------------
+
+						------------------------------------ITERATORS--------------------------------------
+Sono oggetti che iterano su una sequenza di oggetti. Ogni container fornisce il suo iterator.
+E' un concetto astratto, un design pattern, è rispetta alcune regole, quindi una volta soddisfatte lo si può definire per una qualsiasi struttura.
+Lavora sul concetto di puntatori, e non per forza devono essere const(solo quando non voglio modificare tramite iterator).
+						------------------------------------ITERATORS--------------------------------------
+
+
+						-----------------------------------ALGORITHMS--------------------------------------
+Mentre alcuni algoritmi sono nativi delle classi, attivando la libreria degli algoritmi è possibile utilizzarne di altri per estendere le funzionalità.
+						-----------------------------------ALGORITHMS--------------------------------------
+
+
+
+						-----------------------------------SINGLETON---------------------------------------
+Non così banale.
+E' possibile fare un singleton di un tipo?
+template <typename T> class Singleton{
+	static T* _instance;
+	
+	public:
+		static T& getInstance(){
+			if( _instance != nullptr){
+				_instance = new T();
+			}
+			return _instance;
+		}
+}
+
+utilizzando un'abstract factory posso migliorare la funzione per creare 
+template <typename T, typename C<T>> class Singleton{
+	static T* _instance;
+	
+	public:
+		static T& getInstance(){
+			if( _instance != nullptr){
+				_instance = C::create();
+			}
+			return _instance;
+		}
+}
+						-----------------------------------SINGLETON---------------------------------------
+
+
+						--------------------------------ABSTRACT_FACTORY-----------------------------------
+						--------------------------------ABSTRACT_FACTORY-----------------------------------
+----------------------------------------------------------DESIGN_PATTERN---------------------------------------------------------------------------

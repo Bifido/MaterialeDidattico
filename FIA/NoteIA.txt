@@ -1,0 +1,4 @@
+IA nei giochi solitamente fanno: forecasting, cioè prevedono e dopo eseguono.
+Non si può però definire una vera IA.
+Giochi di strategia o scacchi sono invece veramente intelligenti ma il livello è determinato dai titoli stessi.
+Gli umani usano il sistema Search, ovvero tramite soluzioni parziali che producono descrizioni per gli stati successivi.
