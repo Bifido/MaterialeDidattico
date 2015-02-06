@@ -1,0 +1,29 @@
+Librerie principali DIrectx OpenGL (più ES) Mantle(non molto usato)
+Shader: GLSL per openGL HLSL per Directx NvidiaCG non molto usato, tutti derivati e compilando codice in C.
+Ormai non si scrive più in assembler perchè i compilatori ottimizzano meglio.
+
+Bisogna lavorare con il problema della sincronia delle immagini su monitor.
+Nei tubi catodici era molto lenta la sincronizzazione rispetto la scrittura nel frame buffer, si aggiornava soltanto quando il tubo aggiornava l'ultima riga
+
+Con il VSync si sincronizza quando lo schermo è pronto ad essere aggiornato ma si perdono FPS.
+
+
+Librerie, posso essere create manualmente (anche)
+Librerie statiche -> .lib
+
+Librerie dinamiche 	-> .lib contiene solo le dichiarazione delle funzionalità della dll -> inserito nel progetto gli dice dove si trovano le cose delle dll.
+					-> .dll
+
+il .exe utilizzerà poi il .dll quindi se non lo trova si incazza ( solitamente stanno nello stesso livello o path specifici).
+
+
+Le runtime library sono invece contenute nei distribuibili di VS e creano dipendenze dell'exe ( solitamente sono le MicrosoftRedistribuible VS c+++  che stanno con i videogiochi). (vedi in visual studio C/C++ -> Code Generation -> Runtime Library).
+
+
+Linker->Input-> aggiungendo lib usa come path di ricerca quello che c'è VC++ Directories -> Library Directory (non fanno fede alle variabili d'ambiente).
+Linker->General->AdditionalLibraryDirectories sono path aggiuntivi
+
+Ordine dipendenze tra sottoprogetti
+Tasto destro su progetto, Build Dependencies -> Project Dependencies -> mostra le dipendenze e l'ordine di build delle dipendenze.
+
+Dentro 01-RenderingTriangolo nella sotto folder Shaders ci sono i primi esempi basilari di shader

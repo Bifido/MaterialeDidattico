@@ -1,0 +1,3 @@
+MakeSpriteFont.exe "Comic Sans" myfile.spritefont /FontSize:16
+
+http://directxtk.codeplex.com/wikipage?title=MakeSpriteFont&referringTitle=SpriteFont

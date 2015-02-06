@@ -1,0 +1,12 @@
+Visual studio 2013
+
+CArtella di output: SolutionDir+Configuration
+
+Passaggi compilazione c++:
+
+la compilazione del src crea l'obj, il linker compatta gli obj e genera l'exe
+SRC1 -> OBJ1 -> Link -> EXE
+				  ^
+SRC2 -> OBJ2 ->   |
+				  ^
+SRC3 -> OBJ3 ->   |

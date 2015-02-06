@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{b3a38c4e-a4bd-4274-8d77-9c2d2dbabbb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{2ebc7d10-5a0c-4ba9-bdcd-028426b855ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\main.cpp" />
+    <ClCompile Include="Src\reflectiveMeshModel.cpp" />
+    <ClCompile Include="Src\skybox.cpp" />
+    <ClCompile Include="Src\skyboxProgram.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\reflectiveMeshModel.h" />
+    <ClInclude Include="Src\skybox.h" />
+    <ClInclude Include="Src\skyboxProgram.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Src\Shaders\EnvironmentMapPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Src\Shaders\EnvironmentMapVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Src\Shaders\SkyboxPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Src\Shaders\SkyboxVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Src\Data\skybox.dds">
+      <Filter>Data</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Src\Data\venus.stl">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Src\Data\sphere.stl">
+      <Filter>Data</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Src\Data\venus.txt">
+      <Filter>Data</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
