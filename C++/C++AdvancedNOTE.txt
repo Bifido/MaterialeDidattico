@@ -80,6 +80,9 @@ a(10.0); 	//richiama operator con double
 
 ----------------------------------------------------------DESIGN_PATTERN---------------------------------------------------------------------------
 
+Prendere come riferimento per i pattern in c++ "Design Pattern"
+
+
 						------------------------------------ITERATORS--------------------------------------
 Sono oggetti che iterano su una sequenza di oggetti. Ogni container fornisce il suo iterator.
 E' un concetto astratto, un design pattern, è rispetta alcune regole, quindi una volta soddisfatte lo si può definire per una qualsiasi struttura.
@@ -125,4 +128,33 @@ template <typename T, typename C<T>> class Singleton{
 
 						--------------------------------ABSTRACT_FACTORY-----------------------------------
 						--------------------------------ABSTRACT_FACTORY-----------------------------------
+
+
+						-------------------------------------OBSERVER--------------------------------------						
+Esempio soccer hero di Simone:
+tutti i componenti sono registrati a match e non il contrario, match registrato ad ogni componente ( goal, fallo, punizione etc ) per vedere chi ha modificato il suo stato. In questo modo, componenti registrati su match, sono i componenti che notificano a match l'avvenuto goal.
+Ogni componente ha un filtro:
+Goal = 00000001  	equivalente a 1 << 0
+Pun  = 00000010		equivalente a 1 << 1
+fall = 00000100		equivalente a 1 << 2
+
+Facendo AND fra ciò a cui sono registrato ed il messaggio mandato sò se devo catturare la notifica:
+
+Esempio, sono registrato su Goal e Fall avrò:
+00000101 &&
+00000001
+--------
+00000001
+allora recepisco l'evento.
+
+Altro esempio, sono in attesa di un evento che si ripete molte volte ma per un oggetto, alla prima occorrenza, si vuole deregistrare.
+data la lista degli observer [] [] [] e l'observable (), se devo deregistrare un elemento della lista, la quale sta venendo iterata per notificare, non posso cancellare l'elemento. Una soluzione è copiare la lista, scorrere quella e cancellare l'oggetto dalla lista. Problema è però che si ha lka copia dell'array.
+						-------------------------------------OBSERVER--------------------------------------						
+
+						------------------------------------COMPOSITE--------------------------------------						
+						
+
+						------------------------------------COMPOSITE--------------------------------------						
+
+
 ----------------------------------------------------------DESIGN_PATTERN---------------------------------------------------------------------------
