@@ -151,10 +151,92 @@ Altro esempio, sono in attesa di un evento che si ripete molte volte ma per un o
 data la lista degli observer [] [] [] e l'observable (), se devo deregistrare un elemento della lista, la quale sta venendo iterata per notificare, non posso cancellare l'elemento. Una soluzione è copiare la lista, scorrere quella e cancellare l'oggetto dalla lista. Problema è però che si ha lka copia dell'array.
 						-------------------------------------OBSERVER--------------------------------------						
 
-						------------------------------------COMPOSITE--------------------------------------						
-						
+						--------------------------------------COMMAND--------------------------------------						
+Un classe che implementa command, ha un metodo execute che esegue un comando.
+Avendone una serie, è possibile usare gli execute in successione per avere dei comportamenti che eventualmente posso modificare semplicemente modificando l'ordine dei command. Si può affiancare al composite.
+						--------------------------------------COMMAND--------------------------------------						
 
 						------------------------------------COMPOSITE--------------------------------------						
+Il composite è da intendere come un blocco immutabile fatto da più oggetti che appariranno e verranno utilizati sempre insieme, anche se sono differenti, e che quindi possono essere incapsulati come un oggetto composito.
+						------------------------------------COMPOSITE--------------------------------------						
 
+						--------------------------------TEMPLATE_METHOD------------------------------------						
+Date due classi A con virtual foo(); e B:A con foo();
+mettiamo che dentro foo io faccio un operazione 1 e dopo un operazione 2 ma B deve fare solo l'operazione 2.
+
+Il template significa rimuovere il virtual dal foo e mettere protected virtual operazione 3.
+Ora chiamando foo di A si fà l'operazione 1 2 e 3 che probabilmente è vuota, mentre chi eredità farà l'operazione 1 2 e 3 che specifica diversamente da quello di a tramite implementazione forzata o override.
+						--------------------------------TEMPLATE_METHOD------------------------------------						
+
+						------------------------------------STRATEGY---------------------------------------						
+Un'interfaccia hanno comportamenti diversi in base al tipo, quindi ad esempio attacco/difesa hanno gli stessi metodi ma comportamenti diversi
+						------------------------------------STRATEGY---------------------------------------						
+
+						-----------------------------------ALLOCATOR---------------------------------------						
+Game-Object allocator, anzichè creare una istanza tramite new a run time, istanzio gli oggetti prima creando un pool al quale chiedo gli oggetti quando mi servono. Una volta inutili li disattivo e quelli disattivati diventano disponibili per successive chiamate. Gli oggetti sono così già disponibili e non devo instanziarli a runtime.
+						-----------------------------------ALLOCATOR---------------------------------------						
 
 ----------------------------------------------------------DESIGN_PATTERN---------------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------LOW LEVEL OPTIMIZATION------------------------------------------------------------------------
+1-Evitare new a run time
+2-Branch miss avoiding
+3-Evitare i cast, portano a svuotare la pipeline principale per utilizzare ad esempio la pipeline per i float.
+
+4-
+dato ad esempio
+if(b){
+	x = Y;
+}else{
+	x = z;
+}
+
+dato che b vale 0 o 1 posso usare l'interpolazione lineare.
+x = b*y + (|b)*z;
+
+5-
+dato 
+int32 x = max(y,z);
+posso scriverlo
+int32 x = y - ((y-z) & ((y-z) >> 31))
+esempio y = 1 ; z = 4
+y = 00000001
+z = 00000100
+
+y-z = 11111101
+>>31= 11111111
+
+&  =  11111101
+
+y- =  00000001 -
+	  00000011 (è il complemento a 2 di &) 
+	  --------
+	  00000100
+che è z!
+
+6- 
+if(cond){
+	f();
+}else{
+	g();
+}
+
+typedef void *Procedure();
+Procedure proc[] = (f,g);
+proc[cond]();
+
+salvo i puntatori in un array che chiamo tramite cond che vale o 0 o 1.
+
+---------------------------------------LOW LEVEL OPTIMIZATION------------------------------------------------------------------------
+
+
+--------------------------------------------LOOP OPTIMIZATION------------------------------------------------------------------------
+1- variable in the loop? no define before the for because it will be allocated only one time and not N for times.
+2- loop switching, se posso porto gli if fuori dal for e non li faccio dentro.
+3- le cose che uso in un for sono cached? se non lo sono conviene spaccare il for (identico) per fare le operazioni separatamente dato che non è detto che siano cached
+4- aggregare le operazioni vicine (tipo due somme)
+5-
+--------------------------------------------LOOP OPTIMIZATION------------------------------------------------------------------------
