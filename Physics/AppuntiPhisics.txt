@@ -1,0 +1,116 @@
+Forze fluido dinamiche:
+
+1) calcolo della forza totale, composta dalle componenti Fx,Fy,Fz
+una Fx=-vx*Mod(V)*1/2*p*Ax*Cx
+
+dove vx*mod(v) serve per eliminare il quadrato che servirebbe per descrivere la velocità. v è il vettore  della velocità.
+
+la forza è opposta al versone della velocità
+
+2) scelta del punto di applicazione:
+non è detto che si applichi la forza sul centro di massa, ma dipende effettivamente dalla forma e dalla superficie sulla quale si applica la forza, ad esempio una barca con vela ha il suo centro di massa nella parte bassa, ma la vela i nverticale è come se spostasse il centro di massa più sopra, subito dietro la vela, ciò si chiama centro di pressione ( e dipende da come l'oggetto è fatto, non è detto che coincida con il centro di massa).
+Una sfera perfetta ha invece centro di massa e centro di pressione coincidenti.
+
+Il centro di pressione può essere visto come un vettore a tre componenti Cp = {Cpx,Cpy,Cpz};
+Il centro di pressione solitamente una volta fissato rimane tale, a patto che la geometria resti invariata.
+
+E' probabile che il centro di pressioni generi dei momenti.
+
+NOTA: il profilo areodinamico è invece una componente riduttiva dell'impatto delle particelle, generalmente crea una forza proiettando l'area colpita in maniera trasversale.
+
+
+3)La portanza è un'altra componente che influisce, è stretta parente del flusso a meno di alcuni coefficenti in più: La forza è perpendicolare alla velocità (non per forza verso l'alto o il basso, essendo nello spazio può essere verso altre direzioni)
+La portanza è rappresentata con L che è un vettore di componenti L = {Lxy,Lxz,Lyx,Lyz,Lzx,Lzy}; cioè l'impatto su una componente che effetto ha sulle altre.
+Ad esempio le auto hanno un'areodinamica tale per cui L si modifichi nello sterzare ed aiutare ad entrare in curva.
+
+FPx = vy*mod(v)*1/2*p*Ay*Lyx + vz*mod(v)*1/2*p*Az*Lzx ;
+
+posso definire dei coefficenti che incamerino le costanti dipendenti dalla geometria ( soprattutto se questa non cambia).
+posso definire dei coefficenti che dipendono dal flusso ammesso che mediamente non vari di molto.
+
+A queste forze vanno aggiunte due considerazioni:
+La forza di gravità e la spinta di archimede, che non sono forze fluido dinamiche ma fluido statiche.
+
+spinta di archimente = volume*rho*g; dove rho è la densità del fluido spostato, g è la forza di gravità mentre V, il volume dell'oggetto è l'unca variabile.
+
+CODICE:--------------------------------------------------------------------------------------------------------
+
+v[3]			//velocità
+R 				//Matrice di rotazione
+
+Cd[3],Cp[3][2] 	//coeffic di attrito e di portanza
+P[3]			//centro di pressione
+rho				//densità del fluido
+
+
+// calcolo forze aerodinamiche
+float vr[3]; //vettore velocità nel sistema di riferimento relativo
+float vm;
+
+RuotaRelative(R, v, vr) Se r è una matrice di rotazione dato un vettore assoluto lo trasforma in un vettore relativo al sistema di riferimento relativo alla matrice di rotazione
+vm = ModuloVettore(vr);
+
+//calcolo della forza di attrito sulle tre componenti. ( o forze di drag)
+F[0] = -rho * Cd[0] * vr[0] * vm;
+F[1] = -rho * Cd[1] * vr[1] * vm;
+F[2] = -rho * Cd[2] * vr[2] * vm;
+
+//questa forza è relativa al sistema di riferimento dell'oggetto ma l'oggetto è a sua volta orientato rispetto le coordinate di riferimento assolute e dunque bisogna orientarle rispetto al punto di riferimento assoluto prima di applicarle all'oggetto.
+
+RuotaAssolute(R, F, F);
+
+//discorso simile per le forze di lift
+L[0] = rho * vm * (vr[1] * Cp[1][0] + vr[2] * Cp[2][0] );
+L[1] = rho * vm * (vr[0] * Cp[0][0] + vr[2] * Cp[2][1] ); //quello principale della portanza verso l'alto
+L[2] = rho * vm * (vr[0] * Cp[0][1] + vr[1] * Cp[1][1] );
+
+//rimane sempre da cambiare il vettore, basato sul sistema di riferimento dell'oggetto, in quello di riferimento assoluto
+RuotaAssolute(R, L, L);
+
+CODICE:--------------------------------------------------------------------------------------------------------
+
+
+URTI:
+Composti da componenti elastiche ( tipo la compenetrazione che genera forze opposte) e componenti anelastiche che smorzano l'urto.
+Tendenzialmente le componenti principali di un urto sono: la parte che viene deformata e la velocità con cui avviene la deformazione.
+Ciò ci determinano la forza necessaria per deformarlo.
+Il problema è sempre quello del dove viene applicata la forza di deformazione: intuitivamente è il punto di contatto.
+Il problema dunque degli urti è il capire dove avviene la collisione, l'entità della collisione e la velocità con cui avviene la collisione.
+
+Un collisore solitamente si occupa del riconoscere la geometria della collisione, non del calcolo della forza.
+Un collisore deve dover calcolare le possibili collisioni fra n oggetti, ma un algoritmo basato su un approccio così bruto scala quadraticamente con l'aumentare degli oggetti da controllare. Si usano strategie per diminuire il numero di check da fare.
+
+Con il concetto di isola si cerca di isolare i check da fare: difficilmente tutti gli oggetti collideranno, o hanno possibilità, di collidere con tutti gli altri, ma solo con un sottoinsieme di possibili oggetti (solitamente ad una certa distanza):
+esempio: se ho tre oggetti in una stanza, è facile che collidano fra loro ma non con gli altri oggetti di un'altra stanza, pertanto ogni stanza può essere un'isola.
+Naturalmente ciò si applica anche ad uno spazio aperto creando delle isole virtuali che raggruppano gli oggetti all'interno di una griglia e fà il check con quelli interni alla griglia o interni alle possibili adiacenti griglie.
+Un raffinamento ulteriore potrebbe essere il creare una griglia tipo oct-tree.
+
+Naturalmente un oggetto fermo ( o con velocità zero) posso vederlo come un oggetto passivo e scremarlo da quelli da controllare poichè solo gli attivi ( o con velocità) hanno possibilità di collidere con gli oggetti attivi/passivi. Si testa dunque solo ciò che è in movimento con quelli in movimento e passivi.
+Vedere relazione con oggetti STATIC di Unity3D.
+
+Una strategia basata sul tempo è quella di vedere dove un oggetto in movimento andrà e quali oggetti incontrerà sul percorso e basarsi sulla coerenza spazio temporale applicata ai frame. Se calcolo che un oggetto colliderà al frame 18. a quel frame controllerò se effettivamente c'è la collisione o se devo posticipare il calcolo della collisione.
+
+Ultimo trucco è quello di controllare se due oggetti complessi, visti come geometrie più semplici, ad esempio sfere, intersecano se la distanza fra loro e minore della somma dei raggi: se non lo sono allora non li controllo, altrimenti faccio il calcolo della collisione.
+Le bounding sphere possono essere a loro volta gerarchie di bounding sphere e controllare solo le collisioni fra sotto-bounding sphere.
+
+Considerazione ultima sugli urti: oltre le componenti elastiche ed anelastiche, vi è un ulteriore fattore che entra in gioco: l'attrito.
+Le forze di attrito sono dirette lungo un piano perpendicolare alla forza di impatto ed opposta alla velocità.
+Come proietto la velocità?
+Che forza applico?
+L'attrito diminusice all'aumentare dalla velocità, e viceversa, ma non dipende dalla velocità, dipende dalla forza con cui gli oggetti si respingono. L'attrito di per sè è costante.
+
+La velocità di impatto è la velocità dell'oggetto A che impatta su B, visto dal punto di riferimento di B ed è relativa ai due oggetti.
+Si può definire la normale come il punto in cui gli oggetti tendono maggiormente ad allontarsi ( ovvero il punto d'impatto) ed è data dalla proiezione di B su A se vista da B.
+
+
+CODICE------------------------------------
+float Deformazione;
+float PuntoImpatto[3];
+float Normale[3];
+float VelImpatto[3];
+
+//essendo la collisione dipendente dalla forma geometrica, potrei creare una gerarchia di collisioni (sfere, cubi, etc, etc) che approssimino gli oggetti, ad esempio un CollidiPiano che riceve un corpo rigido e lo fa collidere con un piano, cercando se un vertice è nel semispazio negativo (cioè ha compenetrato il piano).
+Se sono nel semispazio negativo, allora calcolo la collisione.
+
+Nel calcolare la velocità c'è da considerare anche la velocità angolare che contribuisce con il prodotto vettoriale fra la velocità angolare stessa ed il vettore del punto d'impatto.
+avute le informazioni di collisione, bisogna applicare le forze di collisione di cui l'elemento più rognoso è l'attrito.
