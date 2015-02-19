@@ -1,3 +1,29 @@
+Un gioco per non droppare, una CPU ed una GPU devono risolvere tutto in 17ms.
+La GPU è quella che soffre di più.
+
+Dalla cpu vengono passate le primitive: si creano gli oggetti in obj space, gli objects tradotti in word space, i quali poi vengono posti in camspace (nel frustum della camera). Gli oggetti nel frustum vengono clippati ( si è passati nello spazio canonico del clip space) ed infine viene convertito nello screen space che è quello che viene effettivamente visto. questa fase si chiama ModelViewProjection.
+
+La fase di rasterizzazione si incarica di disegnare i pixel in base ai material (texture + shader)
+
+Tutta questa fase è una drawcall (dipendente dalla geometria e dal material)
+Si usano gli atlas, che è un accorpamento di texture in base allo shader che condividono. Ciò permette di avere un ottimizzazione e di poter applicare questi materiali su oggetti diversi con una sola drawcall.
+
+pattern hot/cold o live/dead list! da vedere
+
+Optimization HW
+una alu è composta da 3 componenti solitamente: int pipeline, float pipeline, vector pipeline. Ogni pipeline ha un suo costo.
+un Branch predictor che serve per risolvere le predizioni degli if.
+
+un intrinseca sono delle chiamate che vanno direttamente sull'HW, sono un livello più alto dell'assembly o opcode, una traduzione più leggibile.
+
+una classe è allineata alla dimensione del suo membro più grande.
+
+Branch miss, valutazione di un if che in caso di verifica sbagliata fa un flush della pipeline ( che costa mediamente 24 cicli).
+Posso migliorare con l'intrinseca _builtin_expected(cond,result);
+
+il cast tra float e int e viceversa costa circa 200 cicli!!!!
+
+
 ------------------------------------------------------------CONTAINERS----------------------------------------------------------------------------
 		{	Vectors							{ set
 sequence{	list				associativi	{ map
@@ -154,6 +180,7 @@ data la lista degli observer [] [] [] e l'observable (), se devo deregistrare un
 						--------------------------------------COMMAND--------------------------------------						
 Un classe che implementa command, ha un metodo execute che esegue un comando.
 Avendone una serie, è possibile usare gli execute in successione per avere dei comportamenti che eventualmente posso modificare semplicemente modificando l'ordine dei command. Si può affiancare al composite.
+Il command chiama metodi public della classse
 						--------------------------------------COMMAND--------------------------------------						
 
 						------------------------------------COMPOSITE--------------------------------------						
@@ -166,6 +193,35 @@ mettiamo che dentro foo io faccio un operazione 1 e dopo un operazione 2 ma B de
 
 Il template significa rimuovere il virtual dal foo e mettere protected virtual operazione 3.
 Ora chiamando foo di A si fà l'operazione 1 2 e 3 che probabilmente è vuota, mentre chi eredità farà l'operazione 1 2 e 3 che specifica diversamente da quello di a tramite implementazione forzata o override.
+
+es: classA{
+	public:
+	virtual bool init();
+	private:
+	bool isInitialized;
+}
+
+ora voglio estendere con un classe, dovrei fare:
+init(){
+	super.init();
+	e dopo devo fare altro, ma da init il flag isInitialized sarà già true!
+}
+
+lo riscrivo con il template pattern:
+class A{
+	public:
+	bool init(){
+		....
+		init_protected();
+		....
+		initialized = true;
+	}
+	private:
+	bool isInitialized;
+	protected:   //usato per estendere i virtual o dare operazioni solo ai figli
+	virtual bool init_protected();
+}
+
 						--------------------------------TEMPLATE_METHOD------------------------------------						
 
 						------------------------------------STRATEGY---------------------------------------						
@@ -238,5 +294,7 @@ salvo i puntatori in un array che chiamo tramite cond che vale o 0 o 1.
 2- loop switching, se posso porto gli if fuori dal for e non li faccio dentro.
 3- le cose che uso in un for sono cached? se non lo sono conviene spaccare il for (identico) per fare le operazioni separatamente dato che non è detto che siano cached
 4- aggregare le operazioni vicine (tipo due somme)
-5-
+5- other
 --------------------------------------------LOOP OPTIMIZATION------------------------------------------------------------------------
+
+
