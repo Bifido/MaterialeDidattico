@@ -46,14 +46,27 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\AndroidPlatform.cs" />
-     <Compile Include="Assets\Script\BetterShooter.cs" />
-     <Compile Include="Assets\Script\EditorPlatform.cs" />
-     <Compile Include="Assets\Script\NamingConvention.cs" />
-     <Compile Include="Assets\Script\PlatformManager.cs" />
-     <Compile Include="Assets\Script\Shooter.cs" />
-     <Compile Include="Assets\Script\ShooterWrong.cs" />
-     <Compile Include="Assets\Script\Test.cs" />
+     <Compile Include="Assets\Script\Miei\AndroidPlatform.cs" />
+     <Compile Include="Assets\Script\Miei\BetterShooter.cs" />
+     <Compile Include="Assets\Script\Miei\EditorPlatform.cs" />
+     <Compile Include="Assets\Script\Miei\MyTimer.cs" />
+     <Compile Include="Assets\Script\Miei\ValePlatformManager.cs" />
+     <Compile Include="Assets\Script\Miei\ValePlatformManagerTest.cs" />
+     <Compile Include="Assets\Script\Miei\ValeShooter.cs" />
+     <Compile Include="Assets\Script\PlatformManager\PlatformManager.cs" />
+     <Compile Include="Assets\Script\PlatformManager\PlatformManagerUsing.cs" />
+     <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificAndroid.cs" />
+     <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificBase.cs" />
+     <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificIOS.cs" />
+     <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificUsingAndroid.cs" />
+     <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificUsingIOS.cs" />
+     <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificUsingPC.cs" />
+     <Compile Include="Assets\Script\Projectile\Projectile.cs" />
+     <Compile Include="Assets\Script\Shooter\Shooter.cs" />
+     <Compile Include="Assets\Script\Shooter\ShooterUsing.cs" />
+     <Compile Include="Assets\Script\Shooter\ShooterWrong.cs" />
+     <Compile Include="Assets\Script\Utils\NamingConvention.cs" />
+     <Compile Include="Assets\Script\Utils\Timer.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Programmi/Unity4.6/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>

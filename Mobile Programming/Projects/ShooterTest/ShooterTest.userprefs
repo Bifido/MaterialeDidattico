@@ -1,11 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\PlatformManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Projectile\Projectile.cs">
     <Files>
-      <File FileName="Assets\Script\PlatformManager.cs" Line="9" Column="16" />
-      <File FileName="Assets\Script\AndroidPlatform.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\EditorPlatform.cs" Line="1" Column="17" />
-      <File FileName="Assets\Script\Shooter.cs" Line="34" Column="3" />
+      <File FileName="Assets\Script\Miei\MyTimer.cs" Line="32" Column="1" />
+      <File FileName="Assets\Script\Miei\ValePlatformManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Utils\Timer.cs" Line="75" Column="19" />
+      <File FileName="Assets\Script\Shooter\Shooter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Projectile\Projectile.cs" Line="4" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
