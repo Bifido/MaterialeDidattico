@@ -1,0 +1,6 @@
+-una variabile public per l'editor viene serializzata ( [SerializeField]) ed il valore indicato diventa il suo valore di default,
+posso quindi avere una classe con un valore esposto che però è diverso fra le istanze: stesso codice inizializzato diversamente da editor ;)
+
+TIPS:
+[SerializedField]  private   	-> la variabile è private ma visibile nell'editor e modificabile a runtime
+[HideInInspector] public 		-> la variabile public è nascosta nell'editor.

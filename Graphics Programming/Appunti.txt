@@ -27,3 +27,28 @@ Ordine dipendenze tra sottoprogetti
 Tasto destro su progetto, Build Dependencies -> Project Dependencies -> mostra le dipendenze e l'ordine di build delle dipendenze.
 
 Dentro 01-RenderingTriangolo nella sotto folder Shaders ci sono i primi esempi basilari di shader
+
+
+
+
+RISORSE in DX11
+Al Vertex shader è associato un buffer di indici (dei vertici delle mesh) che serve per ottimizzare il rendering dei trinagoli e viene fornito lla GPU assieme al tipo di primitiva grafica da renderizzare.
+
+Il formato di mesh più utilizzato è l'FBX che però è proprietario e fornisce un SDK per poterli gestire.
+
+VERTEX SHADER
+in cpu vedo i vertici rispetto al suo riferimento (object space)
+in gpu vedo invece i vertici trasformati nel view space ( cioè rispetto la camera e nel mondo) e calcolo altre proprietà come il colore sui vertici.
+LA GPU NON TORNA INDIETRO INFORMAZIONI. (falso da quando c'è il GPU computing tipo CUDA).
+Per il debugging delle operazioni di rendering NVIDIA fornisce NSight che permette di vedere passo passo cosa succede!
+ATTENZIONE Quindi la cpu piò dover ricalcolare il world space per sapere dove sono finiti determinati vertici. Ciò aggiunge complessità alla cpu.
+
+A fine fiera il vertex shader genera le trasformate  nel projection image space ed opzionalmente altre proprietà come colore/normale/coordinate texture
+
+
+GEOMETRY SHADER(opzionale)
+Modifica assiemme alla tasselation(opzionale) la geometria dei vertici
+
+CLIPPING & RASTERIZATION
+
+PIXEL SHADER

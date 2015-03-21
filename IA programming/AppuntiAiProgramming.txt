@@ -1,0 +1,9 @@
+Algoritmo A*
+
+un'agente si muove da un punto ad un altro per esempio
+
+(manhattan)  |x-x0|+|y-yo|
+
+1) controllo se sono arrivato
+2) controllo il nodo con minore F dalla lista dei disponibili
+3) se non è il nodo lo metto in closed list e ripeto il conto delle adiacenze portandomi il costo già pagato e calcolando i nuovi

@@ -114,3 +114,8 @@ Se sono nel semispazio negativo, allora calcolo la collisione.
 
 Nel calcolare la velocità c'è da considerare anche la velocità angolare che contribuisce con il prodotto vettoriale fra la velocità angolare stessa ed il vettore del punto d'impatto.
 avute le informazioni di collisione, bisogna applicare le forze di collisione di cui l'elemento più rognoso è l'attrito.
+
+
+ATTRITO
+
+Ft = Vz/mod(Vz)*mu*mod(Fn)

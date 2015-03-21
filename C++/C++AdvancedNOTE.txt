@@ -298,3 +298,115 @@ salvo i puntatori in un array che chiamo tramite cond che vale o 0 o 1.
 --------------------------------------------LOOP OPTIMIZATION------------------------------------------------------------------------
 
 
+SHADER
+
+
+
+
+Esempio:
+Devo switchare fra 3 camere:
+5 CooPit
+7 Cofano
+8 Esterna 
+
+void switchCamera(int id);
+
+un oggetto camera è:
+
+struct{
+	Pos
+	Rot
+	Fov
+	Id
+}
+
+
+
+Uso del template matching per switchare le camere:
+
+NOTA:
+vedere
+match check delle funzioni con i parametri
+promozione di un tipo
+
+ridefiniamo la struct così:
+
+template<int v> struct INT2TYPE{
+	enum{ value = v}
+}
+
+posso dunque scrivere INT2TYPE<0>,INT2TYPE<1> 0 ed 1 sono tipi diversi.
+
+ed il nuovo metodo sarà suddiviso nelle camere:
+
+void switchCamera(INT2TYPE<5>);
+void switchCamera(INT2TYPE<7>);
+void switchCamera(INT2TYPE<8>);
+
+sfrutto il fatto che INT2TYPE<> è un tipo diverso, quindi se passo 5, questo è un tipo, è lui fa il best matching che è con switchCamera(INT2TYPE<5>).
+SONO SOLO OVERLOAD, niente virtual
+
+
+
+Esempio:
+Template<Class To, Class From> TO_SAFE_REINTERPRET_CAST(FROM From){
+	assert(sizeof(To) <= sizeof(From))
+	return reinterpret_Cast<To>(From);
+}
+
+come fare a fare un assert a compile time?
+
+char myArray[0]; questo non compila
+allora riscrivo
+
+#DEFINE STATIC_CHECK(esp) char compilation_error[esp?1:0];
+il problema è debuggarlo dato che non ho sicurezza sul come viene stampato l'errore.
+
+template<bool> struct compileTimeError;
+template<> struct compileTimeError<true>();
+
+#DEFINE STATIC_CHECK(esp e) (compileTimeError<(esp)bool>())
+non essendo definita la false gli da errore di compilazione perchè non è stata definita la specializzazione totale per la false!
+
+
+
+
+TEMPLATE E VIRTUALISMO STATICO
+Prendiamo ad esempio le camere e la classe base con i get necessari tipici ed un update.
+La camera con il coopit deriva ed usa altri behaviour, idem quella esterna, etc etc.
+La funzione update sarebbe virtual così da fare l'overload ed ognuno se la rispecifica.
+
+tramite template posso ad esempio fare:
+template <class T,class U> smartPtr....
+
+e specifico ad esempio T a singleThread e U a refPointer, dando quindi certi behaviour a smartPtr.
+implementazione:
+
+
+template<class T> STRUCT NEW_OP{
+	static T* CREATE(){
+		return new T;
+	}
+	protected:
+		~NewOP()	-> altrimenti posso distruggere il padre e non il figlio facendo SLICE!
+}
+
+template<class U> class WidgetManager :: Public U{
+	public:
+		WidgetManager(){
+			U::CREATE();	--> se non esiste dentro U il metodo Create, non compila!!!!!
+		}
+}
+
+
+l'implementazione diventa:
+typedef WidgetManager<OpNewCreator<Widget>> MyWidgetMgr;
+
+
+ma come Library code diventerebbe
+template < template <class> class CreationPolicy > class WidgetManager: public CreationPolicy<Widget> {
+	
+}
+
+Vedere le librerie OpenCV e BOOST per capire questo tipo di applicazione.
+
