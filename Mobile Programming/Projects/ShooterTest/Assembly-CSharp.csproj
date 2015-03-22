@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Executable.cs" />
      <Compile Include="Assets\Script\Miei\AndroidPlatform.cs" />
      <Compile Include="Assets\Script\Miei\BetterShooter.cs" />
      <Compile Include="Assets\Script\Miei\EditorPlatform.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificUsingAndroid.cs" />
      <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificUsingIOS.cs" />
      <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificUsingPC.cs" />
+     <Compile Include="Assets\Script\Pool.cs" />
      <Compile Include="Assets\Script\Projectile\Projectile.cs" />
      <Compile Include="Assets\Script\Shooter\Shooter.cs" />
      <Compile Include="Assets\Script\Shooter\ShooterUsing.cs" />
