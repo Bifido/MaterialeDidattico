@@ -1,12 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Projectile\Projectile.cs">
     <Files>
+      <File FileName="Assets\Script\Executable.cs" Line="4" Column="12" />
       <File FileName="Assets\Script\Miei\MyTimer.cs" Line="32" Column="1" />
       <File FileName="Assets\Script\Miei\ValePlatformManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Utils\Timer.cs" Line="75" Column="19" />
+      <File FileName="Assets\Script\Utils\Timer.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Shooter\Shooter.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Projectile\Projectile.cs" Line="4" Column="42" />
+      <File FileName="Assets\Script\Projectile\Projectile.cs" Line="39" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
