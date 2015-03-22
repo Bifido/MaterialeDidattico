@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Projectile : Executable {
+public class MyProjectile : Executable {
 
 	public override void Execute(){
 		this.m_tStartingExecutionTime = 0;
@@ -11,10 +11,7 @@ public class Projectile : Executable {
 	// Use this for initialization
 	void Start () {
 		m_vDirection = this.transform.forward;
-
-		//TODO remove after test
-		this.Execute();
-//		base.StopExecute();
+		base.StopExecute();
 	}
 	
 	// Update is called once per frame

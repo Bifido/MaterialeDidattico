@@ -46,13 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\Executable.cs" />
-     <Compile Include="Assets\Script\Miei\AndroidPlatform.cs" />
      <Compile Include="Assets\Script\Miei\BetterShooter.cs" />
-     <Compile Include="Assets\Script\Miei\EditorPlatform.cs" />
+     <Compile Include="Assets\Script\Miei\MyProjectile.cs" />
      <Compile Include="Assets\Script\Miei\MyTimer.cs" />
-     <Compile Include="Assets\Script\Miei\ValePlatformManager.cs" />
-     <Compile Include="Assets\Script\Miei\ValePlatformManagerTest.cs" />
+     <Compile Include="Assets\Script\Miei\PlatformManager\AndroidPlatform.cs" />
+     <Compile Include="Assets\Script\Miei\PlatformManager\EditorPlatform.cs" />
+     <Compile Include="Assets\Script\Miei\PlatformManager\ValePlatformManager.cs" />
+     <Compile Include="Assets\Script\Miei\PlatformManager\ValePlatformManagerTest.cs" />
+     <Compile Include="Assets\Script\Miei\Utils\Executable.cs" />
+     <Compile Include="Assets\Script\Miei\Utils\Pool.cs" />
      <Compile Include="Assets\Script\Miei\ValeShooter.cs" />
      <Compile Include="Assets\Script\PlatformManager\PlatformManager.cs" />
      <Compile Include="Assets\Script\PlatformManager\PlatformManagerUsing.cs" />
@@ -62,8 +64,6 @@
      <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificUsingAndroid.cs" />
      <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificUsingIOS.cs" />
      <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificUsingPC.cs" />
-     <Compile Include="Assets\Script\Pool.cs" />
-     <Compile Include="Assets\Script\Projectile\Projectile.cs" />
      <Compile Include="Assets\Script\Shooter\Shooter.cs" />
      <Compile Include="Assets\Script\Shooter\ShooterUsing.cs" />
      <Compile Include="Assets\Script\Shooter\ShooterWrong.cs" />
