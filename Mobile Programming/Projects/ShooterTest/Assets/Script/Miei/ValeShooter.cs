@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 
 /*
+Modified by: Valerio Ceraudo
+Originally based on:
+
 Università di Verona - Master Videogame programming 2015
 Corso Mobile programming - Roberto Mangiafico
 

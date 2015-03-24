@@ -1,17 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MyProjectile : Executable {
+public class MyProjectile : MonoBehaviour,Executable{
 
-	public override void Execute(){
+	//---------------EXECUTABLE INTERFACE
+	public void Execute(){
 		this.m_tStartingExecutionTime = 0;
-		base.Execute();
+		this.enabled = true;
 	}
+
+	public void StopExecute(){
+		this.enabled = false;
+	}
+
+	public bool isExecuting(){
+		return this.enabled;
+	}
+	//---------------EXECUTABLE INTERFACE
 
 	// Use this for initialization
 	void Start () {
 		m_vDirection = this.transform.forward;
-		base.StopExecute();
+		this.StopExecute();
 	}
 	
 	// Update is called once per frame
@@ -25,11 +35,11 @@ public class MyProjectile : Executable {
 			//TODO check collisione
 			this.ComputeTrajectory();
 		}else{
-			base.StopExecute();
+			this.StopExecute();
 		}
 	}
 
-	private void ComputeTrajectory(){
+	protected virtual void ComputeTrajectory(){
 		this.transform.position += m_vDirection * (m_fSpeed * Time.deltaTime);
 	}
 

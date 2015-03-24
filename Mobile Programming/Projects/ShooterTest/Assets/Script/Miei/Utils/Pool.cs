@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Pool{
 
-	public Pool(int capacity,GameObject container,GameObject contained){
+	public Pool(int capacity,Executioner container,Executable contained){
 		this.m_oElements = new ArrayList(capacity);
 		this.m_iNextFreeElement = new LinkedList<int>();
 		for(int i = 0;i<this.m_oElements.Capacity;i++){

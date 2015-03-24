@@ -54,6 +54,7 @@
      <Compile Include="Assets\Script\Miei\PlatformManager\ValePlatformManager.cs" />
      <Compile Include="Assets\Script\Miei\PlatformManager\ValePlatformManagerTest.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Executable.cs" />
+     <Compile Include="Assets\Script\Miei\Utils\Executioner.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Pool.cs" />
      <Compile Include="Assets\Script\Miei\ValeShooter.cs" />
      <Compile Include="Assets\Script\PlatformManager\PlatformManager.cs" />
