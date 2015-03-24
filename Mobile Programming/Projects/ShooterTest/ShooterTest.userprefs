@@ -1,11 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\Utils\Executable.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\..\Lavoro\CalcioHero\Assets\Scripts\UI\InfoPanel.cs">
     <Files>
-      <File FileName="Assets\Script\Miei\Utils\Executable.cs" Line="3" Column="1" />
-      <File FileName="Assets\Script\Miei\MyProjectile.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\Utils\Pool.cs" Line="7" Column="38" />
-      <File FileName="Assets\Script\Miei\Utils\Executioner.cs" Line="4" Column="22" />
+      <File FileName="..\..\..\..\..\Lavoro\CalcioHero\Assets\Scripts\UI\InfoPanel.cs" Line="36" Column="66" />
+      <File FileName="..\..\..\..\..\Lavoro\CalcioHero\Assets\Scripts\UI\Home_Panel.cs" Line="160" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
