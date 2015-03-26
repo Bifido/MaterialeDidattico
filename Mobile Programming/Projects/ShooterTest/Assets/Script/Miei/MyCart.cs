@@ -5,6 +5,7 @@ public class MyCart : MonoBehaviour{
 	
 	// Use this for initialization
 	void Start () {
+		this.m_OPool = new Pool<Executable>();
 		this.m_Owner = this.gameObject.transform.parent.gameObject.GetComponent<ValeShooter>();
 
 		Executable [] temp = new Executable[m_ICapacity];
@@ -13,9 +14,9 @@ public class MyCart : MonoBehaviour{
 			//set Go projectiles child of cart's owner, set MyProjectile script as owned by this cart
 			GameObject instantiated = (GameObject) GameObject.Instantiate(ProjectileType);
 			instantiated.transform.parent = this.gameObject.transform.parent;
-			//TODO rivedere
-//			Executable = instantiated.GetComponent<MyProjectile>();
+
 			temp[i] = instantiated.GetComponent<MyProjectile>();
+			temp[i].SetPool(this.m_OPool);
 			temp[i].SetExcutioner(this.m_Owner);
 		}
 		this.m_OPool = new Pool<Executable>(m_ICapacity,temp);

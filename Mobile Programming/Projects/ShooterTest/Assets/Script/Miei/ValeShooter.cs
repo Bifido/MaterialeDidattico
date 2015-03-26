@@ -21,13 +21,21 @@ public class ValeShooter : MonoBehaviour,Executioner {
 	//dall'executable potrei in futuro prendere info
 
 	public void NotifyExecuteEndFail(Executable shoot){
-		Debug.Log("...mancato!");	
-		this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
+		Debug.Log("...mancato!");
+		if(shoot.GetPool().Equals(this.m_oDefaultCart)){
+			this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
+		}else{
+			this.m_oRotatingProjectileCart.canFreeOneUsedProjectile(shoot);
+		}
 	}
 
 	public void NotifyExecuteEndSuccess(Executable shoot){
 		Debug.Log ("AHAHAHAHAH PRESO!");
-		this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
+		if(shoot.GetPool().Equals(this.m_oDefaultCart)){
+			this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
+		}else{
+			this.m_oRotatingProjectileCart.canFreeOneUsedProjectile(shoot);
+		}
 	}
 	//--------------------Executioner Interface
 
@@ -54,13 +62,13 @@ public class ValeShooter : MonoBehaviour,Executioner {
 		this.m_oTimer.Start(m_fShootingTime,AllowShooting);
 
 		//add default cart
-		GameObject cartObj = GameObject.Instantiate(defaultProjectile) as GameObject;
+		GameObject cartObj = GameObject.Instantiate(defaultProjectileCart) as GameObject;
 		//set default cart as child of player
 		cartObj.transform.parent = this.transform;
 		this.m_oDefaultCart = cartObj.GetComponent<MyCart>();
 
 		//add rotating projectiles cart
-		GameObject rotatingProjectilesCart = GameObject.Instantiate(rotatingProjectile) as GameObject;
+		GameObject rotatingProjectilesCart = GameObject.Instantiate(rotatingProjectileCart) as GameObject;
 		//set default cart as child of player
 		rotatingProjectilesCart.transform.parent = this.transform;
 		this.m_oRotatingProjectileCart = rotatingProjectilesCart.GetComponent<MyCart>();
@@ -88,7 +96,7 @@ public class ValeShooter : MonoBehaviour,Executioner {
 				Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
 			}
 		}
-		if (m_bShootingAllowed && Input.GetKey(KeyCode.B)){
+		if (m_bShootingAllowed && Input.GetKey(KeyCode.S)){
 			
 			m_bShootingAllowed = false;
 			this.m_oTimer.Start(m_fShootingTime,AllowShooting);
@@ -105,8 +113,8 @@ public class ValeShooter : MonoBehaviour,Executioner {
 	
 	//VARS
 
-	public GameObject defaultProjectile;
-	public GameObject rotatingProjectile;
+	public GameObject defaultProjectileCart;
+	public GameObject rotatingProjectileCart;
 
 	[SerializeField] private PlatformManager m_oPlatformManager;
 	

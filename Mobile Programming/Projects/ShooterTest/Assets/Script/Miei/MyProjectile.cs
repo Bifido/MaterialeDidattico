@@ -4,7 +4,7 @@ using System.Collections;
 public class MyProjectile : MonoBehaviour,Executable{
 
 	//---------------EXECUTABLE INTERFACE
-	public void Execute(){
+	public virtual void Execute(){
 		this.transform.localPosition = this.gameObject.transform.parent.transform.localPosition;
 		this.m_tStartingExecutionTime = 0;
 		this.enabled = true;
@@ -33,6 +33,14 @@ public class MyProjectile : MonoBehaviour,Executable{
 			this.m_iExecutioner.NotifyExecuteEndFail(this);
 		}
 	}
+
+	public void SetPool(Pool<Executable> pool){
+		this.m_oCart = pool;
+	}
+	public Pool<Executable> GetPool(){
+		return this.m_oCart;
+	}
+
 	//---------------EXECUTABLE INTERFACE
 
 	// Use this for initialization
@@ -70,6 +78,7 @@ public class MyProjectile : MonoBehaviour,Executable{
 	[SerializeField] private float		m_fTimeToLife;
 	private float 						m_tStartingExecutionTime = 0f;
 	private Executioner					m_iExecutioner;
+	private Pool<Executable> 			m_oCart;
 
 //	don't required anymore
 //	private bool 						m_bShooted = false;

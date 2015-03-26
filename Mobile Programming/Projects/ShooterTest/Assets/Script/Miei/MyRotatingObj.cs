@@ -2,12 +2,16 @@
 using System.Collections;
 
 public class MyRotatingObj : MyProjectile {
+	[SerializeField] private float m_fRotationSpeed = 10f;
+	private Vector3 m_vRotation = new Vector3(Random.value,Random.value,Random.value);
 
-	private Vector3 m_vRotation = new Vector3(0.5f,0.5f,0.5f);
+	public override void Execute(){
+		this.m_vRotation = new Vector3(Random.value,Random.value,Random.value);
+		base.Execute();
+	}
 
-	protected virtual void ComputeTrajectory(){
-		Debug.Log("rotating!");
+	protected override void ComputeTrajectory(){
 		base.ComputeTrajectory();
-		this.transform.Rotate(m_vRotation * m_fSpeed * Time.deltaTime);
+		this.transform.Rotate(m_vRotation * m_fRotationSpeed * 10 * Time.deltaTime);
 	}
 }

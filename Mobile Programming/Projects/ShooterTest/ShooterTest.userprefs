@@ -1,18 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\ValeShooter.cs">
-    <Files>
-      <File FileName="Assets\Script\Miei\Utils\Pool.cs" Line="29" Column="22" />
-      <File FileName="Assets\Script\Miei\Utils\Executable.cs" Line="4" Column="2" />
-      <File FileName="Assets\Script\Miei\MyProjectile.cs" Line="48" Column="4" />
-      <File FileName="Assets\Script\Miei\ValeShooter.cs" Line="94" Column="22" />
-      <File FileName="Assets\Script\Miei\MyCart.cs" Line="25" Column="32" />
-      <File FileName="Assets\Script\Miei\PlatformManager\ValePlatformManagerTest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\Utils\Executioner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\MyTargetOnOff.cs" Line="16" Column="42" />
-      <File FileName="Assets\Script\Miei\MyRotatingObj.cs" Line="9" Column="26" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

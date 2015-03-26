@@ -8,4 +8,7 @@ public interface Executable{
 	void SetExcutioner(Executioner exec);
 	GameObject GetGameObject();
 	void NotifyExecutioner(Executable executable,bool success);
+
+	void SetPool(Pool<Executable> pool);
+	Pool<Executable> GetPool();
 }
