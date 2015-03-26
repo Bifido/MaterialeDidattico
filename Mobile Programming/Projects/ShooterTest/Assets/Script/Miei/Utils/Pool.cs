@@ -2,32 +2,42 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Pool{
+public class Pool<U>{
 
-	public Pool(int capacity,Executioner container,Executable contained){
-		this.m_oElements = new ArrayList(capacity);
+	public Pool(){
+		this.m_oElements = null;
+		this.m_iNextFreeElement = null;
+	}
+
+	public Pool(int capacity, U [] elements){
+		//init array and free elements list
+		this.m_oElements = elements;
 		this.m_iNextFreeElement = new LinkedList<int>();
-		for(int i = 0;i<this.m_oElements.Capacity;i++){
-			GameObject element = GameObject.Instantiate(contained) as GameObject;
-			this.m_oElements.Add(element);
+
+		//populate the index list
+		for(int i = 0;i<this.m_oElements.Length;i++){
 			this.m_iNextFreeElement.AddLast(i);
 		}
 	}
 
-	public GameObject getElement(){
+	public U getElement(){
 		if(this.m_iNextFreeElement.Count > 0){
 			int indexNextFree = m_iNextFreeElement.First.Value;
 			m_iNextFreeElement.RemoveFirst();
-			return this.m_oElements[indexNextFree] as GameObject;
+			return this.m_oElements[indexNextFree];
 		}else{
-			return null;
+			return default(U);
 		}
 	}
 
-	public void returnElement(GameObject element){
-		this.m_iNextFreeElement.AddLast(this.m_oElements.IndexOf(element));
+	public void freeElement(U element){
+		for(int i = 0; i<this.m_oElements.Length; i++){
+			if(element.Equals(this.m_oElements[i])){
+				this.m_iNextFreeElement.AddLast(i);
+			}
+		}
 	}
 
-	private ArrayList m_oElements;
+	private U [] m_oElements;
 	private LinkedList<int> m_iNextFreeElement;
 }

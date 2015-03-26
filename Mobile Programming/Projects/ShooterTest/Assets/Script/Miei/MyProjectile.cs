@@ -5,6 +5,7 @@ public class MyProjectile : MonoBehaviour,Executable{
 
 	//---------------EXECUTABLE INTERFACE
 	public void Execute(){
+		this.transform.localPosition = this.gameObject.transform.parent.transform.localPosition;
 		this.m_tStartingExecutionTime = 0;
 		this.enabled = true;
 	}
@@ -13,8 +14,24 @@ public class MyProjectile : MonoBehaviour,Executable{
 		this.enabled = false;
 	}
 
-	public bool isExecuting(){
+	public bool IsExecuting(){
 		return this.enabled;
+	}
+
+	public void SetExcutioner(Executioner exec){
+		this.m_iExecutioner = exec;
+	}
+
+	public GameObject GetGameObject(){
+		return this.gameObject;
+	}
+
+	public void NotifyExecutioner(Executable executable,bool success){
+		if(success){
+			this.m_iExecutioner.NotifyExecuteEndSuccess(this);
+		}else{
+			this.m_iExecutioner.NotifyExecuteEndFail(this);
+		}
 	}
 	//---------------EXECUTABLE INTERFACE
 
@@ -26,29 +43,33 @@ public class MyProjectile : MonoBehaviour,Executable{
 	
 	// Update is called once per frame
 	void Update () {
-//		Check not more required implementing executable
-//		if(m_bShooted){
-//			this.ComputeTrajectory();
-//		}
 		this.m_tStartingExecutionTime += Time.deltaTime;
 		if(m_tStartingExecutionTime < this.m_fTimeToLife){
-			//TODO check collisione
-			this.ComputeTrajectory();
+			ComputeTrajectory();
 		}else{
 			this.StopExecute();
+			this.NotifyExecutioner(this,false);
 		}
 	}
 
+	void OnTriggerEnter(Collider other){
+		if(other.tag.Equals("Target")){
+			this.NotifyExecutioner(this,true);
+		}
+	}
+	
 	protected virtual void ComputeTrajectory(){
+		Debug.Log ( "compute base trajectory");
 		this.transform.position += m_vDirection * (m_fSpeed * Time.deltaTime);
 	}
 
-	[SerializeField] private float 		m_fSpeed;
+	[SerializeField] protected float 		m_fSpeed;
 	[SerializeField] private Vector3	m_vDirection;
 
 	//this is the starting value of projectile's life
 	[SerializeField] private float		m_fTimeToLife;
 	private float 						m_tStartingExecutionTime = 0f;
+	private Executioner					m_iExecutioner;
 
 //	don't required anymore
 //	private bool 						m_bShooted = false;

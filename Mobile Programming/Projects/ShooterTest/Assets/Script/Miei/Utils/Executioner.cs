@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-interface Executioner{
-
+﻿public interface Executioner{
+	void NotifyExecuteEndFail(Executable executable);
+	void NotifyExecuteEndSuccess(Executable executable);
 }

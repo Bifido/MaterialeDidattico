@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
-interface Executable{
+public interface Executable{
 	void Execute();
 	void StopExecute();
-	bool isExecuting();
+	bool IsExecuting();
+
+	void SetExcutioner(Executioner exec);
+	GameObject GetGameObject();
+	void NotifyExecutioner(Executable executable,bool success);
 }

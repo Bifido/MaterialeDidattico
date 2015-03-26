@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 /*
-Modified by: Valerio Ceraudo
+Modified by: Valerio Ceraudo, lovely ispired to Bordelands!
 Originally based on:
 
 Università di Verona - Master Videogame programming 2015
@@ -14,8 +14,24 @@ will trigger multiple times when either holding the A key or pressing it rapidly
 Base Solution
  */
 
-public class ValeShooter : MonoBehaviour 
-{
+public class ValeShooter : MonoBehaviour,Executioner {
+
+	//--------------------Executioner Interface
+
+	//dall'executable potrei in futuro prendere info
+
+	public void NotifyExecuteEndFail(Executable shoot){
+		Debug.Log("...mancato!");	
+		this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
+	}
+
+	public void NotifyExecuteEndSuccess(Executable shoot){
+		Debug.Log ("AHAHAHAHAH PRESO!");
+		this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
+	}
+	//--------------------Executioner Interface
+
+
 	void Start(){
 		if(m_oPlatformManager == null){
 			Debug.LogWarning("m_oPlatformManager not linked");
@@ -37,8 +53,17 @@ public class ValeShooter : MonoBehaviour
 		//lo registro
 		this.m_oTimer.Start(m_fShootingTime,AllowShooting);
 
-		//aggiungo le munizioni
-		this.m_oPoolProjetiles = new Pool(10,this.gameObject,m_oProjetileType);
+		//add default cart
+		GameObject cartObj = GameObject.Instantiate(defaultProjectile) as GameObject;
+		//set default cart as child of player
+		cartObj.transform.parent = this.transform;
+		this.m_oDefaultCart = cartObj.GetComponent<MyCart>();
+
+		//add rotating projectiles cart
+		GameObject rotatingProjectilesCart = GameObject.Instantiate(rotatingProjectile) as GameObject;
+		//set default cart as child of player
+		rotatingProjectilesCart.transform.parent = this.transform;
+		this.m_oRotatingProjectileCart = rotatingProjectilesCart.GetComponent<MyCart>();
 	}
 	
 	void Update(){
@@ -51,24 +76,44 @@ public class ValeShooter : MonoBehaviour
 	
 	private void ComputeShoot(){
 		if (m_bShootingAllowed && Input.GetKey(KeyCode.A)){
-			Debug.Log("Shoot!!");
+		
 			m_bShootingAllowed = false;
 			this.m_oTimer.Start(m_fShootingTime,AllowShooting);
-			GameObject projectile = this.m_oPoolProjetiles.getElement();
-			if(projectile!=null){
-				projectile.GetComponent<MyProjectile>().Execute();
+
+			Executable projectile = this.m_oDefaultCart.getProjectile();
+			if(projectile != null){
+				Debug.Log("Shoot!!");
+				projectile.Execute();
+			}else{
+				Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
+			}
+		}
+		if (m_bShootingAllowed && Input.GetKey(KeyCode.B)){
+			
+			m_bShootingAllowed = false;
+			this.m_oTimer.Start(m_fShootingTime,AllowShooting);
+			
+			Executable projectile = this.m_oRotatingProjectileCart.getProjectile();
+			if(projectile != null){
+				Debug.Log("Shoot Rotating!!");
+				projectile.Execute();
+			}else{
+				Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
 			}
 		}
 	}
 	
 	//VARS
+
+	public GameObject defaultProjectile;
+	public GameObject rotatingProjectile;
+
 	[SerializeField] private PlatformManager m_oPlatformManager;
 	
 	private float 	m_fElapsedTime = 0.0f;
 	private float 	m_fShootingTime = 0.0f;
 	private bool 	m_bShootingAllowed = false;
 	private Timer 	m_oTimer;
-
-	[SerializeField] private GameObject m_oProjetileType;
-	[SerializeField] private Pool m_oPoolProjetiles;
+	private MyCart	m_oDefaultCart;
+	private MyCart	m_oRotatingProjectileCart;
 }
