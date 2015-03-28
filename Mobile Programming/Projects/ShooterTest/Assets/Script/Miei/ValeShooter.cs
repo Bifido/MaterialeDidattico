@@ -73,6 +73,10 @@ public class ValeShooter : MonoBehaviour,Executioner {
 		rotatingProjectilesCart.transform.parent = this.transform;
 		this.m_oRotatingProjectileCart = rotatingProjectilesCart.GetComponent<MyCart>();
 	}
+
+	public void test<T>(T t) where T:MonoBehaviour,Executable{
+
+	}
 	
 	void Update(){
 		ComputeShoot();

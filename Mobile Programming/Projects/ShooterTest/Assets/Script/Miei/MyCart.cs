@@ -27,14 +27,6 @@ public class MyCart : MonoBehaviour{
 		return projectile;
 	}
 
-//	public void NotifyTTLProjectExpired(MyProjectile projectile){
-//		this.m_OPool.freeElement(projectile);
-//	}
-//
-//	public void NotifyImpact(MyProjectile projectile){
-//		this.m_Owner.NotifyExecuteEnd(projectile);
-//	}
-
 	//this method can be inherited: this is the standard, if projectile impacts it is istantaneally reloaded
 	public void canFreeOneUsedProjectile(Executable projectile){
 		projectile.StopExecute();

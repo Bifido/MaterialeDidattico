@@ -1,6 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\ValeShooter.cs">
+    <Files>
+      <File FileName="Assets\Script\Miei\ValeShooter.cs" Line="75" Column="3" />
+      <File FileName="Assets\Script\Miei\Utils\Executable.cs" Line="3" Column="28" />
+      <File FileName="Assets\Script\Miei\Utils\Executioner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\Utils\Pool.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\MyCart.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\MyProjectile.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\MyRotatingObj.cs" Line="16" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
