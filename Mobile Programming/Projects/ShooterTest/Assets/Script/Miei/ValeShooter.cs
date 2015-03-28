@@ -22,6 +22,7 @@ public class ValeShooter : MonoBehaviour,Executioner {
 
 	public void NotifyExecuteEndFail(Executable shoot){
 		Debug.Log("...mancato!");
+		Debug.Log(shoot.GetPool().ToString());
 		if(shoot.GetPool().Equals(this.m_oDefaultCart)){
 			this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
 		}else{
@@ -69,7 +70,7 @@ public class ValeShooter : MonoBehaviour,Executioner {
 
 		//add rotating projectiles cart
 		GameObject rotatingProjectilesCart = GameObject.Instantiate(rotatingProjectileCart) as GameObject;
-		//set default cart as child of player
+		//set rotating projectiles cart as child of player
 		rotatingProjectilesCart.transform.parent = this.transform;
 		this.m_oRotatingProjectileCart = rotatingProjectilesCart.GetComponent<MyCart>();
 	}

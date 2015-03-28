@@ -1,0 +1,73 @@
+diff --cc Mobile Programming/Projects/ShooterTest/Library/CurrentLayout.dwlt
+index 553f81b,39e7921..0000000
+Binary files differ
+diff --cc Mobile Programming/Projects/ShooterTest/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb
+index 63081a8,d4d7370..0000000
+Binary files differ
+diff --cc Mobile Programming/Projects/ShooterTest/Library/assetDatabase3
+index 5e3c7bd,306dc87..0000000
+Binary files differ
+diff --cc Mobile Programming/Projects/ShooterTest/Library/metadata/15/1524abde9959d8e4ab0b362bab186beb
+index ba034cf,06570ef..0000000
+Binary files differ
+diff --cc Mobile Programming/Projects/ShooterTest/Library/metadata/9c/9c76aa4bb2c7a482ea6a7b956ae38558
+index 9457ff6,6f25e3a..0000000
+Binary files differ
+diff --cc Mobile Programming/Projects/ShooterTest/ShooterTest-csharp.sln
+index 2dd578f,0eb6af8..0000000
+--- a/Mobile Programming/Projects/ShooterTest/ShooterTest-csharp.sln
++++ b/Mobile Programming/Projects/ShooterTest/ShooterTest-csharp.sln
+@@@ -17,7 -17,7 +17,11 @@@ Globa
+  	GlobalSection(SolutionProperties) = preSolution
+  		HideSolutionNode = FALSE
+  	EndGlobalSection
+++<<<<<<< HEAD
+ +																																																																							GlobalSection(MonoDevelopProperties) = preSolution
+++=======
++ 																																																																														GlobalSection(MonoDevelopProperties) = preSolution
+++>>>>>>> origin/master
+  		StartupItem = Assembly-CSharp.csproj
+  		Policies = $0
+  		$0.TextStylePolicy = $1
+diff --cc Mobile Programming/Projects/ShooterTest/ShooterTest.sln
+index 99d21a3,fcb0e28..0000000
+--- a/Mobile Programming/Projects/ShooterTest/ShooterTest.sln
++++ b/Mobile Programming/Projects/ShooterTest/ShooterTest.sln
+@@@ -17,7 -17,7 +17,11 @@@ Globa
+  	GlobalSection(SolutionProperties) = preSolution
+  		HideSolutionNode = FALSE
+  	EndGlobalSection
+++<<<<<<< HEAD
+ +																																																																						GlobalSection(MonoDevelopProperties) = preSolution
+++=======
++ 																																																																													GlobalSection(MonoDevelopProperties) = preSolution
+++>>>>>>> origin/master
+  		StartupItem = Assembly-CSharp.csproj
+  		Policies = $0
+  		$0.TextStylePolicy = $1
+diff --cc Mobile Programming/Projects/ShooterTest/ShooterTest.userprefs
+index d32bd17,181b47b..0000000
+--- a/Mobile Programming/Projects/ShooterTest/ShooterTest.userprefs
++++ b/Mobile Programming/Projects/ShooterTest/ShooterTest.userprefs
+@@@ -1,14 -1,8 +1,21 @@@
+  ﻿<Properties>
+++<<<<<<< HEAD
+ +  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+ +  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\ValeShooter.cs">
+ +    <Files>
+ +      <File FileName="Assets\Script\Miei\ValeShooter.cs" Line="75" Column="3" />
+ +      <File FileName="Assets\Script\Miei\Utils\Executable.cs" Line="3" Column="28" />
+ +      <File FileName="Assets\Script\Miei\Utils\Executioner.cs" Line="1" Column="1" />
+ +      <File FileName="Assets\Script\Miei\Utils\Pool.cs" Line="1" Column="1" />
+ +      <File FileName="Assets\Script\Miei\MyCart.cs" Line="1" Column="1" />
+ +      <File FileName="Assets\Script\Miei\MyProjectile.cs" Line="1" Column="1" />
+ +      <File FileName="Assets\Script\Miei\MyRotatingObj.cs" Line="16" Column="3" />
+++=======
++   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
++   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Shooter\Shooter.cs">
++     <Files>
++       <File FileName="Assets\Script\Shooter\Shooter.cs" Line="72" Column="1" />
+++>>>>>>> origin/master
+      </Files>
+    </MonoDevelop.Ide.Workbench>
+    <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,0 +1,113 @@
+Due macchine A e B:
+Presa B, comunica con A passando scheda di rete, wan/lan, internet e specularmente dopo internet wan/lan, scheda di rete A.
+
+A e B hanno un indirizzo, ipv4: A.B.C.D | porta  ---> 127.0.0.1 : 8080
+
+
+SOCKET:
+1) spedire dati
+2) ricevere dati
+3) connettersi.
+
+Protocolli:
+
+TCP:
+è di tipo connesso, crea un canale tra la macchina A e B ( full duplex) e conosce lo stato del canale di connessione o se si interrompe ( tipo disconnessione) e lavora su una connessione.
+è reliable: è affidabile perchè sò che cosa succede alle cose inviate
+è inOrder: viene spedito e ricevuto il tutto in ordine
+flow control:
+congestion avoidance:
+neagle algorithm----> inglobba dati finchè non è abbastanza pieno da riempire un TCP
+HEADER: 56-80 Byte
+
+
+UDP:
+non connesso, ho semplicemente aperto un canale di connessione e con la stessa connessione posso mandare e ricevere da più canali perchè non ho una connessione e se sto comunincando con qualcuno non ho informazioni sul suo stato e sullo stato della connnessione
+non reliable
+non in order
+duplicati
+no flow ontrol
+no congestion avoidance
+HEADER: 24-48 Byte
+
+
+TCP si usa prevalentemente per:
+Web
+Trasmissione dati
+Giochi -> Disabilitare neagle, TCP_NoDelay e tolleranti alla latenza o per istaurare la connessione al server.
+
+Quando A istaura la connessione TCP con B e per ogni invio spedisce l'ack. Su questo TCP calcola tutte le metriche prima esposte (latenza, ordine, stato della rete)
+
+Ciò che si fa nei giochi è usare TCP over UDP, cioè aggiungendo ad UDP alcune feature di TCP:
+Reliability
+flow control/ congestion avoidance
+In Order
+
+Ciò che cambia molto è la reliability rispetto il TCP originale
+Solitamente si usano due approcci:
+TCP like 						| 				Ridondanza   (continuo a spedire i pacchetti che non mi hanno ackato)
+Esempio Delta Encoding
+
+
+Condivisione TCP/UDP
+TCP ( eventi/chat/altro fixed)
+UDP ( game data)
+
+Si può fare ma TCP in convivenza con UDP crea problemi al secondo perchè TCP è istradato prima di UDP ed ha priorità. Bisogna istaurare due connessioni.
+Solitamente su pc, su console molto meno.
+
+
+
+NAT ( network traslation unit)
+Essendoci più schede di rete che indirizzi, bisogna tradurre più macchine in un unico indirizzo ip.
+
+Da un lato un indirizzo pubblico, dall'altro gli indirizzi interni che vengono mappati. Pe+r alcune configurazioni nat,
+una macchina A dietro una Nat ed una B dietro un'altra NAT non riescono a comunicare.
+Come mappo la connessione? solitamente A non può comunicare con B se b non ha già aperto una porta con a. ma nessuno dei due riescie naturalmente!
+Si una un server di appoggio chiamato Stun Server che in base ai tipi di Nat di A e B li aiuta a mettersi in connessione il prima possibile senza dover fare tanti tentativi. Oggi ci sono nuovi protocolli che migliorano questa fase di discovery.
+Upnp è una soluzione ma non è sicuro!
+Al più solitamente sono i NAT che aggiungono ulteriori meccanismi
+
+
+
+TCP Stream Dati
+Dentro lo stream devo mettere dei blocchi di byte che dividano i messaggi diversi inviati nello stream.
+UDP Stream Dati
+Mando pacchetti di byte ed interpreto il pacchetto, se lo perdo, perdo tutto e rinvio tutto.
+
+
+
+
+Solitamente cosa si invia?
+-Messaggi reliable + ordinati
+-Messaggi reliable no Ordinati
+-Messaggi no Reliable + ordered (esempio una posizione di un personaggio, voglio l'ultimo di quelli arrivati, quelli persi chissene)
+-Messaggi no Reliable no ordered (voip)
+
+I socket si usano in due modi:
+Thread: ma create(), func() e poi receiv() e rimango in attessa del controllo
+Non Blocking i/o async: fasi che di while(true) che posso interrompere il processo, non bloccante
+
+
+
+PUNTI CRITII DEL NETWORKING
+1) gestione errore
+2) sincronizzazione/ consistenza simulazione
+3) riduzione banda
+4) debugging
+5) farla usare agli altri
+
+
+Modalità online:
+Turni:
+Turno asincrono:
+Scacchi, muovo e ti mando una mail con la mossa o una push sul telefono per dirti che ho fatto la mossa
+Turno realtime:
+Poker
+
+Solitamente il server gestisce lo stato del gioco ed assegna i turni ai giocatori in accordo con le fasi di gioco.
+Un giocatore manda l'esecuzione del turno al server che la rimbalza all'altro giocatore che ri-simula l'azione
+
+
+RealTime:
+Fps,racing mmorpg
