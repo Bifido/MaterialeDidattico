@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AllocatorGameObject<T> : AllocatorClass<T> where T:Object {
+public class AllocatorGameObject{
 
 	public AllocatorGameObject(){}
-	public AllocatorGameObject(int capacity,GameObject t,GameObject parent){
-		base.m_iCapacity = capacity;
+	public AllocatorGameObject(int capacity,GameObject prefab,GameObject parent){
+		this.m_iCapacity = capacity;
 		
-		base.m_oPool = new Pool<T>();
+		this.m_oPool = new Pool<GameObject>();
 		
-		T [] temp = new T[this.m_iCapacity];
+		GameObject [] temp = new GameObject[this.m_iCapacity];
 		for(int i = 0; i<this.m_iCapacity; i++){
-			temp[i] = GameObject.Instantiate(t) as T;
-			Debug.Log(temp[i].name);
+			GameObject newGameObject = GameObject.Instantiate(prefab) as GameObject;
+			newGameObject.transform.parent = parent.transform;
+			temp[i] = newGameObject;
 		}
-		this.m_oPool = new Pool<T>(m_iCapacity,temp);
+		this.m_oPool = new Pool<GameObject>(m_iCapacity,temp);
 	}
+
+	[SerializeField] protected int 			m_iCapacity;
+	protected Pool<GameObject> 				m_oPool;
 }

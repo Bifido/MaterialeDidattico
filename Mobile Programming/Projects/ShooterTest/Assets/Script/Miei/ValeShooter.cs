@@ -42,8 +42,7 @@ public class ValeShooter : MonoBehaviour,Executioner {
 
 	public GameObject projectile;
 	void Start(){
-
-		AllocatorGameObject<GameObject> alloc = new AllocatorGameObject<GameObject>(10,projectile, this.gameObject);
+		AllocatorMonobehaviour<MyProjectile> alloc = new AllocatorMonobehaviour<MyProjectile>(10,projectile, this.gameObject);
 
 		if(m_oPlatformManager == null){
 			Debug.LogWarning("m_oPlatformManager not linked");
