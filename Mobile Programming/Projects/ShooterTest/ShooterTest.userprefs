@@ -1,21 +1,12 @@
 ﻿<Properties>
-<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\ValeShooter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\Utils\AllocatorGameObject.cs">
     <Files>
-      <File FileName="Assets\Script\Miei\ValeShooter.cs" Line="75" Column="3" />
-      <File FileName="Assets\Script\Miei\Utils\Executable.cs" Line="3" Column="28" />
-      <File FileName="Assets\Script\Miei\Utils\Executioner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\Utils\Pool.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\MyCart.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\MyProjectile.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\MyRotatingObj.cs" Line="16" Column="3" />
-=======
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Shooter\Shooter.cs">
-    <Files>
-      <File FileName="Assets\Script\Shooter\Shooter.cs" Line="72" Column="1" />
->>>>>>> origin/master
+      <File FileName="Assets\Script\Miei\Utils\AllocatorClass.cs" Line="18" Column="3" />
+      <File FileName="Assets\Script\Miei\Utils\AllocatorGameObject.cs" Line="12" Column="20" />
+      <File FileName="Assets\Script\Miei\MyCart.cs" Line="22" Column="57" />
+      <File FileName="Assets\Script\Miei\ValeShooter.cs" Line="47" Column="3" />
+      <File FileName="Assets\Script\Projectile\Projectile.cs" Line="5" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
