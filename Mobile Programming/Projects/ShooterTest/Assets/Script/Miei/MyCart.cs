@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MyCart : MonoBehaviour{
@@ -15,8 +15,7 @@ public class MyCart : MonoBehaviour{
 			GameObject instantiated = (GameObject) GameObject.Instantiate(ProjectileType);
 			instantiated.transform.parent = this.gameObject.transform.parent;
 
-			temp[i] = instantiated.GetComponent<MyProjectile>();
-			temp[i].SetPool(this.m_OPool);
+			temp[i] = instantiated.GetComponent<MyProjectileExecutable>();
 			temp[i].SetExcutioner(this.m_Owner);
 		}
 		this.m_OPool = new Pool<Executable>(m_ICapacity,temp);

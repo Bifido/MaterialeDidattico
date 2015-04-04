@@ -6,9 +6,5 @@ public interface Executable{
 	bool IsExecuting();
 
 	void SetExcutioner(Executioner exec);
-	GameObject GetGameObject();
-	void NotifyExecutioner(Executable executable,bool success);
-
-	void SetPool(Pool<Executable> pool);
-	Pool<Executable> GetPool();
+	void NotifyExecutioner(bool success);
 }

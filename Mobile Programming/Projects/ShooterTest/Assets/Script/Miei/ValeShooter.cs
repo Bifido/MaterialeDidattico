@@ -22,28 +22,26 @@ public class ValeShooter : MonoBehaviour,Executioner {
 
 	public void NotifyExecuteEndFail(Executable shoot){
 		Debug.Log("...mancato!");
-		Debug.Log(shoot.GetPool().ToString());
-		if(shoot.GetPool().Equals(this.m_oDefaultCart)){
-			this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
-		}else{
-			this.m_oRotatingProjectileCart.canFreeOneUsedProjectile(shoot);
-		}
+//		Debug.Log(shoot.GetPool().ToString());
+//		if(shoot.GetPool().Equals(this.m_oDefaultCart)){
+//			this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
+//		}else{
+//			this.m_oRotatingProjectileCart.canFreeOneUsedProjectile(shoot);
+//		}
 	}
 
 	public void NotifyExecuteEndSuccess(Executable shoot){
 		Debug.Log ("AHAHAHAHAH PRESO!");
-		if(shoot.GetPool().Equals(this.m_oDefaultCart)){
-			this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
-		}else{
-			this.m_oRotatingProjectileCart.canFreeOneUsedProjectile(shoot);
-		}
+//		Debug.Log(shoot.GetPool().ToString());
+//		if(shoot.GetPool().Equals(this.m_oDefaultCart)){
+//			this.m_oDefaultCart.canFreeOneUsedProjectile(shoot);
+//		}else{
+//			this.m_oRotatingProjectileCart.canFreeOneUsedProjectile(shoot);
+//		}
 	}
 	//--------------------Executioner Interface
 
-	public GameObject projectile;
 	void Start(){
-		AllocatorMonobehaviour<MyProjectile> alloc = new AllocatorMonobehaviour<MyProjectile>(10,projectile, this.gameObject);
-
 		if(m_oPlatformManager == null){
 			Debug.LogWarning("m_oPlatformManager not linked");
 			

@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class MyRotatingObj : MyProjectile {
+public class MyRotatingObj : MyProjectileExecutable {
 	[SerializeField] private float m_fRotationSpeed = 10f;
 	private Vector3 m_vRotation = new Vector3(Random.value,Random.value,Random.value);
 

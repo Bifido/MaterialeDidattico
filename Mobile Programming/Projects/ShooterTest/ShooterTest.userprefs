@@ -1,15 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\ValeShooter.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs">
     <Files>
-      <File FileName="Assets\Script\Miei\Utils\AllocatorGameObject.cs" Line="22" Column="41" />
-      <File FileName="Assets\Script\Miei\Utils\AllocatorClass.cs" Line="4" Column="28" />
-      <File FileName="Assets\Script\Miei\MyCart.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\ValeShooter.cs" Line="45" Column="38" />
-      <File FileName="Assets\Script\Projectile\Projectile.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\PlatformManager\ValePlatformManagerTest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\Utils\AllocatorMonobehaviour.cs" Line="4" Column="36" />
-      <File FileName="Assets\Script\Miei\Utils\Executable.cs" Line="3" Column="1" />
+      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" Line="30" Column="41" />
+      <File FileName="Assets\Script\Miei\Utils\Executable.cs" Line="7" Column="2" />
+      <File FileName="Assets\Script\Miei\MyProjectileExecutable.cs" Line="50" Column="22" />
+      <File FileName="Assets\Script\Miei\Utils\AllocatorMonoBehaviour.cs" Line="4" Column="36" />
+      <File FileName="Assets\Script\Miei\ValeShooter.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
