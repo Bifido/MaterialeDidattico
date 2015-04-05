@@ -42,7 +42,14 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 				return;
 			}
 		}
+
+		m_oInptuManager = GameObject.FindObjectOfType<MyInputManager>();
 		
+		if(m_oInptuManager == null)
+		{
+			Debug.LogError("No InputManager in the scene");
+		}
+
 		m_fShootingTime = m_oPlatformManager.GetShootingInterval();
 		
 		Debug.Log("Platform shooting time = " + m_fShootingTime);
@@ -60,31 +67,51 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 		
 	}
 	
-	void Update(){
-		ComputeShoot();
-	}
-	
 	private void AllowShooting(){
 		this.m_bShootingAllowed = true;
 	}
 	
-	private void ComputeShoot(){
-		if (m_bShootingAllowed && Input.GetKey(KeyCode.A)){
-			
-			m_bShootingAllowed = false;
-			this.m_oTimer.Start(m_fShootingTime,AllowShooting);
-			
-			MyProjectileExecutable projectile = this.m_oProjectiles.GetElement();
-			if(projectile != null){
-				projectile.SetExcutioner(this);
-				projectile.transform.position = this.transform.localPosition;
-				projectile.Execute();
-				Debug.Log("Shoot!!");
-			}else{
-				Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
-			}
+	private void ComputeShoot(Vector3 endPoint){
+		m_bShootingAllowed = false;
+		this.m_oTimer.Start(m_fShootingTime,AllowShooting);
+		
+		MyProjectileExecutable projectile = this.m_oProjectiles.GetElement();
+		if(projectile != null){
+			projectile.SetExcutioner(this);
+			projectile.transform.position = this.transform.localPosition;
+			projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
+
+			Vector3 angle = new Vector3(0f,0f,Vector3.Angle(Vector3.up,projectile.Direction));
+			projectile.transform.localEulerAngles = angle * Mathf.Sign(Vector3.Cross(Vector3.up, projectile.Direction).z);
+
+			projectile.Execute();
+			Debug.Log("Shoot!!");
+		}else{
+			Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
 		}
 	}
+
+	private void OnEnable()
+	{
+		if(m_oInptuManager == null)
+		{
+			m_oInptuManager = GameObject.FindObjectOfType<MyInputManager>();
+			
+			if(m_oInptuManager == null)
+			{
+				Debug.LogError("No InputManager in the scene");
+				return;
+			}
+		}
+		
+		m_oInptuManager.OnShoot += ComputeShoot;
+	}
+	
+	private void OnDisable()
+	{
+		m_oInptuManager.OnShoot -= ComputeShoot;
+	}
+
 	
 	//VARS
 	[SerializeField] private PlatformManager 						m_oPlatformManager;
@@ -96,4 +123,5 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 
 	public GameObject	 											projectilePrefab;
 	private AllocatorMonoBehaviour<MyProjectileExecutable>			m_oProjectiles;
+	private MyInputManager 											m_oInptuManager;
 }

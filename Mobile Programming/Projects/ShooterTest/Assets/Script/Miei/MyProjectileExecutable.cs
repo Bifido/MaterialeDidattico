@@ -69,20 +69,11 @@ public class MyProjectileExecutable : MonoBehaviour,Executable,Allocable{
 	}
 	
 	protected virtual void ComputeTrajectory(){
-		Debug.Log ( "compute base trajectory");
 		this.transform.position += m_vDirection * (m_fSpeed * Time.deltaTime);
 	}
 
 	[SerializeField] protected float 		m_fSpeed;
 	[SerializeField] private Vector3	m_vDirection;
-
-	//this is the starting value of projectile's life
-	[SerializeField] private float		m_fTimeToLife;
-	private float 						m_tStartingExecutionTime = 0f;
-	private Executioner					m_iExecutioner;
-	private Allocator 					m_oAllocator;
-
-	//before execute need to set direction
 	public Vector3 Direction{
 		get {
 			return this.m_vDirection;
@@ -91,4 +82,10 @@ public class MyProjectileExecutable : MonoBehaviour,Executable,Allocable{
 			this.m_vDirection = value;
 		}
 	}
+
+	//this is the starting value of projectile's life
+	[SerializeField] private float		m_fTimeToLife;
+	private float 						m_tStartingExecutionTime = 0f;
+	private Executioner					m_iExecutioner;
+	private Allocator 					m_oAllocator;
 }

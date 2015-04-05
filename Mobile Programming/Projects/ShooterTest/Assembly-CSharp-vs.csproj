@@ -54,6 +54,10 @@
      <Compile Include="Assets\Script\Input\InputReplay.cs" />
      <Compile Include="Assets\Script\Miei\BetterShooter.cs" />
      <Compile Include="Assets\Script\Miei\MyCart.cs" />
+     <Compile Include="Assets\Script\Miei\MyInputBase.cs" />
+     <Compile Include="Assets\Script\Miei\MyInputFactory.cs" />
+     <Compile Include="Assets\Script\Miei\MyInputManager.cs" />
+     <Compile Include="Assets\Script\Miei\MyInputSwipe.cs" />
      <Compile Include="Assets\Script\Miei\MyProjectileExecutable.cs" />
      <Compile Include="Assets\Script\Miei\MyRotatingObj.cs" />
      <Compile Include="Assets\Script\Miei\MyTargetOnOff.cs" />

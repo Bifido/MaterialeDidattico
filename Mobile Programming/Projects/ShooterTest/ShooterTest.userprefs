@@ -2,11 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs">
     <Files>
-      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" Line="30" Column="41" />
-      <File FileName="Assets\Script\Miei\Utils\Executable.cs" Line="7" Column="2" />
-      <File FileName="Assets\Script\Miei\MyProjectileExecutable.cs" Line="50" Column="22" />
-      <File FileName="Assets\Script\Miei\Utils\AllocatorMonoBehaviour.cs" Line="4" Column="36" />
-      <File FileName="Assets\Script\Miei\ValeShooter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" Line="86" Column="4" />
+      <File FileName="Assets\Script\Miei\MyInputSwipe.cs" Line="26" Column="30" />
+      <File FileName="Assets\Script\Miei\MyProjectileExecutable.cs" Line="44" Column="38" />
+      <File FileName="Assets\Script\Input\InputPlayerTouch.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Input\InputPlayerKeyboard.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\MyInputBase.cs" Line="27" Column="38" />
+      <File FileName="Assets\Script\Miei\MyInputFactory.cs" Line="7" Column="43" />
+      <File FileName="Assets\Script\Miei\MyInputManager.cs" Line="6" Column="41" />
+      <File FileName="Assets\Script\Utils\NamingConvention.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

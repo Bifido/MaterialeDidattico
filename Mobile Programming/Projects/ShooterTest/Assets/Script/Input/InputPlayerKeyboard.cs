@@ -13,7 +13,7 @@ public class InputPlayerKeyboard : InputBase
 			InternalJumpDetected();
 		}
 
-		if(Input.GetKey(KeyCode.Space))
+		if(Input.GetKeyDown(KeyCode.Space))
 		{
 			InternalShootDetected();
 		}
