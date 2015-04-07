@@ -18,15 +18,17 @@ public class MyProjectileExecutable : MonoBehaviour,Executable,Allocable{
 	}
 
 	public void SetExcutioner(Executioner exec){
-		Debug.Log("Esec setted");
 		this.m_iExecutioner = exec;
 	}
 
 	public void NotifyExecutioner(bool success){
-		if(success){
-			this.m_iExecutioner.NotifyExecuteEndSuccess(this);
-		}else{
-			this.m_iExecutioner.NotifyExecuteEndFail(this);
+		if(this.m_iExecutioner != null && this.IsExecuting()){
+			this.transform.position = new Vector3(100f,100f,0f);
+			if(success){
+				this.m_iExecutioner.NotifyExecuteEndSuccess(this);
+			}else{
+				this.m_iExecutioner.NotifyExecuteEndFail(this);
+			}
 		}
 	}
 	//---------------EXECUTABLE INTERFACE

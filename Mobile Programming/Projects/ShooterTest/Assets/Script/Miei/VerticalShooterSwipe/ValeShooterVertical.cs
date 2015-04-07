@@ -85,7 +85,6 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 			projectile.transform.localEulerAngles = angle * Mathf.Sign(Vector3.Cross(Vector3.up, projectile.Direction).z);
 
 			projectile.Execute();
-			Debug.Log("Shoot!!");
 		}else{
 			Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
 		}

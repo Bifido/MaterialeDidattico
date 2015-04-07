@@ -17,7 +17,9 @@ public class AllocatorMonoBehaviour<T>: Allocator where T: MonoBehaviour,Allocab
 		
 		for(int i=0; i<base.m_iCapacity; i++){
 			GameObject temp = GameObject.Instantiate(prefab) as GameObject;
-			temp.AddComponent<T>();
+			if(temp.GetComponent<T>() == null){
+				temp.AddComponent<T>();
+			}
 			instances[i] = temp.GetComponent<T>();
 		}
 		
