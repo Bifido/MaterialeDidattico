@@ -88,32 +88,32 @@ public class ValeShooter : MonoBehaviour,Executioner {
 	}
 	
 	private void ComputeShoot(){
-		if (m_bShootingAllowed && Input.GetKey(KeyCode.A)){
-		
-			m_bShootingAllowed = false;
-			this.m_oTimer.Start(m_fShootingTime,AllowShooting);
-
-			Executable projectile = this.m_oDefaultCart.getProjectile();
-			if(projectile != null){
-				Debug.Log("Shoot!!");
-				projectile.Execute();
-			}else{
-				Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
-			}
-		}
-		if (m_bShootingAllowed && Input.GetKey(KeyCode.S)){
-			
-			m_bShootingAllowed = false;
-			this.m_oTimer.Start(m_fShootingTime,AllowShooting);
-			
-			Executable projectile = this.m_oRotatingProjectileCart.getProjectile();
-			if(projectile != null){
-				Debug.Log("Shoot Rotating!!");
-				projectile.Execute();
-			}else{
-				Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
-			}
-		}
+//		if (m_bShootingAllowed && Input.GetKey(KeyCode.A)){
+//		
+//			m_bShootingAllowed = false;
+//			this.m_oTimer.Start(m_fShootingTime,AllowShooting);
+//
+//			Executable projectile = this.m_oDefaultCart.getProjectile();
+//			if(projectile != null){
+//				Debug.Log("Shoot!!");
+//				projectile.Execute();
+//			}else{
+//				Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
+//			}
+//		}
+//		if (m_bShootingAllowed && Input.GetKey(KeyCode.S)){
+//			
+//			m_bShootingAllowed = false;
+//			this.m_oTimer.Start(m_fShootingTime,AllowShooting);
+//			
+//			Executable projectile = this.m_oRotatingProjectileCart.getProjectile();
+//			if(projectile != null){
+//				Debug.Log("Shoot Rotating!!");
+//				projectile.Execute();
+//			}else{
+//				Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
+//			}
+//		}
 	}
 	
 	//VARS

@@ -5,4 +5,6 @@ public interface Allocable{
 	Allocator GetAllocator();
 
 	GameObject GetGameObject();
+
+
 }

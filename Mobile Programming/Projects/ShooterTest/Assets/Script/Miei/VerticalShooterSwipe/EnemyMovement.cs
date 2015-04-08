@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 
 	public void Execute(){
 		this.m_fLife = 0f;
+		this.m_bCollided = false;
 		this.enabled = true;
 	}
 	public void StopExecute(){
@@ -47,6 +48,7 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 
 	// Use this for initialization
 	void Start () {
+		this.m_bCollided = false;
 		this.StopExecute();
 		this.m_fSpeed = 1.5f;
 		this.m_fTimeToLife = 10f;
@@ -72,14 +74,17 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 	}
 
 	private void OnTriggerEnter(Collider other){
-		if(other.tag.Equals("Projectile")){
+		if(!this.m_bCollided && other.tag.Equals("Projectile")){
+			this.m_bCollided = true;
 			this.StopExecute();
 			this.NotifyExecutioner(false);
 		}
 	}
 
 	private void OnCollisionEnter(Collision other){
-		if(other.gameObject.tag.Equals("Player")){
+		if(!this.m_bCollided && other.gameObject.tag.Equals("Player")){
+			this.m_bCollided = true;
+			this.StopExecute();
 			this.NotifyExecutioner(true);
 		}
 	}
@@ -88,4 +93,5 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 	[SerializeField] private float 			m_fSpeed;
 	[SerializeField] private float 			m_fTimeToLife;
 	[SerializeField] private float 			m_fLife;
+	[SerializeField] private bool			m_bCollided;
 }

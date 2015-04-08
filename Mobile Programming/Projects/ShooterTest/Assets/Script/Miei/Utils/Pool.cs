@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Runtime.CompilerServices;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -20,6 +21,7 @@ public class Pool<U>{
 		}
 	}
 
+	[MethodImpl(MethodImplOptions.Synchronized)]
 	public U getElement(){
 		if(this.m_iNextFreeElement.Count > 0){
 			int indexNextFree = m_iNextFreeElement.First.Value;
@@ -30,6 +32,7 @@ public class Pool<U>{
 		}
 	}
 
+	[MethodImpl(MethodImplOptions.Synchronized)]
 	public void freeElement(U element){
 		for(int i = 0; i<this.m_oElements.Length; i++){
 			if(element.Equals(this.m_oElements[i])){

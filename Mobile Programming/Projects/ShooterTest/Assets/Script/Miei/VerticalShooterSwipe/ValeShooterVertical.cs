@@ -26,7 +26,6 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 	}
 	
 	public void NotifyExecuteEndSuccess(Executable shoot){
-		Debug.Log ("AHAHAHAHAH PRESO!");
 		this.m_oProjectiles.FreeElement(shoot as MyProjectileExecutable);
 	}
 	//--------------------Executioner Interface
@@ -77,6 +76,7 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 		
 		MyProjectileExecutable projectile = this.m_oProjectiles.GetElement();
 		if(projectile != null){
+//			Debug.Log("Firing: "+projectile.GetInstanceID());
 			projectile.SetExcutioner(this);
 			projectile.transform.position = this.transform.localPosition;
 			projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
