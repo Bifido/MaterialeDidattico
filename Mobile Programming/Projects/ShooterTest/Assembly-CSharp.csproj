@@ -58,10 +58,12 @@
      <Compile Include="Assets\Script\Miei\MyRotatingObj.cs" />
      <Compile Include="Assets\Script\Miei\MyTargetOnOff.cs" />
      <Compile Include="Assets\Script\Miei\MyTimer.cs" />
+     <Compile Include="Assets\Script\Miei\RickyInputPlayerTouch.cs" />
+     <Compile Include="Assets\Script\Miei\RickySimpleGestureManager.cs" />
      <Compile Include="Assets\Script\Miei\TwoPlayerPong\TwoPlayerPongManager.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Allocable.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Allocator.cs" />
-     <Compile Include="Assets\Script\Miei\Utils\AllocatorMonobehaviour.cs" />
+     <Compile Include="Assets\Script\Miei\Utils\AllocatorMonoBehaviour.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Executable.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Executioner.cs" />
      <Compile Include="Assets\Script\Miei\Utils\MyInputBase.cs" />
