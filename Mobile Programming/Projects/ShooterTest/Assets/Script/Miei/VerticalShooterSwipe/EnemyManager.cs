@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour,Executioner {
 		if(enemy != null){
 			enemy.SetExcutioner(this);
 			enemy.transform.position = new Vector3(Random.Range(-2.3f,2.3f),6.3f,0f);
-			enemy.collider.isTrigger = false;
+			enemy.GetComponent<Collider>().isTrigger = false;
 			enemy.Execute();
 		}else{
 			Debug.Log("Ops... no enemy!");

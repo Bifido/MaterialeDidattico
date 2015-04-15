@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 		if(success){
 			this.m_oExecutioner.NotifyExecuteEndSuccess(this);
 		}else{
-			this.collider.isTrigger = true;
+			this.GetComponent<Collider>().isTrigger = true;
 			this.transform.position = new Vector3(100f,100f,0);
 			this.m_oExecutioner.NotifyExecuteEndFail(this);
 		}
