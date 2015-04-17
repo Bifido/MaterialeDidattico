@@ -4,3 +4,5 @@ posso quindi avere una classe con un valore esposto che però è diverso fra le 
 TIPS:
 [SerializedField]  private   	-> la variabile è private ma visibile nell'editor e modificabile a runtime
 [HideInInspector] public 		-> la variabile public è nascosta nell'editor.
+
+

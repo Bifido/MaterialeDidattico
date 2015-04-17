@@ -382,7 +382,7 @@ template <class T,class U> smartPtr....
 e specifico ad esempio T a singleThread e U a refPointer, dando quindi certi behaviour a smartPtr.
 implementazione:
 
-
+POLICY
 template<class T> STRUCT NEW_OP{
 	static T* CREATE(){
 		return new T;
@@ -391,6 +391,8 @@ template<class T> STRUCT NEW_OP{
 		~NewOP()	-> altrimenti posso distruggere il padre e non il figlio facendo SLICE!
 }
 
+
+USO POLICY
 template<class U> class WidgetManager :: Public U{
 	public:
 		WidgetManager(){
@@ -410,3 +412,4 @@ template < template <class> class CreationPolicy > class WidgetManager: public C
 
 Vedere le librerie OpenCV e BOOST per capire questo tipo di applicazione.
 
+*

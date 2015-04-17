@@ -1,9 +1,21 @@
-Algoritmo A*
+IA Programming EXAM:
 
-un'agente si muove da un punto ad un altro per esempio
+Idle(ha stamina?):
+si-> camminano (verso miniera)
+no-> idle in casa
 
-(manhattan)  |x-x0|+|y-yo|
+Cammina(è arrivato?): 
+si-> mina
+no-> cammina
 
-1) controllo se sono arrivato
-2) controllo il nodo con minore F dalla lista dei disponibili
-3) se non è il nodo lo metto in closed list e ripeto il conto delle adiacenze portandomi il costo già pagato e calcolando i nuovi
+Mina(ha finito?)
+si-> cammina (verso casa)
+no-> mina
+
+Interfaccia Macchina Stati Finiti:
+
+
+Interfaccia Stato:
+OnEnter();
+Update();
+OnExit();
