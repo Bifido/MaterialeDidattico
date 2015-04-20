@@ -46,11 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Input\ContinuousInput.cs" />
      <Compile Include="Assets\Script\Input\InputBase.cs" />
      <Compile Include="Assets\Script\Input\InputFactory.cs" />
      <Compile Include="Assets\Script\Input\InputManager.cs" />
      <Compile Include="Assets\Script\Input\InputPlayerKeyboard.cs" />
      <Compile Include="Assets\Script\Input\InputPlayerTouch.cs" />
+     <Compile Include="Assets\Script\Input\InputPlayerTouchContinuous.cs" />
      <Compile Include="Assets\Script\Input\InputReplay.cs" />
      <Compile Include="Assets\Script\Miei\BetterShooter.cs" />
      <Compile Include="Assets\Script\Miei\MyCart.cs" />
@@ -89,6 +91,7 @@
      <Compile Include="Assets\Script\Shooter\ShooterWrong.cs" />
      <Compile Include="Assets\Script\Utils\NamingConvention.cs" />
      <Compile Include="Assets\Script\Utils\Timer.cs" />
+     <Compile Include="Assets\Script\Utils\VectorUtils.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Programmi/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
