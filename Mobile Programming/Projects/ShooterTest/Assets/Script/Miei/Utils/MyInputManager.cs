@@ -7,52 +7,52 @@ public class MyInputManager : MonoBehaviour {
 	public event InputEventEmpty OnJump;
 	public delegate void InputEvent(Vector3 endDir);
 	public event InputEvent OnShoot;
+	public delegate void InputEventBool(bool boolean);
+	public event InputEventBool OnNewTouch;
 	
-	void Start()
-	{
+	void Start(){
 		InitInput();
 	}
 	
-	void Update()
-	{
-		if(m_oInput != null)
-		{
+	void Update(){
+		if(m_oInput != null){
 			m_oInput.InputUpdate();
 		}
 	}
 	
-	private void JumpDetecet()
-	{
-		if(OnJump != null)
-		{
+	private void JumpDetecet(){
+		if(OnJump != null){
 			OnJump();
 		}
 	}
 	
-	private void ShootDetected(Vector3 endDiretction)
-	{
-		if(OnShoot != null)
-		{
+	private void ShootDetected(Vector3 endDiretction){
+		if(OnShoot != null){
 			OnShoot(endDiretction);
 		}
 	}
-	
-	private void InitInput()
-	{
-		m_oInput = MyInputFactory.GetInput(m_eInputSource);
-		
-		if(m_oInput != null)
-		{
-			m_oInput.Activate(JumpDetecet, ShootDetected);
+
+	private void OnTouchCountChanged(bool boolean){
+		if(OnNewTouch != null){
+			OnNewTouch(boolean);
 		}
 	}
 	
-	public void ChangeInput(eMyInputSource eNewInputSource)
-	{
-		if(eNewInputSource != m_eInputSource)
-		{
-			if(m_oInput != null)
-			{
+	private void InitInput(){
+		m_oInput = MyInputFactory.GetInput(m_eInputSource);
+		
+		if(m_oInput != null){
+			if(m_eInputSource == eMyInputSource.TOUCH_COUNTER){
+				m_oInput.Activate(OnTouchCountChanged);
+			}else{
+				m_oInput.Activate(JumpDetecet, ShootDetected);
+			}
+		}
+	}
+	
+	public void ChangeInput(eMyInputSource eNewInputSource){
+		if(eNewInputSource != m_eInputSource){
+			if(m_oInput != null){
 				m_oInput.Deactivate();
 				m_oInput = null;
 			}
@@ -64,16 +64,16 @@ public class MyInputManager : MonoBehaviour {
 	}
 	
 	//VARS
-	public enum eMyInputSource
-	{
+	public enum eMyInputSource{
 		PLAYER = 0,
+		TOUCH_COUNTER,
 		AI,
 		REPLAY,
 		NETWORK,
 		COUNT
 	}
 	
-	[SerializeField] private eMyInputSource m_eInputSource = eMyInputSource.PLAYER;
+	[SerializeField] private eMyInputSource m_eInputSource;
 	
 	private MyInputBase m_oInput;
 }

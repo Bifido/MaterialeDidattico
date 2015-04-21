@@ -62,10 +62,6 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 		this.m_oProjectiles = new AllocatorMonoBehaviour<MyProjectileExecutable>(5,projectilePrefab);
 	}
 	
-	public void test<T>(T t) where T:MonoBehaviour,Executable{
-		
-	}
-	
 	private void AllowShooting(){
 		this.m_bShootingAllowed = true;
 	}
@@ -90,14 +86,11 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 		}
 	}
 
-	private void OnEnable()
-	{
-		if(m_oInptuManager == null)
-		{
+	private void OnEnable(){
+		if(m_oInptuManager == null){
 			m_oInptuManager = GameObject.FindObjectOfType<MyInputManager>();
 			
-			if(m_oInptuManager == null)
-			{
+			if(m_oInptuManager == null){
 				Debug.LogError("No InputManager in the scene");
 				return;
 			}

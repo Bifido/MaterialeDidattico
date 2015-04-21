@@ -4,40 +4,33 @@ using System;
 
 public class InputBase
 {
-	public virtual void Init()
-	{
+	public virtual void Init(){
 	}
 	
-	public virtual void InputUpdate()
-	{
+	public virtual void InputUpdate(){
 	}
 	
-	protected void InternalJumpDetected()
-	{
+	protected void InternalJumpDetected(){
 		if(m_actJumpCallback != null)
 		{
 			m_actJumpCallback();
 		}
 	}
 	
-	protected void InternalShootDetected()
-	{
-		if(m_actShootCallback != null)
-		{
+	protected void InternalShootDetected(){
+		if(m_actShootCallback != null)		{
 			m_actShootCallback();
 		}
 	}
 	
-	public void Activate(Action actJumpInput, Action actShootInput)
-	{
+	public void Activate(Action actJumpInput, Action actShootInput){
 		m_actJumpCallback = actJumpInput;
 		m_actShootCallback = actShootInput;
 		
 		m_bActive = true;
 	}
 	
-	public void Deactivate()
-	{
+	public void Deactivate(){
 		m_actJumpCallback = null;
 		m_actShootCallback = null;
 		

@@ -10,44 +10,43 @@ public class InputPlayerTouch : InputBase
 		m_aoTouchInfos = new TouchInfo[mk_iMaxTouchNumber];
 	}
 	
-	public override void InputUpdate()
-	{
-		base.InputUpdate();
-		
-		short iStillTouched = 0;
-		
-		for(int i = 0; i < Input.touchCount; ++i)
-		{
-			if(Input.touches[i].fingerId >= mk_iMaxTouchNumber)
-			{
-				Debug.LogError("Finger ID excedes max touch numbers");
-			}
-			else
-			{
-				iStillTouched = iStillTouched | ((short)(1) << (short)(Input.touches[i].fingerId));
-				if(m_aoTouchInfos[Input.touches[i].fingerId].m_fTimeElapsed == 0.0f)
-				{
-					StartTouch(Input.touches[i]);
-				}
-				else
-				{
-					
-					//Update the touch position
-					m_aoTouchInfos[Input.touches[i].fingerId].m_vEndPosition = Input.touches[i].position;
-					m_aoTouchInfos[Input.touches[i].fingerId].m_vEndPosition.x /= Screen.width;
-					m_aoTouchInfos[Input.touches[i].fingerId].m_vEndPosition.y /= Screen.height;
-				}
-			}
-		}
-		
-		for(int i = 0; i < mk_iMaxTouchNumber; ++i)
-		{
-			if(m_aoTouchInfos[i].m_fTimeElapsed != 0.0f && !(iStillTouched & (1 << i)))
-			{
-				//Touch finished..
-				TouchFinished(i);
-			}
-		}
+	public override void InputUpdate(){
+//		base.InputUpdate();
+//		
+//		short iStillTouched = 0;
+//		
+//		for(int i = 0; i < Input.touchCount; ++i)
+//		{
+//			if(Input.touches[i].fingerId >= mk_iMaxTouchNumber)
+//			{
+//				Debug.LogError("Finger ID excedes max touch numbers");
+//			}
+//			else
+//			{
+//				iStillTouched = iStillTouched | ((short)(1) << (short)(Input.touches[i].fingerId));
+//				if(m_aoTouchInfos[Input.touches[i].fingerId].m_fTimeElapsed == 0.0f)
+//				{
+//					StartTouch(Input.touches[i]);
+//				}
+//				else
+//				{
+//					
+//					//Update the touch position
+//					m_aoTouchInfos[Input.touches[i].fingerId].m_vEndPosition = Input.touches[i].position;
+//					m_aoTouchInfos[Input.touches[i].fingerId].m_vEndPosition.x /= Screen.width;
+//					m_aoTouchInfos[Input.touches[i].fingerId].m_vEndPosition.y /= Screen.height;
+//				}
+//			}
+//		}
+//		
+//		for(int i = 0; i < mk_iMaxTouchNumber; ++i)
+//		{
+//			if(m_aoTouchInfos[i].m_fTimeElapsed != 0.0f && !(iStillTouched & (1 << i)))
+//			{
+//				//Touch finished..
+//				TouchFinished(i);
+//			}
+//		}
 	}
 	
 	private void StartTouch(Touch iTouch)
