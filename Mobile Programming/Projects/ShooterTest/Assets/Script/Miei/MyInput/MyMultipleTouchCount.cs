@@ -22,7 +22,6 @@ public class MyMultipleTouchCount : MyInputBase {
 	}
 	
 	public override void InputUpdate(){
-		Debug.Log("Calling MyMultipleTouchCount update");
 		base.InputUpdate();
 		
 		int iTouches = 0;
@@ -33,26 +32,28 @@ public class MyMultipleTouchCount : MyInputBase {
 				return;
 			}
 			else{
+				Debug.Log("active "+Input.touches[i].fingerId);
 				m_aoTouchInfos[Input.touches[i].fingerId].m_bStarted = true;
 				
 				//Update the touch position
-				iTouches |= 1 << i;
-				short iID = (short)Input.touches[i].fingerId;
+				iTouches |= 1 << Input.touches[i].fingerId;
+
+				Vector3 vPos2 = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
+				vPos2.z = 0f;
+
+//				Vector3 vPos = Input.touches[i].position;
+//				vPos.x /= Screen.width;
+//				vPos.y /= Screen.height;
 				
-				Vector3 vPos = Input.touches[i].position;
-				vPos.x /= Screen.width;
-				vPos.y /= Screen.height;
-				
-				m_aoTouchInfos[iID].m_oContInput.AddPosition(vPos, Time.deltaTime);
-				base.InternalTouchChanged(iID,vPos);
+				m_aoTouchInfos[(short)Input.touches[i].fingerId].m_vPosition = vPos2;
 			}
 		}
 
 		short NumOfDifferentTouch = 0;
-		for(short i = 0; i < mk_iMaxTouchNumber; ++i){
+		for(short i = 0; i < mk_iMaxTouchNumber; i++){
 			if(m_aoTouchInfos[i].m_bStarted){
 				//Check Gestures..
-//				CheckGesture(i);
+				CheckGesture(i);
 				
 				//Touch finished..
 				if((iTouches & 1 << i) == 0){
@@ -67,23 +68,25 @@ public class MyMultipleTouchCount : MyInputBase {
 		base.InternalTouchesCountChanged(NumOfDifferentTouch);
 
 		//mouse test
-		if(Input.GetMouseButton(0)){
-			base.InternalTouchesCountChanged(1);
-
-			m_aoTouchInfos[0].m_bStarted = true;
-			
-			//Update the touch position
-			iTouches |= 1 << 0;
-			
-			Vector3 vPos = Input.mousePosition;
-			vPos.x /= Screen.width;
-			vPos.y /= Screen.height;
-			
-			m_aoTouchInfos[0].m_oContInput.AddPosition(vPos, Time.deltaTime);
-			base.InternalTouchChanged(0,vPos);
-		}else{
-			base.InternalTouchesCountChanged(0);
-		}
+//		if(Input.GetMouseButton(0)){
+//			m_aoTouchInfos[0].m_bStarted = true;
+//			
+//			//Update the touch position
+//			iTouches |= 1 << 0;
+//
+//			Vector3 vPos2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+//			vPos2.z = 0f;
+//			Debug.Log("ScreeToWorld pos: "+ vPos2);
+////			vPos.x /= Screen.width;
+////			vPos.y /= Screen.height;
+//			
+//			m_aoTouchInfos[0].m_oContInput.AddPosition(vPos2, Time.deltaTime);
+//			base.InternalTouchChanged(0,vPos2);
+//
+//			base.InternalTouchesCountChanged(1);
+//		}else{
+//			base.InternalTouchesCountChanged(0);
+//		}
 	}
 	
 	
@@ -93,13 +96,15 @@ public class MyMultipleTouchCount : MyInputBase {
 	}
 
 	//not required now
-//	private void CheckGesture(int iID){
-//		float fTime = 0.0f;
-//		float fDistance = 0.0f;
-//		Vector3 vDirection = Vector3.zero;
-//		
+	private void CheckGesture(int iID){
+		float fTime = 0.0f;
+		float fDistance = 0.0f;
+		Vector3 vDirection = Vector3.zero;
+
 //		m_aoTouchInfos[iID].m_oContInput.GetGestureStatus(out fDistance, out fTime, out vDirection);
-//		
+
+		base.InternalTouchChanged((short)iID,m_aoTouchInfos[iID].m_vPosition);
+
 //		float fSpeed = fDistance / fTime;
 //		if(fDistance >= mk_fMinDistanceForValidate && fSpeed > mk_fMinSpeedForValidate){
 //			float fAngle = VectorUtils.Angle(mk_vReferenceDirection, mk_vUpVector, vDirection);
@@ -107,8 +112,7 @@ public class MyMultipleTouchCount : MyInputBase {
 //			
 //			Debug.Log("fDistance = " + fDistance + "fSpeed = " + fSpeed + " bValidAngle = " + bValidAngle + " fAngle = " + fAngle + " iID = " + iID);
 //			
-//			if(bValidAngle)
-//			{
+//			if(bValidAngle)			{
 //				InternalShootDetected();
 //				
 //				//Clear the gesture info..
@@ -117,10 +121,11 @@ public class MyMultipleTouchCount : MyInputBase {
 //				//TODO: Go to the next gesture to check
 //			}
 //		}
-//	}
+	}
 	
 	//VARS
 	private struct TouchInfo{
+		public Vector3 			m_vPosition;
 		public ContinuousInput 	m_oContInput;
 		public bool 			m_bStarted;
 	}

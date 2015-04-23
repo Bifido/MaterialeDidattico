@@ -33,14 +33,14 @@ public class SheepManager : MonoBehaviour {
 	}
 
 	private void OnTouchChanged(short id,Vector3 pos){
-		Debug.Log("ID "+id+" at "+pos);
 		GameObject sheep = m_lSheepList[id] as GameObject;
 		sheep.transform.position = pos;
 	}
 
 	private void OnTouchDismiss(short id){
+		Debug.Log ("Dismiss "+id);
 		GameObject sheep = m_lSheepList[id] as GameObject;
-		sheep.transform.position = new Vector3(100,100,0);
+		sheep.transform.position = new Vector3(2f,2f,0);
 	}
 
 	public TextCounter		TextCounter;

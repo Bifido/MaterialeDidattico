@@ -11,8 +11,7 @@ public class ContinuousInput
 		Clear();
 	}
 
-	public void Clear()
-	{
+	public void Clear(){
 		for(int i = 0; i < m_afDeltaTime.Length; ++i)
 		{
 			m_afDeltaTime[i] = 0.0f;
@@ -26,12 +25,10 @@ public class ContinuousInput
 		m_vEndPosition = Vector3.zero;
 	}
 
-	public void AddPosition(Vector3 vPosition, float fDT)
-	{
+	public void AddPosition(Vector3 vPosition, float fDT){
 		m_fElapsedTime -= m_afDeltaTime[m_iNextElement];
 
-		if(m_iNextElement == 0 && m_vStartPosition == Vector3.zero)
-		{
+		if(m_iNextElement == 0 && m_vStartPosition == Vector3.zero){
 			m_vStartPosition = vPosition;
 		}
 
