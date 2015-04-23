@@ -7,8 +7,8 @@ public class MyInputManager : MonoBehaviour {
 	public event InputEventEmpty OnJump;
 	public delegate void InputEvent(Vector3 endDir);
 	public event InputEvent OnShoot;
-	public delegate void InputEventBool(bool boolean);
-	public event InputEventBool OnNewTouch;
+	public delegate void InputEventShort(short iValue);
+	public event InputEventShort OnNewTouch;
 	
 	void Start(){
 		InitInput();
@@ -32,9 +32,9 @@ public class MyInputManager : MonoBehaviour {
 		}
 	}
 
-	private void OnTouchCountChanged(bool boolean){
+	private void OnTouchCountChanged(short sValue){
 		if(OnNewTouch != null){
-			OnNewTouch(boolean);
+			OnNewTouch(sValue);
 		}
 	}
 	
@@ -44,6 +44,7 @@ public class MyInputManager : MonoBehaviour {
 		if(m_oInput != null){
 			if(m_eInputSource == eMyInputSource.TOUCH_COUNTER){
 				m_oInput.Activate(OnTouchCountChanged);
+				Debug.Log("Activated MyMultipleTouchCount.cs");
 			}else{
 				m_oInput.Activate(JumpDetecet, ShootDetected);
 			}

@@ -21,14 +21,12 @@ public class InputPlayerTouchContinuous: InputBase
 		}
 	}
 
-	public override void InputUpdate()
-	{
+	public override void InputUpdate()	{
 		base.InputUpdate();
 
 		int iTouches = 0;
 
-		for(int i = 0; i < Input.touchCount; ++i)
-		{
+		for(int i = 0; i < Input.touchCount; ++i){
 			if(Input.touches[i].fingerId >= mk_iMaxTouchNumber)
 			{
 				Debug.LogError("Finger ID excedes max touch numbers");

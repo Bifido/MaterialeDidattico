@@ -18,12 +18,8 @@ public class TextCounter : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void UpdateText(bool isAdding) {
-		if(isAdding){
-			m_iTouchCount++;
-		}else{
-			m_iTouchCount--;
-		}
+	void UpdateText(short touchCount) {
+		m_iTouchCount = touchCount;
 		TextObj.text = m_sFixedText+m_iTouchCount;
 	}
 

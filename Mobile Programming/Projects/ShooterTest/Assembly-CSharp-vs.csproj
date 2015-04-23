@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MyPrefab\MultipleTouch\MyMultipleTouchCount.cs" />
      <Compile Include="Assets\Script\Input\ContinuousInput.cs" />
      <Compile Include="Assets\Script\Input\InputBase.cs" />
      <Compile Include="Assets\Script\Input\InputFactory.cs" />
@@ -55,26 +54,22 @@
      <Compile Include="Assets\Script\Input\InputPlayerTouch.cs" />
      <Compile Include="Assets\Script\Input\InputPlayerTouchContinuous.cs" />
      <Compile Include="Assets\Script\Input\InputReplay.cs" />
-     <Compile Include="Assets\Script\Miei\BetterShooter.cs" />
      <Compile Include="Assets\Script\Miei\MultipleTouchCounter\TextCounter.cs" />
      <Compile Include="Assets\Script\Miei\MyCart.cs" />
+     <Compile Include="Assets\Script\Miei\MyInput\MyInputBase.cs" />
+     <Compile Include="Assets\Script\Miei\MyInput\MyInputFactory.cs" />
+     <Compile Include="Assets\Script\Miei\MyInput\MyInputManager.cs" />
+     <Compile Include="Assets\Script\Miei\MyInput\MyInputSwipe.cs" />
+     <Compile Include="Assets\Script\Miei\MyInput\MyMultipleTouchCount.cs" />
      <Compile Include="Assets\Script\Miei\MyProjectileExecutable.cs" />
      <Compile Include="Assets\Script\Miei\MyRotatingObj.cs" />
-     <Compile Include="Assets\Script\Miei\MyTargetOnOff.cs" />
-     <Compile Include="Assets\Script\Miei\MyTimer.cs" />
-     <Compile Include="Assets\Script\Miei\RickySimpleGestureManager.cs" />
-     <Compile Include="Assets\Script\Miei\TwoPlayerPong\TwoPlayerPongManager.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Allocable.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Allocator.cs" />
      <Compile Include="Assets\Script\Miei\Utils\AllocatorMonobehaviour.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Executable.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Executioner.cs" />
-     <Compile Include="Assets\Script\Miei\Utils\MyInputBase.cs" />
-     <Compile Include="Assets\Script\Miei\Utils\MyInputFactory.cs" />
-     <Compile Include="Assets\Script\Miei\Utils\MyInputManager.cs" />
-     <Compile Include="Assets\Script\Miei\Utils\MyInputSwipe.cs" />
+     <Compile Include="Assets\Script\Miei\Utils\MyTimer.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Pool.cs" />
-     <Compile Include="Assets\Script\Miei\ValeShooter.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyManager.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyMovement.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" />

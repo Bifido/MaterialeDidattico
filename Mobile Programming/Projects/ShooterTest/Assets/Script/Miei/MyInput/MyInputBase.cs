@@ -4,6 +4,9 @@ using System.Collections;
 
 public class MyInputBase{
 
+	public virtual void Init(){
+	}
+
 	public virtual void InputUpdate(){
 	}
 	
@@ -12,14 +15,6 @@ public class MyInputBase{
 			m_actJumpCallback();
 		}
 	}
-	
-//	protected void InternalShootDetected()
-//	{
-//		if(m_actShootCallback != null)
-//		{
-//			m_actShootCallback();
-//		}
-//	}
 
 	protected void InternalShootDetected(Vector3 shootDirection){
 		if(m_actShootCallback != null){
@@ -34,13 +29,13 @@ public class MyInputBase{
 		m_bActive = true;
 	}
 
-	protected void InternalTouchesCountChanged(bool boolean){
+	protected void InternalTouchesCountChanged(short sValue){
 		if(m_actTouchesCountChangedCallback != null){
-			m_actTouchesCountChangedCallback(boolean);
+			m_actTouchesCountChangedCallback(sValue);
 		}
 	}
 
-	public void Activate(Action<bool> actTouchesChanged){
+	public void Activate(Action<short> actTouchesChanged){
 		m_actTouchesCountChangedCallback = actTouchesChanged;
 
 		m_bActive = true;
@@ -59,5 +54,5 @@ public class MyInputBase{
 	
 	protected event Action m_actJumpCallback = null;
 	protected event Action<Vector3> m_actShootCallback = null;
-	protected event Action<bool> m_actTouchesCountChangedCallback = null;
+	protected event Action<short> m_actTouchesCountChangedCallback = null;
 }

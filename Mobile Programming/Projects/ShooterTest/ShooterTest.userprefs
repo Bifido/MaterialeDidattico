@@ -1,13 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MyPrefab\MultipleTouch\MyMultipleTouchCount.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\MyInput\MyMultipleTouchCount.cs">
     <Files>
-      <File FileName="Assets\Script\Miei\MultipleTouchCounter\TextCounter.cs" Line="13" Column="20" />
-      <File FileName="Assets\Script\Miei\Utils\MyInputManager.cs" Line="46" Column="44" />
-      <File FileName="Assets\Script\Miei\Utils\MyInputBase.cs" Line="52" Column="43" />
-      <File FileName="Assets\Script\Miei\Utils\MyInputFactory.cs" Line="12" Column="8" />
-      <File FileName="Assets\Script\Miei\Utils\MyInputSwipe.cs" Line="13" Column="33" />
-      <File FileName="Assets\MyPrefab\MultipleTouch\MyMultipleTouchCount.cs" Line="16" Column="34" />
+      <File FileName="Assets\Script\Miei\MyInput\MyMultipleTouchCount.cs" Line="71" Column="6" />
+      <File FileName="Assets\Script\Miei\MultipleTouchCounter\TextCounter.cs" Line="27" Column="19" />
+      <File FileName="Assets\Script\Miei\MyInput\MyInputManager.cs" Line="47" Column="5" />
+      <File FileName="Assets\Script\Miei\MyInput\MyInputFactory.cs" Line="32" Column="5" />
+      <File FileName="Assets\Script\Miei\MyInput\MyInputBase.cs" Line="10" Column="2" />
+      <File FileName="Assets\Script\Input\InputPlayerTouchContinuous.cs" Line="24" Column="36" />
+      <File FileName="Assets\Script\Input\InputBase.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

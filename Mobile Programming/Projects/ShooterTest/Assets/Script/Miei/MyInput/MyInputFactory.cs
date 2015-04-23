@@ -29,6 +29,7 @@ public class MyInputFactory{
 				break;
 			case MyInputManager.eMyInputSource.TOUCH_COUNTER:
 				oInputImplementation = new MyMultipleTouchCount();
+				oInputImplementation.Init();
 				break;
 			};
 		
