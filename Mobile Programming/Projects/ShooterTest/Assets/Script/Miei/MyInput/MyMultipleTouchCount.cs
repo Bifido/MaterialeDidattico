@@ -37,18 +37,19 @@ public class MyMultipleTouchCount : MyInputBase {
 				
 				//Update the touch position
 				iTouches |= 1 << i;
-				int iID = Input.touches[i].fingerId;
+				short iID = (short)Input.touches[i].fingerId;
 				
 				Vector3 vPos = Input.touches[i].position;
 				vPos.x /= Screen.width;
 				vPos.y /= Screen.height;
 				
 				m_aoTouchInfos[iID].m_oContInput.AddPosition(vPos, Time.deltaTime);
+				base.InternalTouchChanged(iID,vPos);
 			}
 		}
 
 		short NumOfDifferentTouch = 0;
-		for(int i = 0; i < mk_iMaxTouchNumber; ++i){
+		for(short i = 0; i < mk_iMaxTouchNumber; ++i){
 			if(m_aoTouchInfos[i].m_bStarted){
 				//Check Gestures..
 //				CheckGesture(i);
@@ -56,6 +57,8 @@ public class MyMultipleTouchCount : MyInputBase {
 				//Touch finished..
 				if((iTouches & 1 << i) == 0){
 					TouchFinished(i);
+					base.InternalTouchEnd(i);
+					NumOfDifferentTouch--;
 				}else{
 					NumOfDifferentTouch++;
 				}
@@ -64,11 +67,23 @@ public class MyMultipleTouchCount : MyInputBase {
 		base.InternalTouchesCountChanged(NumOfDifferentTouch);
 
 		//mouse test
-//		if(Input.GetMouseButton(0)){
-//			base.InternalTouchesCountChanged(1);
-//		}else{
-//			base.InternalTouchesCountChanged(0);
-//		}
+		if(Input.GetMouseButton(0)){
+			base.InternalTouchesCountChanged(1);
+
+			m_aoTouchInfos[0].m_bStarted = true;
+			
+			//Update the touch position
+			iTouches |= 1 << 0;
+			
+			Vector3 vPos = Input.mousePosition;
+			vPos.x /= Screen.width;
+			vPos.y /= Screen.height;
+			
+			m_aoTouchInfos[0].m_oContInput.AddPosition(vPos, Time.deltaTime);
+			base.InternalTouchChanged(0,vPos);
+		}else{
+			base.InternalTouchesCountChanged(0);
+		}
 	}
 	
 	

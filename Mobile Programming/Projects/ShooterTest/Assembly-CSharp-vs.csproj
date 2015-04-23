@@ -54,6 +54,7 @@
      <Compile Include="Assets\Script\Input\InputPlayerTouch.cs" />
      <Compile Include="Assets\Script\Input\InputPlayerTouchContinuous.cs" />
      <Compile Include="Assets\Script\Input\InputReplay.cs" />
+     <Compile Include="Assets\Script\Miei\MultipleTouchCounter\SheepManager.cs" />
      <Compile Include="Assets\Script\Miei\MultipleTouchCounter\TextCounter.cs" />
      <Compile Include="Assets\Script\Miei\MyCart.cs" />
      <Compile Include="Assets\Script\Miei\MyInput\MyInputBase.cs" />

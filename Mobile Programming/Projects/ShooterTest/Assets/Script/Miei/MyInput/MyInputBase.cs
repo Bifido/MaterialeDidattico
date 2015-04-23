@@ -9,7 +9,8 @@ public class MyInputBase{
 
 	public virtual void InputUpdate(){
 	}
-	
+
+	#region SHOOT AND JUMP
 	protected void InternalJumpDetected(){
 		if(m_actJumpCallback != null){
 			m_actJumpCallback();
@@ -28,19 +29,34 @@ public class MyInputBase{
 		
 		m_bActive = true;
 	}
+	#endregion
 
+	#region MULTIPLE TOUCH
 	protected void InternalTouchesCountChanged(short sValue){
 		if(m_actTouchesCountChangedCallback != null){
 			m_actTouchesCountChangedCallback(sValue);
 		}
 	}
 
-	public void Activate(Action<short> actTouchesChanged){
-		m_actTouchesCountChangedCallback = actTouchesChanged;
+	public void InternalTouchChanged(short ID,Vector3 pos){
+		if(m_actTouchChangedCallback != null){
+			m_actTouchChangedCallback(ID,pos);
+		}
+	}
 
+	public void InternalTouchEnd(short ID){
+		if(m_actTouchEndCallBack != null){
+			m_actTouchEndCallBack(ID);
+		}
+	}
+	public void Activate(Action<short> actTouchesChanged,Action<short,Vector3> actTouchChanged,Action<short> actTouchEnd){
+		m_actTouchesCountChangedCallback = actTouchesChanged;
+		m_actTouchChangedCallback = actTouchChanged;
+		m_actTouchEndCallBack = actTouchEnd;
 		m_bActive = true;
 	}
-	
+	#endregion
+
 	public void Deactivate(){
 		m_actJumpCallback = null;
 		m_actShootCallback = null;
@@ -55,4 +71,6 @@ public class MyInputBase{
 	protected event Action m_actJumpCallback = null;
 	protected event Action<Vector3> m_actShootCallback = null;
 	protected event Action<short> m_actTouchesCountChangedCallback = null;
+	protected event Action<short> m_actTouchEndCallBack = null;
+	protected event Action<short,Vector3> m_actTouchChangedCallback = null;
 }
