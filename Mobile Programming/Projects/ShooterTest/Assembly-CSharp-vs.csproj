@@ -71,6 +71,7 @@
      <Compile Include="Assets\Script\Miei\Utils\Executioner.cs" />
      <Compile Include="Assets\Script\Miei\Utils\MyTimer.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Pool.cs" />
+     <Compile Include="Assets\Script\Miei\Utils\QualityIndex.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyManager.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyMovement.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" />
