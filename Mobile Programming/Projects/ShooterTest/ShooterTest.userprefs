@@ -1,13 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\Utils\QualityIndex.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\Utils\JavaPluginLoader.cs">
     <Files>
-      <File FileName="Assets\Script\Miei\Utils\QualityIndex.cs" Line="11" Column="17" />
-      <File FileName="Assets\Script\Miei\MyInput\MyInputManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\MultipleTouchCounter\SheepManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\MyInput\MyMultipleTouchCount.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Input\ContinuousInput.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Utils\CameraCenter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\Utils\JavaPluginLoader.cs" Line="10" Column="64" />
+      <File FileName="Assets\Script\Miei\Utils\CallJavaCode.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
