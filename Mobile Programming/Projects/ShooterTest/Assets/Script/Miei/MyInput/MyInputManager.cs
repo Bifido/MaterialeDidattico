@@ -23,7 +23,7 @@ public class MyInputManager : MonoBehaviour {
 		}
 	}
 	
-	private void JumpDetecet(){
+	private void JumpDetected(){
 		if(OnJump != null){
 			OnJump();
 		}
@@ -59,9 +59,8 @@ public class MyInputManager : MonoBehaviour {
 		if(m_oInput != null){
 			if(m_eInputSource == eMyInputSource.TOUCH_COUNTER){
 				m_oInput.Activate(OnTouchCountChanged,OnTouchChanged,OnTouchEnd);
-				Debug.Log("Activated MyMultipleTouchCount.cs");
 			}else{
-				m_oInput.Activate(JumpDetecet, ShootDetected);
+				m_oInput.Activate(JumpDetected, ShootDetected);
 			}
 		}
 	}

@@ -74,9 +74,11 @@
      <Compile Include="Assets\Script\Miei\Utils\NativeBridge.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Pool.cs" />
      <Compile Include="Assets\Script\Miei\Utils\QualityIndex.cs" />
+     <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\Constants.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyManager.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyMovement.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" />
+     <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\WeaponUISwitch.cs" />
      <Compile Include="Assets\Script\PlatformManager\PlatformManager.cs" />
      <Compile Include="Assets\Script\PlatformManager\PlatformManagerUsing.cs" />
      <Compile Include="Assets\Script\PlatformSpecific\PlatformSpecificAndroid.cs" />
@@ -93,7 +95,8 @@
      <Compile Include="Assets\Script\Utils\NamingConvention.cs" />
      <Compile Include="Assets\Script\Utils\Timer.cs" />
      <Compile Include="Assets\Script\Utils\VectorUtils.cs" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Androids\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\PLUGIN ISTRUCTION.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Programmi/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -1,9 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Plugins\Android\AndroidManifest.xml">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\MyInput\MyInputBase.cs">
     <Files>
-      <File FileName="Assets\Script\Miei\Utils\NativeBridge.cs" Line="1" Column="1" />
-      <File FileName="Assets\Plugins\Android\AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\WeaponUISwitch.cs" Line="20" Column="62" />
+      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\Constants.cs" Line="9" Column="31" />
+      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" Line="126" Column="20" />
+      <File FileName="Assets\Script\Miei\MyInput\MyInputBase.cs" Line="29" Column="91" />
+      <File FileName="Assets\Script\Miei\MyInput\MyInputFactory.cs" Line="16" Column="48" />
+      <File FileName="Assets\Script\Miei\MyInput\MyInputSwipe.cs" Line="4" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

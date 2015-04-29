@@ -11,7 +11,7 @@ public class MyMultipleTouchCount : MyInputBase {
 		
 		InitTouch();
 
-		Debug.Log("Starting MyMultipleTouchCount.cs");
+		Debug.Log("Initiating MyMultipleTouchCount.cs");
 	}
 	
 	private void InitTouch(){

@@ -16,9 +16,8 @@ Base Solution
 
 public class ValeShooterVertical : MonoBehaviour,Executioner {
 	
-	//--------------------Executioner Interface
-	
-	//dall'executable potrei in futuro prendere info
+	#region ExecutionerInterface
+	//dall'executable potrei in futuro prendere info sull'esito del colpo
 	
 	public void NotifyExecuteEndFail(Executable shoot){
 		Debug.Log("...mancato!");
@@ -28,8 +27,16 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 	public void NotifyExecuteEndSuccess(Executable shoot){
 		this.m_oProjectiles.FreeElement(shoot as MyProjectileExecutable);
 	}
-	//--------------------Executioner Interface
-	
+	#endregion
+
+	#region public method
+	public void ComputeShootingTime(){
+		m_fShootingTime = m_oPlatformManager.GetShootingInterval()*Constants.WeaponDelayTimeCoef[(int)Constants.WEAPON];
+		Debug.Log(m_fShootingTime);
+	}
+	#endregion
+
+	#region Start
 	void Start(){
 		if(m_oPlatformManager == null){
 			Debug.LogWarning("m_oPlatformManager not linked");
@@ -49,7 +56,7 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 			Debug.LogError("No InputManager in the scene");
 		}
 
-		m_fShootingTime = m_oPlatformManager.GetShootingInterval();
+		ComputeShootingTime();
 		
 		Debug.Log("Platform shooting time = " + m_fShootingTime);
 		
@@ -59,9 +66,11 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 		this.m_oTimer.Start(m_fShootingTime,AllowShooting);
 		
 		//add default cart
-		this.m_oProjectiles = new AllocatorMonoBehaviour<MyProjectileExecutable>(5,projectilePrefab);
+		this.m_oProjectiles = new AllocatorMonoBehaviour<MyProjectileExecutable>(15,projectilePrefab);
 	}
-	
+	#endregion
+
+	#region private method
 	private void AllowShooting(){
 		this.m_bShootingAllowed = true;
 	}
@@ -103,7 +112,7 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 	{
 		m_oInptuManager.OnShoot -= ComputeShoot;
 	}
-
+	#endregion
 	
 	//VARS
 	[SerializeField] private PlatformManager 						m_oPlatformManager;
@@ -112,8 +121,8 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 	private float 													m_fShootingTime = 0.0f;
 	private bool 													m_bShootingAllowed = false;
 	private Timer 													m_oTimer;
-
-	public GameObject	 											projectilePrefab;
+	
 	private AllocatorMonoBehaviour<MyProjectileExecutable>			m_oProjectiles;
 	private MyInputManager 											m_oInptuManager;
+	public 	GameObject	 											projectilePrefab;
 }

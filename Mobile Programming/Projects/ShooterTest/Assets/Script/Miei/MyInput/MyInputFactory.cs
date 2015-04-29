@@ -12,7 +12,8 @@ public class MyInputFactory{
 	//			}
 	//			else
 	//			{
-					oInputImplementation = new MyInputSwipe();
+				oInputImplementation = new MyInputSwipe();
+				Debug.Log("InputFactory addedd MyInputSwipe.cs");
 	//			}
 				break;
 			case MyInputManager.eMyInputSource.AI:
@@ -29,6 +30,7 @@ public class MyInputFactory{
 				break;
 			case MyInputManager.eMyInputSource.TOUCH_COUNTER:
 				oInputImplementation = new MyMultipleTouchCount();
+				Debug.Log("InputFactory addedd MyMultipleTouchCount.cs");
 				oInputImplementation.Init();
 				break;
 			};

@@ -26,7 +26,7 @@ public class MyInputBase{
 	public void Activate(Action actJumpInput, Action<Vector3> actShootInput){
 		m_actJumpCallback = actJumpInput;
 		m_actShootCallback = actShootInput;
-		
+		Debug.Log("Input activated with:"+actJumpInput.Method.Name+","+actShootInput.Method.Name);
 		m_bActive = true;
 	}
 	#endregion
@@ -54,6 +54,7 @@ public class MyInputBase{
 		m_actTouchChangedCallback = actTouchChanged;
 		m_actTouchEndCallBack = actTouchEnd;
 		m_bActive = true;
+		Debug.Log("Input activated with:"+actTouchChanged.ToString()+","+actTouchChanged.ToString()+","+actTouchEnd+ToString());
 	}
 	#endregion
 
@@ -74,3 +75,4 @@ public class MyInputBase{
 	protected event Action<short> m_actTouchEndCallBack = null;
 	protected event Action<short,Vector3> m_actTouchChangedCallback = null;
 }
+;

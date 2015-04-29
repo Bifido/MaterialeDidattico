@@ -1,0 +1,2 @@
+Rename Androids folder in Android to use plugin
+Rename Android folder in Androids to disable plugin
