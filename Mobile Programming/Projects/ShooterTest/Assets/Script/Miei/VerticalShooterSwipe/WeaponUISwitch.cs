@@ -17,6 +17,6 @@ public class WeaponUISwitch : MonoBehaviour {
 		}else{
 			Constants.WEAPON++;
 		}
-		this.WeaponSwitcherText.text = Constants.WEAPON.ToString();
+		this.WeaponSwitcherText.text = Constants.WEAPON.ToString().ToUpper();
 	}
 }

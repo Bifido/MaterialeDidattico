@@ -81,18 +81,34 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 		
 		MyProjectileExecutable projectile = this.m_oProjectiles.GetElement();
 		if(projectile != null){
-//			Debug.Log("Firing: "+projectile.GetInstanceID());
 			projectile.SetExcutioner(this);
 			projectile.transform.position = this.transform.localPosition;
 			projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
 
 			Vector3 angle = new Vector3(0f,0f,Vector3.Angle(Vector3.up,projectile.Direction));
 			projectile.transform.localEulerAngles = angle * Mathf.Sign(Vector3.Cross(Vector3.up, projectile.Direction).z);
-
 			projectile.Execute();
+
+			this.ComputeAudioShot();
+			StartCoroutine(WaitForReloadSound());
 		}else{
 			Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
 		}
+	}
+
+	private void ComputeAudioShot(){
+		this.audioSource.clip = this.weaponsShootAudio[(int)Constants.WEAPON];
+		this.audioSource.Play();
+	}
+
+	private void ComputeAudioReload(){
+		this.audioSource.clip = this.weaponsReloadAudio[(int)Constants.WEAPON];
+		this.audioSource.Play();
+	}
+
+	private IEnumerator WaitForReloadSound(){
+		yield return new WaitForSeconds(0.5f);
+		this.ComputeAudioReload();
 	}
 
 	private void OnEnable(){
@@ -128,4 +144,5 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 	public GameObject	 											projectilePrefab;
 	public AudioClip []												weaponsShootAudio;
 	public AudioClip []												weaponsReloadAudio;
+	public AudioSource												audioSource;
 }

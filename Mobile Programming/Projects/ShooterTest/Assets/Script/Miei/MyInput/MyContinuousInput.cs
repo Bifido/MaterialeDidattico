@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MyContinuousInput: MonoBehaviour {
+public class MyContinuousInput{
 
 	public MyContinuousInput(int iArraySize){
 		m_afDeltaTime = new float[iArraySize];
