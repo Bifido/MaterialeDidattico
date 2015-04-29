@@ -70,8 +70,8 @@
      <Compile Include="Assets\Script\Miei\Utils\CallJavaCode.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Executable.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Executioner.cs" />
-     <Compile Include="Assets\Script\Miei\Utils\JavaPluginLoader.cs" />
      <Compile Include="Assets\Script\Miei\Utils\MyTimer.cs" />
+     <Compile Include="Assets\Script\Miei\Utils\NativeBridge.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Pool.cs" />
      <Compile Include="Assets\Script\Miei\Utils\QualityIndex.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyManager.cs" />

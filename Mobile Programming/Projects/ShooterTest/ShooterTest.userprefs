@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\Utils\JavaPluginLoader.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Plugins\Android\AndroidManifest.xml">
     <Files>
-      <File FileName="Assets\Script\Miei\Utils\JavaPluginLoader.cs" Line="10" Column="64" />
-      <File FileName="Assets\Script\Miei\Utils\CallJavaCode.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\Utils\NativeBridge.cs" Line="1" Column="1" />
+      <File FileName="Assets\Plugins\Android\AndroidManifest.xml" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
