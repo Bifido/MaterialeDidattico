@@ -14,6 +14,7 @@ public class MyInputFactory{
 	//			{
 				oInputImplementation = new MyInputSwipe();
 				Debug.Log("InputFactory addedd MyInputSwipe.cs");
+				oInputImplementation.Init();
 	//			}
 				break;
 			case MyInputManager.eMyInputSource.AI:

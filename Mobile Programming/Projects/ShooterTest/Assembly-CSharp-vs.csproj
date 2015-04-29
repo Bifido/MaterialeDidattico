@@ -54,14 +54,14 @@
      <Compile Include="Assets\Script\Input\InputPlayerTouch.cs" />
      <Compile Include="Assets\Script\Input\InputPlayerTouchContinuous.cs" />
      <Compile Include="Assets\Script\Input\InputReplay.cs" />
+     <Compile Include="Assets\Script\Miei\MultipleTouchCounter\MyMultipleTouchCount.cs" />
      <Compile Include="Assets\Script\Miei\MultipleTouchCounter\SheepManager.cs" />
      <Compile Include="Assets\Script\Miei\MultipleTouchCounter\TextCounter.cs" />
      <Compile Include="Assets\Script\Miei\MyCart.cs" />
+     <Compile Include="Assets\Script\Miei\MyInput\MyContinuousInput.cs" />
      <Compile Include="Assets\Script\Miei\MyInput\MyInputBase.cs" />
      <Compile Include="Assets\Script\Miei\MyInput\MyInputFactory.cs" />
      <Compile Include="Assets\Script\Miei\MyInput\MyInputManager.cs" />
-     <Compile Include="Assets\Script\Miei\MyInput\MyInputSwipe.cs" />
-     <Compile Include="Assets\Script\Miei\MyInput\MyMultipleTouchCount.cs" />
      <Compile Include="Assets\Script\Miei\MyProjectileExecutable.cs" />
      <Compile Include="Assets\Script\Miei\MyRotatingObj.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Allocable.cs" />
@@ -77,6 +77,7 @@
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\Constants.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyManager.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyMovement.cs" />
+     <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\MyInputSwipe.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\WeaponUISwitch.cs" />
      <Compile Include="Assets\Script\PlatformManager\PlatformManager.cs" />

@@ -124,5 +124,8 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 	
 	private AllocatorMonoBehaviour<MyProjectileExecutable>			m_oProjectiles;
 	private MyInputManager 											m_oInptuManager;
-	public 	GameObject	 											projectilePrefab;
+
+	public GameObject	 											projectilePrefab;
+	public AudioClip []												weaponsShootAudio;
+	public AudioClip []												weaponsReloadAudio;
 }
