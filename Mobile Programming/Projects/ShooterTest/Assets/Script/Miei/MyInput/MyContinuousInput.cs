@@ -23,6 +23,11 @@ public class MyContinuousInput{
 		m_vStartPosition = Vector3.zero;
 		m_vEndPosition = Vector3.zero;
 	}
+
+	public void ClearMaxDistance(){
+		m_fMaxDistanceReached = 0f;
+		m_vMaxDistancePos = Vector3.zero;
+	}
 	
 	public void AddPosition(Vector3 vPosition, float fDT){
 		if(m_vFirstPosition == Vector3.zero){
@@ -33,6 +38,11 @@ public class MyContinuousInput{
 		
 		if(m_iNextElement == 0 && m_vStartPosition == Vector3.zero){
 			m_vStartPosition = vPosition;
+		}
+
+		if((vPosition - m_vFirstPosition).magnitude > m_fMaxDistanceReached){
+			m_fMaxDistanceReached = (vPosition - m_vFirstPosition).magnitude;
+			m_vMaxDistancePos = vPosition;
 		}
 		
 		m_afDeltaTime[m_iNextElement] = fDT;
@@ -72,8 +82,16 @@ public class MyContinuousInput{
 		vDirection.Normalize();
 
 	}
+
+	public void GetGestureStatusMaxDistance(out Vector3 vMaxDistancePos,out float fMaxDistanceReached){
+		vMaxDistancePos = m_vMaxDistancePos;
+
+		fMaxDistanceReached = m_fMaxDistanceReached;
+	}
 	
 	//VARS
+	private float		m_fMaxDistanceReached;
+	private Vector3		m_vMaxDistancePos;
 	private float[] 	m_afDeltaTime;
 	private float 		m_fElapsedTime;
 	private Vector3[] 	m_avPositions;

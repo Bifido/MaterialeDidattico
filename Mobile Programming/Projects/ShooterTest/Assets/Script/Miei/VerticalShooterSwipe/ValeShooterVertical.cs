@@ -66,7 +66,7 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 		this.m_oTimer.Start(m_fShootingTime,AllowShooting);
 		
 		//add default cart
-		this.m_oProjectiles = new AllocatorMonoBehaviour<MyProjectileExecutable>(15,projectilePrefab);
+		this.m_oProjectiles = new AllocatorMonoBehaviour<MyProjectileExecutable>(35,projectilePrefab);
 	}
 	#endregion
 
@@ -78,21 +78,63 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 	private void ComputeShoot(Vector3 endPoint){
 		m_bShootingAllowed = false;
 		this.m_oTimer.Start(m_fShootingTime,AllowShooting);
-		
+
 		MyProjectileExecutable projectile = this.m_oProjectiles.GetElement();
-		if(projectile != null){
-			projectile.SetExcutioner(this);
-			projectile.transform.position = this.transform.localPosition;
-			projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
+		switch((int)Constants.WEAPON){
+		//PISTOL
+		case 0:
 
-			Vector3 angle = new Vector3(0f,0f,Vector3.Angle(Vector3.up,projectile.Direction));
-			projectile.transform.localEulerAngles = angle * Mathf.Sign(Vector3.Cross(Vector3.up, projectile.Direction).z);
-			projectile.Execute();
+			if(projectile != null){
+				projectile.SetExcutioner(this);
+				projectile.transform.position = this.transform.localPosition;
+				projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
+				
+				Vector3 angle = new Vector3(0f,0f,Vector3.Angle(Vector3.up,projectile.Direction));
+				projectile.transform.localEulerAngles = angle * Mathf.Sign(Vector3.Cross(Vector3.up, projectile.Direction).z);
+				projectile.Execute();
+				
+				this.ComputeAudioShot();
+				StartCoroutine(WaitForReloadSound());
+			}else{
+				Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
+			}
+			break;
+		//SHOTGUN
+		case 1:
+			if(projectile != null){
+				projectile.SetExcutioner(this);
+				projectile.transform.position = this.transform.localPosition;
+				projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
+				Vector3 angle = new Vector3(0f,0f,Vector3.Angle(Vector3.up,projectile.Direction));
+				projectile.transform.localEulerAngles = angle * Mathf.Sign(Vector3.Cross(Vector3.up, projectile.Direction).z);
+				projectile.Execute();
 
-			this.ComputeAudioShot();
-			StartCoroutine(WaitForReloadSound());
-		}else{
-			Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
+				projectile = this.m_oProjectiles.GetElement();
+				projectile.SetExcutioner(this);
+				projectile.transform.position = this.transform.localPosition;
+				endPoint.x += 1;
+				projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
+				angle = new Vector3(0f,0f,Vector3.Angle(Vector3.up,projectile.Direction));
+				projectile.transform.localEulerAngles = angle * Mathf.Sign(Vector3.Cross(Vector3.up, projectile.Direction).z);
+				projectile.Execute();
+
+				projectile = this.m_oProjectiles.GetElement();
+				projectile.SetExcutioner(this);
+				projectile.transform.position = this.transform.localPosition;
+				endPoint.x -= 2;
+				projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
+				angle = new Vector3(0f,0f,Vector3.Angle(Vector3.up,projectile.Direction));
+				projectile.transform.localEulerAngles = angle * Mathf.Sign(Vector3.Cross(Vector3.up, projectile.Direction).z);
+				projectile.Execute();
+
+				this.ComputeAudioShot();
+				StartCoroutine(WaitForReloadSound());
+			}else{
+				Debug.Log("NO NO NO NO!!!!! NIENTE PROIETTILE NON ORA!");
+			}
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -107,7 +149,7 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 	}
 
 	private IEnumerator WaitForReloadSound(){
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.2f);
 		this.ComputeAudioReload();
 	}
 
@@ -132,8 +174,6 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 	
 	//VARS
 	[SerializeField] private PlatformManager 						m_oPlatformManager;
-	
-	private float 													m_fElapsedTime = 0.0f;
 	private float 													m_fShootingTime = 0.0f;
 	private bool 													m_bShootingAllowed = false;
 	private Timer 													m_oTimer;

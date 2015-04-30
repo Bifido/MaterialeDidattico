@@ -97,30 +97,7 @@ public class MyMultipleTouchCount : MyInputBase {
 
 	//not required now
 	private void CheckGesture(int iID){
-		float fTime = 0.0f;
-		float fDistance = 0.0f;
-		Vector3 vDirection = Vector3.zero;
-
-//		m_aoTouchInfos[iID].m_oContInput.GetGestureStatus(out fDistance, out fTime, out vDirection);
-
 		base.InternalTouchChanged((short)iID,m_aoTouchInfos[iID].m_vPosition);
-
-//		float fSpeed = fDistance / fTime;
-//		if(fDistance >= mk_fMinDistanceForValidate && fSpeed > mk_fMinSpeedForValidate){
-//			float fAngle = VectorUtils.Angle(mk_vReferenceDirection, mk_vUpVector, vDirection);
-//			bool bValidAngle = VectorUtils.IsAngleWithinThreshold(vDirection, mk_vUpVector, mk_vReferenceDirection, mk_iAngleTreshold);
-//			
-//			Debug.Log("fDistance = " + fDistance + "fSpeed = " + fSpeed + " bValidAngle = " + bValidAngle + " fAngle = " + fAngle + " iID = " + iID);
-//			
-//			if(bValidAngle)			{
-//				InternalShootDetected();
-//				
-//				//Clear the gesture info..
-//				m_aoTouchInfos[iID].m_oContInput.Clear();
-//				
-//				//TODO: Go to the next gesture to check
-//			}
-//		}
 	}
 	
 	//VARS

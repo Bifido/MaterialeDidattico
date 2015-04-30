@@ -23,6 +23,7 @@ public class MyProjectileExecutable : MonoBehaviour,Executable,Allocable{
 
 	public void NotifyExecutioner(bool success){
 		if(this.m_iExecutioner != null && this.IsExecuting()){
+			this.StopExecute();
 			this.transform.position = new Vector3(100f,100f,0f);
 			if(success){
 				this.m_iExecutioner.NotifyExecuteEndSuccess(this);
@@ -48,7 +49,7 @@ public class MyProjectileExecutable : MonoBehaviour,Executable,Allocable{
 	// Use this for initialization
 	void Start () {
 		m_vDirection = this.transform.up;
-		this.m_fTimeToLife = 5f;
+		this.m_fTimeToLife = 3f;
 		this.m_fSpeed = 5f;
 		this.StopExecute();
 	}
@@ -59,7 +60,6 @@ public class MyProjectileExecutable : MonoBehaviour,Executable,Allocable{
 		if(m_tStartingExecutionTime < this.m_fTimeToLife){
 			ComputeTrajectory();
 		}else{
-			this.StopExecute();
 			this.NotifyExecutioner(false);
 		}
 	}

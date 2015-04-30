@@ -11,29 +11,7 @@ public class MyInputSwipe : MyInputBase {
 		InitTouch();
 		
 		Debug.Log("Initiating MyInputSwipe.cs");
-	}
-
-//	public override void InputUpdate(){
-//		base.InputUpdate();
-//		
-//		if(Input.GetMouseButtonDown(0)){
-//			this.m_vSwipeStartPosition =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-//			this.m_vSwipeStartPosition.z = 0;
-//		}
-//
-//
-//		if(Input.GetMouseButtonUp(0)){
-//			this.m_vSwipeEndPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-//			this.m_vSwipeEndPosition.z = 0;
-//			if(Mathf.Abs(this.m_vSwipeStartPosition.x)<1f && 
-//			   this.m_vSwipeStartPosition.y<-2f && this.m_vSwipeStartPosition.y>-4f &&
-//			   this.m_vSwipeEndPosition.y>-4f &&
-//			   Vector3.Distance(this.m_vSwipeStartPosition,this.m_vSwipeEndPosition) > 1.5f){
-//				Debug.DrawLine(this.m_vSwipeStartPosition,this.m_vSwipeEndPosition,Color.red);
-//				base.InternalShootDetected(this.m_vSwipeEndPosition);
-//			}
-//		}
-//	}
+	}	
 
 	public override void InputUpdate(){
 		base.InputUpdate();
@@ -109,9 +87,9 @@ public class MyInputSwipe : MyInputBase {
 		float fAngle = VectorUtils.Angle(mk_vReferenceDirection, mk_vUpVector, vDirection);
 		bool bValidAngle = VectorUtils.IsAngleWithinThreshold(vDirection, mk_vUpVector, mk_vReferenceDirection, mk_iAngleTreshold);
 		
-		Debug.Log("RELEASED GESTURE ("+iID+"): vStartPos = "+vStartPos+" vEndPos = "+vEndPos+" fDistance = " + fDistance + "fSpeed = " + fSpeed + " bValidAngle = " + bValidAngle + " fAngle = " + fAngle);
+//		Debug.Log("RELEASED GESTURE ("+iID+"): vStartPos = "+vStartPos+" vEndPos = "+vEndPos+" fDistance = " + fDistance + "fSpeed = " + fSpeed + " bValidAngle = " + bValidAngle + " fAngle = " + fAngle);
 
-		switch(Constants.WEAPON){
+		switch((int)Constants.WEAPON){
 		case 0:
 			if(Mathf.Abs(vStartPos.x)<1f && 
 			   vStartPos.y<-2f && 
@@ -120,20 +98,23 @@ public class MyInputSwipe : MyInputBase {
 			   fDistance > 1.5f){
 					Debug.DrawLine(vStartPos,vEndPos,Color.red);
 					base.InternalShootDetected(vEndPos);
+
 			}
+			break;
+		case 1:
+
 			break;
 		default:
 			Debug.Log("Wrong weapon index: "+(int)Constants.WEAPON);
 			break;
 		}
 
-		m_aoTouchInfos[iID].m_oContInput.Clear();		
+		m_aoTouchInfos[iID].m_oContInput.Clear();
 		m_aoTouchInfos[iID].m_bStarted = false;
 	}
 	
 	//not required now
 	private void CheckGesture(int iID){
-		Debug.Log("Checking if is a "+Constants.WEAPON.ToString()+" gesture");
 
 		float fTime = 0.0f;
 		float fDistance = 0.0f;
@@ -147,20 +128,30 @@ public class MyInputSwipe : MyInputBase {
 		float fSpeed = fDistance / fTime;
 		float fAngle = VectorUtils.Angle(mk_vReferenceDirection, mk_vUpVector, vDirection);
 		bool bValidAngle = VectorUtils.IsAngleWithinThreshold(vDirection, mk_vUpVector, mk_vReferenceDirection, mk_iAngleTreshold);
-		
-		Debug.Log("CHECKING GESTURE ("+iID+"): vStartPos = "+vStartPos+" vEndPos = "+vEndPos+" fDistance = " + fDistance + "fSpeed = " + fSpeed + " bValidAngle = " + bValidAngle + " fAngle = " + fAngle);
 
-		switch(Constants.WEAPON){
+		switch((int)Constants.WEAPON){
+			//PISTOL
 			case 0:
-//				if(	Mathf.Abs(vStartPos.x)<1f && 
-//				   	vStartPos.y<-2f && 
-//				   	vStartPos.y>-4f){
-//					Debug.Log("Initial pos Valid");
-//				}else{
-//					Debug.Log("Initial pos NOT Valid");
-//				}
-				//need to check direction doesn't change to much?
 				break;
+			//SHOTGUN
+			case 1:
+			Vector3 vMaxPosReached = Vector3.zero;
+			float fMaxDistanceReached = 0f;
+			m_aoTouchInfos[iID].m_oContInput.GetGestureStatusMaxDistance(out vMaxPosReached,out fMaxDistanceReached);
+			
+			if(fMaxDistanceReached > 2.5f && 
+			   Mathf.Abs(vStartPos.x)<1f && 
+			   vStartPos.y<-2f && 
+			   vStartPos.y>-4f &&
+			   Mathf.Abs(vEndPos.x)<1f && 
+			   vEndPos.y<-2f && 
+			   vEndPos.y>-4f ){
+				Debug.DrawLine(vStartPos,vMaxPosReached,Color.red);
+				base.InternalShootDetected(vMaxPosReached);
+				m_aoTouchInfos[iID].m_oContInput.Clear();
+				m_aoTouchInfos[iID].m_oContInput.ClearMaxDistance();
+			}
+			break;
 			default:
 				Debug.Log("Wrong weapon index: "+(int)Constants.WEAPON);
 			break;
@@ -193,17 +184,17 @@ public class MyInputSwipe : MyInputBase {
 	//VARS
 	private struct TouchInfo{
 		public MyContinuousInput 	m_oContInput;
-		public bool 			m_bStarted;
+		public bool 				m_bStarted;
 	}
 	
-	private TouchInfo[] 		m_aoTouchInfos;
+	private TouchInfo[] 			m_aoTouchInfos;
 	
-	private const int 			mk_iMaxTouchNumber = 1;
-	private const int 			mk_iTouchWindowSize = 20;
+	private const int 				mk_iMaxTouchNumber = 1;
+	private const int 				mk_iTouchWindowSize = 20;
 	
-	private const int 			mk_iAngleTreshold = 30;
-	private const float 		mk_fMinSpeedForValidate = 0.5f;
-	private const float 		mk_fMinDistanceForValidate = 0.15f;
-	private readonly Vector3 	mk_vReferenceDirection = new Vector3(0.0f, 1.0f, 0.0f);
-	private readonly Vector3 	mk_vUpVector = new Vector3(0.0f, 0.0f, 1.0f);
+	private const int 				mk_iAngleTreshold = 30;
+	private const float 			mk_fMinSpeedForValidate = 0.5f;
+	private const float 			mk_fMinDistanceForValidate = 0.15f;
+	private readonly Vector3 		mk_vReferenceDirection = new Vector3(0.0f, 1.0f, 0.0f);
+	private readonly Vector3 		mk_vUpVector = new Vector3(0.0f, 0.0f, 1.0f);
 }
