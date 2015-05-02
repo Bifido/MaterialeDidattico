@@ -1,2 +1,4 @@
 Rename Androids folder in Android to use plugin
 Rename Android folder in Androids to disable plugin
+
+use "com.master.plugin" as bundle identifier to build using plugin
