@@ -10,6 +10,13 @@ public class InputPlayerTouchContinuous: InputBase
 		m_aoTouchInfos = new TouchInfo[mk_iMaxTouchNumber];
 
 		InitTouch();
+
+		m_aoCommandsGesture = new InputCompositeGesture[(int)GestureCommandType.COUNT];
+		InputCompositeGesture[] aoCommand = GameObject.FindObjectsOfType<InputCompositeGesture>();
+		for(int i = 0; i < aoCommand.Length; ++i)
+		{
+			m_aoCommandsGesture[(int)aoCommand[i].CommandType] = aoCommand[i];
+		}
 	}
 
 	private void InitTouch()
@@ -85,19 +92,27 @@ public class InputPlayerTouchContinuous: InputBase
 		float fSpeed = fDistance / fTime;
 		if(fDistance >= mk_fMinDistanceForValidate && fSpeed > mk_fMinSpeedForValidate)
 		{
-			float fAngle = VectorUtils.Angle(mk_vReferenceDirection, mk_vUpVector, vDirection);
-			bool bValidAngle = VectorUtils.IsAngleWithinThreshold(vDirection, mk_vUpVector, mk_vReferenceDirection, mk_iAngleTreshold);
-			
-			Debug.Log("fDistance = " + fDistance + "fSpeed = " + fSpeed + " bValidAngle = " + bValidAngle + " fAngle = " + fAngle + " iID = " + iID);
-			
-			if(bValidAngle)
+			for(int i = 0; i < m_aoCommandsGesture.Length; ++i)
 			{
-				InternalShootDetected();
+				if(m_aoCommandsGesture[i] != null && m_aoCommandsGesture[i].CheckGesture(vDirection))
+				{
+					//Clear the gesture info..
+					m_aoTouchInfos[iID].m_oContInput.Clear();
 
-				//Clear the gesture info..
-				m_aoTouchInfos[iID].m_oContInput.Clear();
-
-				//TODO: Go to the next gesture to check
+					if(m_aoCommandsGesture[i].IsGestureComplete())
+					{
+						m_aoCommandsGesture[i].Clear();
+						switch(m_aoCommandsGesture[i].CommandType)
+						{
+						case GestureCommandType.SHOOT:
+							InternalShootDetected();
+							break;
+						case GestureCommandType.JUMP:
+							InternalJumpDetected();
+							break;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -109,7 +124,15 @@ public class InputPlayerTouchContinuous: InputBase
 		public bool 			m_bStarted;
 	}
 
-	private TouchInfo[] 		m_aoTouchInfos;
+	public enum GestureCommandType
+	{
+		SHOOT = 0,
+		JUMP,
+		COUNT
+	}
+
+	private InputCompositeGesture[] m_aoCommandsGesture;
+	private TouchInfo[] 			m_aoTouchInfos;
 
 	private const int 			mk_iMaxTouchNumber = 10;
 	private const int 			mk_iTouchWindowSize = 15;

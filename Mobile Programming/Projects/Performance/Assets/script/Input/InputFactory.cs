@@ -10,14 +10,14 @@ public class InputFactory
 		switch(eInputType)
 		{
 		case InputManager.eInputSource.PLAYER:
-			if(Input.touchSupported)
+			//if(Input.touchSupported)
 			{
 				oInputImplementation = new InputPlayerTouchContinuous();
 			}
-			else
+			/*else
 			{
 				oInputImplementation = new InputMouse();
-			}
+			}*/
 			break;
 		case InputManager.eInputSource.AI:
 			Debug.LogWarning("AI input not yet available - Replay fallback");
