@@ -15,10 +15,11 @@ public class MyInputSwipe : MyInputBase {
 
 	public override void InputUpdate(){
 		base.InputUpdate();
-		
+
 		int iTouches = 0;
 		
 		for(int i = 0; i < Input.touchCount; ++i){
+
 			if(Input.touches[i].fingerId >= mk_iMaxTouchNumber){
 				Debug.LogError("Finger ID excedes max touch numbers");
 				return;
@@ -28,13 +29,19 @@ public class MyInputSwipe : MyInputBase {
 				
 				//Update the touch position
 				iTouches |= 1 << Input.touches[i].fingerId;
-				
-				Vector3 vPos2 = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
+
+//				Debug.Log("InputTouches[i] position = "+Input.touches[i].position);
+
+				Vector3 vPos2 = Input.touches[i].position;
+//				vPos2.z = 8f;
+
+				vPos2 = Camera.main.ScreenToWorldPoint(vPos2);
 				vPos2.z = 0f;
-				
-				//				Vector3 vPos = Input.touches[i].position;
-				//				vPos.x /= Screen.width;
-				//				vPos.y /= Screen.height;
+
+//				vPos2.x /= Screen.width;
+//				vPos2.y /= Screen.height;
+
+				Debug.Log("Input normalized" + vPos2);
 
 				m_aoTouchInfos[(short)Input.touches[i].fingerId].m_oContInput.AddPosition(vPos2,Time.deltaTime);
 			}
@@ -53,25 +60,25 @@ public class MyInputSwipe : MyInputBase {
 		}
 		
 		//mouse test
-		//		if(Input.GetMouseButton(0)){
-		//			m_aoTouchInfos[0].m_bStarted = true;
-		//			
-		//			//Update the touch position
-		//			iTouches |= 1 << 0;
-		//
-		//			Vector3 vPos2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		//			vPos2.z = 0f;
-		//			Debug.Log("ScreeToWorld pos: "+ vPos2);
-		////			vPos.x /= Screen.width;
-		////			vPos.y /= Screen.height;
-		//			
-		//			m_aoTouchInfos[0].m_oContInput.AddPosition(vPos2, Time.deltaTime);
-		//			base.InternalTouchChanged(0,vPos2);
-		//
-		//			base.InternalTouchesCountChanged(1);
-		//		}else{
-		//			base.InternalTouchesCountChanged(0);
-		//		}
+//		if(Input.GetMouseButton(0)){
+//			m_aoTouchInfos[0].m_bStarted = true;
+//			
+//			//Update the touch position
+//			iTouches |= 1 << 0;
+//
+//			Vector3 vPos2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+//			vPos2.z = 0f;
+//			Debug.Log("ScreeToWorld pos: "+ vPos2);
+////			vPos.x /= Screen.width;
+////			vPos.y /= Screen.height;
+//			
+//			m_aoTouchInfos[0].m_oContInput.AddPosition(vPos2, Time.deltaTime);
+//			base.InternalTouchChanged(0,vPos2);
+//
+//			base.InternalTouchesCountChanged(1);
+//		}else{
+//			base.InternalTouchesCountChanged(0);
+//		}
 	}
 	private void TouchFinished(int iID){
 		float fTime = 0.0f;
@@ -87,7 +94,7 @@ public class MyInputSwipe : MyInputBase {
 		float fAngle = VectorUtils.Angle(mk_vReferenceDirection, mk_vUpVector, vDirection);
 		bool bValidAngle = VectorUtils.IsAngleWithinThreshold(vDirection, mk_vUpVector, mk_vReferenceDirection, mk_iAngleTreshold);
 		
-//		Debug.Log("RELEASED GESTURE ("+iID+"): vStartPos = "+vStartPos+" vEndPos = "+vEndPos+" fDistance = " + fDistance + "fSpeed = " + fSpeed + " bValidAngle = " + bValidAngle + " fAngle = " + fAngle);
+		Debug.Log("RELEASED GESTURE ("+iID+"): vStartPos = "+vStartPos+" vEndPos = "+vEndPos+" fDistance = " + fDistance + "fSpeed = " + fSpeed + " bValidAngle = " + bValidAngle + " fAngle = " + fAngle);
 
 		switch((int)Constants.WEAPON){
 		case 0:
@@ -178,6 +185,7 @@ public class MyInputSwipe : MyInputBase {
 		for(int i = 0; i < mk_iMaxTouchNumber; ++i){
 			m_aoTouchInfos[i].m_oContInput = new MyContinuousInput(mk_iTouchWindowSize);
 			m_aoTouchInfos[i].m_bStarted = false;
+			Debug.Log("Continuos input "+i+"created");
 		}
 	}
 

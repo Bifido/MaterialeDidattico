@@ -18,6 +18,7 @@ public class MyMultipleTouchCount : MyInputBase {
 		for(int i = 0; i < mk_iMaxTouchNumber; ++i){
 			m_aoTouchInfos[i].m_oContInput = new ContinuousInput(mk_iTouchWindowSize);
 			m_aoTouchInfos[i].m_bStarted = false;
+			Debug.Log("touch "+i+" initialized");
 		}
 	}
 	
@@ -27,6 +28,7 @@ public class MyMultipleTouchCount : MyInputBase {
 		int iTouches = 0;
 		
 		for(int i = 0; i < Input.touchCount; ++i){
+
 			if(Input.touches[i].fingerId >= mk_iMaxTouchNumber){
 				Debug.LogError("Finger ID excedes max touch numbers");
 				return;

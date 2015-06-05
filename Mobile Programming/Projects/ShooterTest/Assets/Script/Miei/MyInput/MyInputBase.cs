@@ -8,6 +8,7 @@ public class MyInputBase{
 	}
 
 	public virtual void InputUpdate(){
+
 	}
 
 	#region SHOOT AND JUMP

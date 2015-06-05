@@ -1,17 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Plugins\Androids\AndroidManifest.xml">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Miei\VerticalShooterSwipe\MyInputSwipe.cs">
     <Files>
-      <File FileName="Assets\Plugins\Androids\AndroidManifest.xml" Line="2" Column="33" />
-      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\MyInputSwipe.cs" Line="36" Column="20" />
       <File FileName="Assets\Script\Miei\MyInput\MyContinuousInput.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\MyInputSwipe.cs" Line="142" Column="37" />
-      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\Constants.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\MultipleTouchCounter\MyMultipleTouchCount.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Input\InputBase.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\MyProjectileExecutable.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\Utils\AllocatorMonoBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\EnemyManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Miei\MyInput\MyInputBase.cs" Line="11" Column="3" />
+      <File FileName="Assets\Script\Miei\MyInput\MyInputManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
