@@ -14,7 +14,7 @@ public class PerformanceTest : MonoBehaviour
 				m_aoQuads[i] = GameObject.Instantiate((Object)m_oReferenceQuad, GetRandomPosition(), m_oReferenceQuad.transform.rotation) as GameObject;
 				int iTextureOffsetX = Random.Range(0, 9);
 				int iTextureOffsetY = Random.Range(0, 9);
-				m_aoQuads[i].GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0.1f * iTextureOffsetX, 0.1f * iTextureOffsetY);
+				m_aoQuads[i].GetComponent<Renderer>().sharedMaterial.mainTextureOffset = new Vector2(0.1f * iTextureOffsetX, 0.1f * iTextureOffsetY);
 			}
 		}
 	}
