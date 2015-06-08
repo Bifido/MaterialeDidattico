@@ -77,6 +77,7 @@
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\Constants.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyManager.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyMovement.cs" />
+     <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\LightCycle.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\MyInputSwipe.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\WeaponUISwitch.cs" />
