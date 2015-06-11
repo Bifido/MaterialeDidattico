@@ -74,10 +74,10 @@
      <Compile Include="Assets\Script\Miei\Utils\NativeBridge.cs" />
      <Compile Include="Assets\Script\Miei\Utils\Pool.cs" />
      <Compile Include="Assets\Script\Miei\Utils\QualityIndex.cs" />
+     <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\AccellerometerControl.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\Constants.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyManager.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\EnemyMovement.cs" />
-     <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\GyroscopeControl.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\LightCycle.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\MyInputSwipe.cs" />
      <Compile Include="Assets\Script\Miei\VerticalShooterSwipe\ValeShooterVertical.cs" />
