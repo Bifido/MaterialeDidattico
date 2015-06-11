@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -12,7 +12,7 @@ public class WeaponUISwitch : MonoBehaviour {
 	}
 	
 	public void NextWeapon(){
-		if(Constants.WEAPON == Constants.Weapons.COUNT-1){
+		if(Constants.WEAPON == Constants.WEAPONS.COUNT-1){
 			Constants.WEAPON = 0;
 		}else{
 			Constants.WEAPON++;
