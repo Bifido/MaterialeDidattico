@@ -50,7 +50,7 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 	void Start () {
 		this.m_bCollided = false;
 		this.StopExecute();
-		this.m_fSpeed = 1.5f;
+		this.m_fSpeed = Constants.OBSTACLE_SPEED;
 		this.m_fTimeToLife = 10f;
 	}
 	
@@ -67,9 +67,10 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 		}
 
 		this.m_vDirection = Vector3.down;
-		if(this.transform.position.y < 0f){
-			this.m_vDirection.x = -Mathf.Lerp(this.transform.position.x, 0f, 0.001f);
-		}
+		//MOVE forward player
+//		if(this.transform.position.y < 0f){
+//			this.m_vDirection.x = -Mathf.Lerp(this.transform.position.x, 0f, 0.001f);
+//		}
 		this.transform.Translate(this.m_vDirection*Time.deltaTime*this.m_fSpeed);
 	}
 

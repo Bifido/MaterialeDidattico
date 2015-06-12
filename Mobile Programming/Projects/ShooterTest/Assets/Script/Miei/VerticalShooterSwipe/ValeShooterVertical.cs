@@ -31,7 +31,7 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 
 	#region public method
 	public void ComputeShootingTime(){
-		m_fShootingTime = m_oPlatformManager.GetShootingInterval()*Constants.WeaponDelayTimeCoef[(int)Constants.WEAPON];
+		m_fShootingTime = m_oPlatformManager.GetShootingInterval()*Constants.WEAPON_DELAY_TIME_COEF[(int)Constants.WEAPON];
 		Debug.Log(m_fShootingTime);
 	}
 	#endregion
