@@ -31,7 +31,8 @@ public class EnemyManager : MonoBehaviour,Executioner {
 		EnemyMovement enemy = this.m_oEnemies.GetElement();
 		if(enemy != null){
 			enemy.SetExcutioner(this);
-			enemy.transform.position = new Vector3(Random.Range(-2.3f,2.3f),6.3f,0f);
+			int posIndex = Random.Range(0,(int)Constants.COLUMN_POS_X.COUNT);
+			enemy.transform.position = new Vector3(Constants.ColumnPos[posIndex],6.3f,0f);
 			enemy.GetComponent<Collider>().isTrigger = false;
 			enemy.Execute();
 		}else{

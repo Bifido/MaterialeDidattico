@@ -8,7 +8,7 @@ public class Constants : MonoBehaviour {
 
 	public static WEAPONS		WEAPON = WEAPONS.PISTOL;
 
-	public enum 				COLUMN_POS_X	{ LEFT = 0, 	CENTER = 1, 	RIGHT = 2 };
+	public enum 				COLUMN_POS_X	{ LEFT = 0, 	CENTER = 1, 	RIGHT = 2	,COUNT = 3};
 	public static float []		ColumnPos = 	{ -1.25f, 		0f,				1.25f};
 		
 }
