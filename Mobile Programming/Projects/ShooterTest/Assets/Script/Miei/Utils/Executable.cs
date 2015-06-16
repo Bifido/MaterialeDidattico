@@ -5,8 +5,9 @@ public interface Executable{
 	void StopExecute();
 	bool IsExecuting();
 
-	void SetExcutioner(Executioner exec);
+	void SetExcutioner(Executioner exec,int ID);
 	void NotifyExecutioner(bool success);
+	int GetID();
 
 	void 		SetAllocator(Allocator allocator);
 	Allocator 	GetAllocator();

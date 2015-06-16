@@ -17,8 +17,9 @@ public class MyProjectileExecutable : MonoBehaviour,Executable,Allocable{
 		return this.enabled;
 	}
 
-	public void SetExcutioner(Executioner exec){
+	public void SetExcutioner(Executioner exec,int ID){
 		this.m_iExecutioner = exec;
+		this.m_iID = ID;
 	}
 
 	public void NotifyExecutioner(bool success){
@@ -32,9 +33,10 @@ public class MyProjectileExecutable : MonoBehaviour,Executable,Allocable{
 			}
 		}
 	}
-	//---------------EXECUTABLE INTERFACE
+	public int GetID(){
+		return this.m_iID;
+	}
 
-	//---------------ALLOCABLE INTERFACE
 	public void SetAllocator(Allocator alloc){
 		this.m_oAllocator = alloc;
 	}
@@ -44,7 +46,7 @@ public class MyProjectileExecutable : MonoBehaviour,Executable,Allocable{
 	public GameObject GetGameObject(){
 		return this.gameObject;
 	}
-	//---------------ALLOCABLE INTERFACE
+	//---------------EXECUTABLE INTERFACE
 
 	// Use this for initialization
 	void Start () {
@@ -90,4 +92,5 @@ public class MyProjectileExecutable : MonoBehaviour,Executable,Allocable{
 	private float 						m_tStartingExecutionTime = 0f;
 	private Executioner					m_iExecutioner;
 	private Allocator 					m_oAllocator;
+	[SerializeField] private int		m_iID;
 }

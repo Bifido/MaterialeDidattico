@@ -85,7 +85,7 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 		case 0:
 
 			if(projectile != null){
-				projectile.SetExcutioner(this);
+				projectile.SetExcutioner(this,0);
 				projectile.transform.position = this.transform.localPosition;
 				projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
 				
@@ -102,7 +102,7 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 		//SHOTGUN
 		case 1:
 			if(projectile != null){
-				projectile.SetExcutioner(this);
+				projectile.SetExcutioner(this,0);
 				projectile.transform.position = this.transform.localPosition;
 				projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
 				Vector3 angle = new Vector3(0f,0f,Vector3.Angle(Vector3.up,projectile.Direction));
@@ -110,7 +110,7 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 				projectile.Execute();
 
 				projectile = this.m_oProjectiles.GetElement();
-				projectile.SetExcutioner(this);
+				projectile.SetExcutioner(this,0);
 				projectile.transform.position = this.transform.localPosition;
 				endPoint.x += 1;
 				projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;
@@ -119,7 +119,7 @@ public class ValeShooterVertical : MonoBehaviour,Executioner {
 				projectile.Execute();
 
 				projectile = this.m_oProjectiles.GetElement();
-				projectile.SetExcutioner(this);
+				projectile.SetExcutioner(this,0);
 				projectile.transform.position = this.transform.localPosition;
 				endPoint.x -= 2;
 				projectile.Direction = (endPoint - projectile.transform.position)/(endPoint - projectile.transform.position).magnitude;

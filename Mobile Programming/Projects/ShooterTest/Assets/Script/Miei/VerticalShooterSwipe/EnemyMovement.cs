@@ -4,7 +4,6 @@ using System.Collections;
 public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 
 	//EXECUTABLE INTERFACE-------------------
-	[SerializeField] private Executioner 	m_oExecutioner;
 
 	public void Execute(){
 		this.m_fLife = 0f;
@@ -17,7 +16,7 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 	public bool IsExecuting(){
 		return this.enabled;
 	}	
-	public void SetExcutioner(Executioner exec){
+	public void SetExcutioner(Executioner exec,int ID){
 		this.m_oExecutioner = exec;
 	}
 	public void NotifyExecutioner(bool success){
@@ -29,10 +28,10 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 			this.m_oExecutioner.NotifyExecuteEndFail(this);
 		}
 	}
-	//EXECUTABLE INTERFACE-------------------
 
-	//ALLOCABLE INTERFACE--------------------
-	[SerializeField] private Allocator		m_oAllocatorOwner;
+	public int GetID(){
+		return this.m_iID;
+	}
 
 	public void SetAllocator(Allocator alloc){
 		this.m_oAllocatorOwner = alloc;
@@ -44,14 +43,17 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 	public GameObject GetGameObject(){
 		return this.gameObject;
 	}
-	//ALLOCABLE INTERFACE--------------------
+
+	[SerializeField] private Executioner 	m_oExecutioner;
+	[SerializeField] private Allocator		m_oAllocatorOwner;
+	//EXECUTABLE INTERFACE-------------------
 
 	// Use this for initialization
 	void Start () {
 		this.m_bCollided = false;
 		this.StopExecute();
 		this.m_fSpeed = Constants.OBSTACLE_SPEED;
-		this.m_fTimeToLife = 10f;
+		this.m_fTimeToLife = Constants.OBSTACLE_ENEMY_TIME_TO_LIFE;
 	}
 	
 	// Update is called once per frame
@@ -65,13 +67,7 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 			this.StopExecute();
 			this.NotifyExecutioner(false);
 		}
-
-		this.m_vDirection = Vector3.down;
-		//MOVE forward player
-//		if(this.transform.position.y < 0f){
-//			this.m_vDirection.x = -Mathf.Lerp(this.transform.position.x, 0f, 0.001f);
-//		}
-		this.transform.Translate(this.m_vDirection*Time.deltaTime*this.m_fSpeed);
+		this.transform.Translate(Vector3.down*Time.deltaTime*this.m_fSpeed);
 	}
 
 	private void OnTriggerEnter(Collider other){
@@ -95,4 +91,5 @@ public class EnemyMovement : MonoBehaviour,Executable,Allocable {
 	[SerializeField] private float 			m_fTimeToLife;
 	[SerializeField] private float 			m_fLife;
 	[SerializeField] private bool			m_bCollided;
+	[SerializeField] private int			m_iID;
 }
