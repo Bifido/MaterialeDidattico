@@ -8,4 +8,7 @@ public interface Executable{
 	void SetExcutioner(Executioner exec);
 	void NotifyExecutioner(bool success);
 
+	void 		SetAllocator(Allocator allocator);
+	Allocator 	GetAllocator();
+	GameObject 	GetGameObject();
 }
